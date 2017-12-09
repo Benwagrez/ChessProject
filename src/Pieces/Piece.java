@@ -46,9 +46,10 @@ public abstract class Piece{
    *coordinates
    */
   
-  public abstract Type getType();
+  //public abstract Type getType();
   
   /*
+   *Possibly needed - TBD
    *Identifies the type of piece the object is
    */
   
