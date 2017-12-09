@@ -1,3 +1,4 @@
+package Pieces;
 
 public abstract class Piece{
   
@@ -18,7 +19,7 @@ public abstract class Piece{
   }
   
   /*
-   *Constructor of the method, non-abstract becauase
+   *Constructor of the method, non-abstract because
    *there is a consistent need for a constructor
    *to assign a piece to a player and/or color
    *as well as to a board, which will contain
