@@ -3,7 +3,7 @@ import Pieces.*;
 
 public class Board {
 	
-	Spot[][] spotValues = new Spot[8][8]; 
+	public Spot[][] spotValues = new Spot[8][8]; 
 			
 	public Board() {
 		
