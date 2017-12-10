@@ -6,10 +6,11 @@ public class Board {
 			
 	public Board() {
 		
-		for(int yfiller = 0; yfiller<8; yfiller++) {
+		for(int xfiller = 0; xfiller<8; xfiller++) {
 			
-			for(int xfiller = 0; xfiller<8; xfiller++) {
-				boardValues[yfiller][xfiller] = 0;
+			for(int yfiller = 0; yfiller<8; yfiller++) {
+				Spot temp = new Spot(xfiller,yfiller)
+				boardValues[xfiller][yfiller] = temp;
 			}
 			
 		}
