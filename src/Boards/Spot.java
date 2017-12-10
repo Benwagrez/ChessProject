@@ -8,7 +8,6 @@ public class Spot {
     String color;
 
     public Spot(int x, int y) {
-        super();
         this.x = x;
         this.y = y;
         piece = null;
