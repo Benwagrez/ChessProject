@@ -34,11 +34,18 @@ public class Board {
 		Queen queen = new Queen();
 		King king = new King();
 		for(int x = 0; x < 8 ; x++) {
-			spotValues[1][x].occupySpot(pawn);
-			spotValues[7][x].occupySpot(pawn);
+			spotValues[1][x].occupySpot(pawn, "black");
+			spotValues[7][x].occupySpot(pawn, "white");
 		}
+		spotValues[0][0].occupySpot(rook, "black");spotValues[0][8].occupySpot(rook, "black");
+		spotValues[0][1].occupySpot(knight, "black");spotValues[0][7].occupySpot(knight, "black");
+		spotValues[0][2].occupySpot(bishop, "black");spotValues[0][6].occupySpot(bishop, "black");
+		spotValues[0][3].occupySpot(queen, "black");spotValues[0][4].occupySpot(king, "black");
 		
-		
+		spotValues[8][0].occupySpot(rook, "white");spotValues[8][8].occupySpot(rook, "white");
+		spotValues[8][1].occupySpot(knight, "white");spotValues[8][7].occupySpot(knight, "white");
+		spotValues[8][2].occupySpot(bishop, "white");spotValues[8][6].occupySpot(bishop, "white");
+		spotValues[8][3].occupySpot(queen, "white");spotValues[8][4].occupySpot(king, "white");
 		
 	}
 	
