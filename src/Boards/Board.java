@@ -1,22 +1,23 @@
 package Boards;
+import Pieces.*;
 
 public class Board {
 	
-	Spot[][] boardValues = new Spot[8][8]; 
+	Spot[][] spotValues = new Spot[8][8]; 
 			
 	public Board() {
 		
 		for(int xfiller = 0; xfiller<8; xfiller++) {
 			
 			for(int yfiller = 0; yfiller<8; yfiller++) {
-				Spot temp = new Spot(xfiller,yfiller)
-				boardValues[xfiller][yfiller] = temp;
+				Spot temp = new Spot(xfiller,yfiller);
+				spotValues[xfiller][yfiller] = temp;
 			}
 			
 		}
 		
 		/*
-		 *Fills the board with 0, designating an empty board
+		 *Fills the board with null pieces, designating an empty board
 		 */
 		
 	}
@@ -26,8 +27,14 @@ public class Board {
 	 */
 	
 	public void boardSetUp() {
+		Bishop bishop = new Bishop();
+		Pawn pawn = new Pawn();
+		for(int x = 0; x < 8 ; x++) {
+			spotValues[1][x].occupySpot(pawn);
+			spotValues[7][x].occupySpot(pawn);
+		}
 		
-		boardValues[][] = {2,3,4,5,6,4,3,2};
+		
 		
 	}
 	
