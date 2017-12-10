@@ -1,5 +1,4 @@
 package Pieces;
-
 public class Knight extends Piece{
 
 	 public boolean pathValid(int fX, int fY) {
@@ -7,9 +6,13 @@ public class Knight extends Piece{
 		 return true;
 	 }
 	  
-	  public int[][] pathDraw(int iX, int iY,int fX, int fY){
-		  int[][] Path = new int[1][1];//Instantiated with purpose of resolving errors - TBD
-		  return Path;
+	  public int[] pathDraw(int iX, int iY,int fX, int fY){
+		  int[] dest=new int[2];
+		  if(chess.spotValues[fY][fX].isOccupied()) {
+			  dest= {iX,iY};
+		  } else {
+			  dest= {fX,fY};
+		  }
+		  return dest;
 	  }
-	
 }

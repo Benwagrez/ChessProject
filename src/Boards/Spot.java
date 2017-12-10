@@ -5,6 +5,7 @@ public class Spot {
     int x;
     int y;
     Piece piece;
+    String color;
 
     public Spot(int x, int y) {
         super();
@@ -13,17 +14,20 @@ public class Spot {
         piece = null;
     }
 
-    public void occupySpot(Piece piece){
-        //if piece already here, delete it, i. e. set it dead
-        if(this.piece != null)
+    public void occupySpot(Piece piece, String color){
+        //if piece already here, set it dead
+        if(this.piece != null) {
             this.piece=null;
+        }
         //place piece here
         this.piece = piece;
+        this.color=color;
     }
 
     public boolean isOccupied() {
-        if(piece != null)
+        if(piece != null) {
             return true;
+        }
         return false;
     }
 

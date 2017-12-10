@@ -1,12 +1,12 @@
 package Pieces;
-
+import Boards.*;
 public abstract class Piece{
   
 /*
  *Abstract class that all pieces will inherit/extend
  *This requires them to share the same abstract methods
  */
-  
+  Board chess=new Board();
   public int x, y;
   
   /*
@@ -15,7 +15,7 @@ public abstract class Piece{
    */
   
   public Piece(){
-    
+	  
   }
   
   /*
@@ -37,7 +37,7 @@ public abstract class Piece{
    *a semicolon
    */
   
-  public abstract int[][] pathDraw(int iX, int iY,int fX, int fY);
+  public abstract int[] pathDraw(int iX, int iY,int fX, int fY);
   
   /*
    *Draws the new path of the object and stores

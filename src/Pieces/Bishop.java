@@ -7,8 +7,8 @@ public class Bishop extends Piece{
 		 return true;
 	 }
 	  
-	  public int[][] pathDraw(int iX, int iY,int fX, int fY){
-		  int[][] Path = new int[1][1];//Instantiated with purpose of resolving errors - TBD
+	  public int[] pathDraw(int iX, int iY,int fX, int fY){
+		  int[] Path = new int[1];//Instantiated with purpose of resolving errors - TBD
 		  return Path;
 	  }
 	
