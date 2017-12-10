@@ -7,11 +7,12 @@ public class Knight extends Piece{
 	 }
 	  
 	  public int[] pathDraw(int iX, int iY,int fX, int fY){
-		  int[] dest=new int[2];
+		  int[] dest;
 		  if(chess.spotValues[fY][fX].isOccupied()) {
-			  dest= {iX,iY};
+			  dest= new int[]{iX,iY};
 		  } else {
-			  dest= {fX,fY};
+			  dest= new int[]{fX,fY};
 		  }
 		  return dest;
 	  }
+}

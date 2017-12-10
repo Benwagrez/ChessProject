@@ -6,7 +6,7 @@ public abstract class Piece{
  *Abstract class that all pieces will inherit/extend
  *This requires them to share the same abstract methods
  */
-  Board chess=new Board();
+  public Board chess=new Board();
   public int x, y;
   
   /*
