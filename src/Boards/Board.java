@@ -6,8 +6,8 @@ public class Board {
 			
 	public Board() {
 		
-		for(int yfiller = 0; filler<8; filler++) {
-			for(int xfiller = 0; filler<8; filler++) {
+		for(int yfiller = 0; yfiller<8; yfiller++) {
+			for(int xfiller = 0; xfiller<8; xfiller++) {
 				boardValues[y][x] = 0;
 			}
 		}
