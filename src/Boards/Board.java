@@ -29,6 +29,10 @@ public class Board {
 	public void boardSetUp() {
 		Bishop bishop = new Bishop();
 		Pawn pawn = new Pawn();
+		Rook rook = new Rook();
+		Knight knight = new Knight();
+		Queen queen = new Queen();
+		King king = new King();
 		for(int x = 0; x < 8 ; x++) {
 			spotValues[1][x].occupySpot(pawn);
 			spotValues[7][x].occupySpot(pawn);
