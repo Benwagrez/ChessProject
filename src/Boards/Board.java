@@ -1,5 +1,6 @@
 package Boards;
-
+import java.*;
+import javax.*;
 public class Board {
 	
 	Spot[][] boardValues = new Spot[8][8]; 

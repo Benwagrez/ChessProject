@@ -16,7 +16,7 @@ public class Spot {
     public void occupySpot(Piece piece){
         //if piece already here, delete it, i. e. set it dead
         if(this.piece != null)
-            this.piece.setAvailable(false);
+            this.piece=null;
         //place piece here
         this.piece = piece;
     }
