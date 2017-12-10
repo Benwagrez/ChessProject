@@ -11,8 +11,15 @@ public class Board {
 				boardValues[yfiller][xfiller] = 0;
 			}
 		}
-		//Ben is hawt
+		
+		/*
+		 * Fills the board with 0, designating an empty board
+		 */
 		
 	}
+	
+	/*
+	 * A constructor that initialized a new board
+	 */
 	
 }
