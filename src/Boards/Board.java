@@ -1,6 +1,6 @@
 package Boards;
 import Pieces.*;
-//test LPHs eclipse juno
+//test LPHs eclipse juno try 3
 public class Board {
 	
 	public Spot[][] spotValues = new Spot[8][8]; 
