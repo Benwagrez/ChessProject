@@ -3,7 +3,9 @@ package Pieces;
 public class Queen extends Piece{
 
 	public Queen(String color){
-		super(color);
+		
+		super(color); // Super points toward the abstract Piece class constructor with following parameter : String color;
+		
 	}
 	
 	/*
