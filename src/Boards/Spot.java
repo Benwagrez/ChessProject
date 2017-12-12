@@ -2,11 +2,11 @@ package Boards;
 
 import Pieces.*;
 public class Spot {
-    int x;
-    int y;
+    int x, y;
     Piece piece;
-    String color;
-
+    /*
+     *Instance fields with x and y coordinates and the piece.
+     */
     public Spot(int x, int y) {
         this.x = x;
         this.y = y;
