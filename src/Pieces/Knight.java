@@ -2,7 +2,9 @@ package Pieces;
 public class Knight extends Piece{
 
 	public Knight(String color){
-		super(color);
+		
+		super(color); // Super points toward the abstract Piece class constructor with following parameter : String color;
+		
 	}
 	
 	/*
