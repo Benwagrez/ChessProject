@@ -6,6 +6,11 @@ public class King extends Piece{
 		super color;	
 	}
 	
+	/*
+	 *A constructor for King that takes a String input to set the color of the piece.
+	 */
+	
+	
 	 public boolean pathValid(int fX, int fY) {
 		 
 		 return true;
