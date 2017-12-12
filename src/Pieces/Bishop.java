@@ -5,6 +5,10 @@ public class Bishop extends Piece{
 	Public Bishop(String color){
 		super(color);	
 	}
+
+	/*
+	 *A constructor for Bishop that takes a String input to set the color of the piece.
+	 */
 	
 	 public boolean pathValid(int fX, int fY) {
 		 
