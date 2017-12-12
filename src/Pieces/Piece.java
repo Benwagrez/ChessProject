@@ -7,15 +7,14 @@ public abstract class Piece{
  *This requires them to share the same abstract methods
  */
   public Board chess=new Board();
-  public int x, y;
-  
+  public final String color;
   /*
    *Currently X and Y coordinates of the object, non
    *abstract because these will be a consistent variable
    */
   
-  public Piece(){
-	  
+  public Piece(String color){
+	  this.color = color;
   }
   
   /*
