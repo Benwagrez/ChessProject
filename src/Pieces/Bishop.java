@@ -2,6 +2,10 @@ package Pieces;
 
 public class Bishop extends Piece{
 
+	Public Bishop(String color){
+		super(color);	
+	}
+	
 	 public boolean pathValid(int fX, int fY) {
 		 
 		 return true;
