@@ -2,6 +2,14 @@ package Pieces;
 
 public class Queen extends Piece{
 
+	public Queen(String color){
+		super(color);
+	}
+	
+	/*
+	 *A constructor for Queen that takes a String input to set the color of the piece.
+	 */
+	
 	 public boolean pathValid(int fX, int fY) {
 		 
 		 return true;
