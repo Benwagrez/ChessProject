@@ -13,14 +13,13 @@ public class Spot {
         piece = null;
     }
 
-    public void occupySpot(Piece piece, String color){
+    public void occupySpot(Piece piece){
         //if piece already here, set it dead
         if(this.piece != null) {
             this.piece=null;
         }
         //place piece here
         this.piece = piece;
-        this.color=color;
     }
 
     public boolean isOccupied() {
