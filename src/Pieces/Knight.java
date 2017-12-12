@@ -1,6 +1,14 @@
 package Pieces;
 public class Knight extends Piece{
 
+	public Knight(String color){
+		super(color);
+	}
+	
+	/*
+	 *A constructor for Knight that takes a String input to set the color of the piece.
+	 */
+	
 	 public boolean pathValid(int fX, int fY) {
 		 
 		 return true;
