@@ -25,9 +25,13 @@ public class King extends Piece{
 	  *Checking if the path is valid, using two boolean methods isOccupied and pathDraw
 	  */
 	  
-	  public int[] pathDraw(int iX, int iY,int fX, int fY){
-		  int[] Path = new int[1];//Instantiated with purpose of resolving errors - TBD
-		  return Path;
+	  public boolean pathDraw(int iX, int iY,int fX, int fY){
+		  
+		  return true;
 	  }
+
+	  /*
+	   *Checking every square in path to see if occupied (Is Knight - No check needed)
+	   */
 	
 }

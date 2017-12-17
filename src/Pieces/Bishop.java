@@ -14,7 +14,7 @@ public class Bishop extends Piece{
 	
 	 public boolean pathValid(int fX, int fY) {
 		 
-		 if(chess.spotValues[fY][fX].isOccupied()==false) && (pathDraw()==true)
+		 if((chess.spotValues[fY][fX].isOccupied()==false) && (pathDraw()==true))
 		 return true;
 		 else
 		 return false;
@@ -24,9 +24,32 @@ public class Bishop extends Piece{
 	  *Checking if the path is valid, using two boolean methods isOccupied and pathDraw
 	  */
 	  
-	  public int[] pathDraw(int iX, int iY,int fX, int fY){
-		  int[] Path = new int[1];//Instantiated with purpose of resolving errors - TBD
-		  return Path;
+	  public boolean pathDraw(int iX, int iY,int fX, int fY){
+		  double slope = ((double)(Math.abs(fY-iY)/Math.abs(fX-iX));
+		  int vY = iY, vX = iX;
+
+		  if(slope!=1){return false;}//Checking if path taken is possible (Bishop - diagonal slope of 1)
+
+		  for(int i = 0; i<((int)(Math.abs(fX-iX)));i++){//Checking path of Bishop
+
+			if((fY-iY)>0)//Adjusting variable y coordinate
+			vY--;
+			else
+			vY++;
+			if((fX-iX)>0)//Adjusting variable x coordinate
+			vX++;
+			else
+			vX--;
+
+			if(chess.spotValues[vY][vX].isOccupied()==true){return false;}
+
+		  }
+
+		  return true;
 	  }
+
+	  /*
+	   *Checking every square in path to see if occupied
+	   */
 	
 }
