@@ -12,17 +12,21 @@ public class Knight extends Piece{
 	 */
 	
 	 public boolean pathValid(int fX, int fY) {
-		 
+		 if(chess.spotValues[fY][fX].isOccupied()==false) && (pathDraw()==true)
 		 return true;
+		 else
+		 return false;
 	 }
+
+	 /*
+	  *Checking if the path is valid, using two boolean methods isOccupied and pathDraw
+	  */
 	  
-	  public int[] pathDraw(int iX, int iY,int fX, int fY){
-		  int[] dest;
-		  if(chess.spotValues[fY][fX].isOccupied()) {
-			  dest= new int[]{iX,iY};
-		  } else {
-			  dest= new int[]{fX,fY};
-		  }
-		  return dest;
+	  public boolean pathDraw(int iX, int iY,int fX, int fY){
+		return true;
 	  }
+
+	  /*
+	   *Checking every square in path to see if occupied (Is Knight - No check needed)
+	   */
 }

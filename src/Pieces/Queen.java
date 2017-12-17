@@ -14,8 +14,15 @@ public class Queen extends Piece{
 	
 	 public boolean pathValid(int fX, int fY) {
 		 
+		 if(chess.spotValues[fY][fX].isOccupied()==false) && (pathDraw()==true)
 		 return true;
+		 else
+		 return false;
 	 }
+
+	 /*
+	  *Checking if the path is valid, using two boolean methods isOccupied and pathDraw
+	  */
 	  
 	  public int[] pathDraw(int iX, int iY,int fX, int fY){
 		  int[] Path = new int[1];//Instantiated with purpose of resolving errors - TBD

@@ -15,11 +15,11 @@ public class Spot {
 
     public void occupySpot(Piece piece){
         //if piece already here, set it dead
-        if(this.piece != null) {
-            this.piece=null;
+        if(this.piece == null && !(this.piece.color.equals(piece.color)) {
+            //place piece here
+            this.piece = piece;
         }
-        //place piece here
-        this.piece = piece;
+        
     }
 
     public boolean isOccupied() {
