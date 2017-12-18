@@ -26,9 +26,7 @@ public class Queen extends Piece{
 	  
 	  public boolean pathDraw(int iX, int iY,int fX, int fY){
 		  int vY = iY, vX = iX;
-		  if(fX==iX) {
-			  
-		  }else {
+		  if(fX!=iX) {
 			  double slope = ((double)(Math.abs(fY-iY)/Math.abs(fX-iX)));
 			  if(slope!=1 || slope!=0){
 				  return false;
