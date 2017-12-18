@@ -14,17 +14,16 @@ public class King extends Piece{
 	
 	
 	 public boolean pathValid(int fX, int fY) {
-		 
 		 if(chess.spotValues[fY][fX].isOccupied(color)==false && (pathDraw(iX,iY,fX,fY)==true)) {
 			 return true;
-		 }
+		 }	 
 		 return false;
 	 }
-	 
+
 	 /*
 	  *Checking if the path is valid, using two boolean methods isOccupied and pathDraw
 	  */
-	 
+	  
 	  public boolean pathDraw(int iX, int iY,int fX, int fY){
 		  if(chess.spotValues[fY][fX].isOccupied(color)==true){
 			  return false;
@@ -34,9 +33,9 @@ public class King extends Piece{
 		  }//Checking if change in x and y are over 1 - if so - impossible
 		  return true;
 	  }
-	  
+
 	  /*
 	   *Checking every square in path to see if occupied (Is King - limited checks)
 	   */
-	  
+	
 }
