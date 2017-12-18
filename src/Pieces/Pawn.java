@@ -2,10 +2,10 @@ package Pieces;
 
 public class Pawn extends Piece{
 
-	public Pawn(String color){
+	public Pawn(String color, String name){
 		
-		super(color); // Super points toward the abstract Piece class constructor with following parameter : String color;
-		
+		super(color,name); // Super points toward the abstract Piece class constructor with following parameter : String color; String name;
+
 	}
 	
 	/*

@@ -2,10 +2,10 @@ package Pieces;
 
 public class Queen extends Piece{
 
-	public Queen(String color){
+	public Queen(String color, String name){
 		
-		super(color); // Super points toward the abstract Piece class constructor with following parameter : String color;
-		
+		super(color,name); // Super points toward the abstract Piece class constructor with following parameter : String color; String name;
+
 	}
 	
 	/*

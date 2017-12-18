@@ -36,6 +36,16 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
  
   int row = (i / 8) % 2;
   if (row == 0)
+  if(spotValues[row][i].piece!=null)
+  {
+    switch(piece.){
+
+
+    }
+    JLabel piece = new JLabel( new ImageIcon("chess.jpg") );
+    JPanel panel = (JPanel)chessBoard.getComponent(i);
+    panel.add(piece);
+  }
   square.setBackground( i % 2 == 0 ? Color.blue : Color.white );
   else
   square.setBackground( i % 2 == 0 ? Color.white : Color.blue );
@@ -43,18 +53,18 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
  
   //Add a few pieces to the board
  
-  JLabel piece = new JLabel( new ImageIcon("chess.jpg") );
-  JPanel panel = (JPanel)chessBoard.getComponent(0);
-  panel.add(piece);
-  piece = new JLabel(new ImageIcon("chess1.jpg"));
-  panel = (JPanel)chessBoard.getComponent(15);
-  panel.add(piece);
-  piece = new JLabel(new ImageIcon("King.jpg"));
-  panel = (JPanel)chessBoard.getComponent(16);
-  panel.add(piece);
-  piece = new JLabel(new ImageIcon("camel.jpg"));
-  panel = (JPanel)chessBoard.getComponent(20);
-  panel.add(piece);
+  // JLabel piece = new JLabel( new ImageIcon("chess.jpg") );
+  // JPanel panel = (JPanel)chessBoard.getComponent(0);
+  // panel.add(piece);
+  // piece = new JLabel(new ImageIcon("chess1.jpg"));
+  // panel = (JPanel)chessBoard.getComponent(15);
+  // panel.add(piece);
+  // piece = new JLabel(new ImageIcon("King.jpg"));
+  // panel = (JPanel)chessBoard.getComponent(16);
+  // panel.add(piece);
+  // piece = new JLabel(new ImageIcon("camel.jpg"));
+  // panel = (JPanel)chessBoard.getComponent(20);
+  // panel.add(piece);
  
   }
  

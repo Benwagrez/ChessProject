@@ -8,13 +8,15 @@ public abstract class Piece{
  */
   public Board chess=new Board();
   public final String color;
+  public final String name;
   /*
    *Currently X and Y coordinates of the object, non
    *abstract because these will be a consistent variable
    */
   
-  public Piece(String color){
-	  this.color = color;
+  public Piece(String color, String name){
+      this.color = color;
+      this.name = name;
   }
   
   /*

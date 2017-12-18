@@ -2,10 +2,10 @@ package Pieces;
 
 public class Rook extends Piece{
 
-	public Rook(String color){
+	public Rook(String color, String name){
 		
-		super(color); // Super points toward the abstract Piece class constructor with following parameter : String color;
-		
+		super(color,name); // Super points toward the abstract Piece class constructor with following parameter : String color; String name;
+
 	}
 	
 	/*

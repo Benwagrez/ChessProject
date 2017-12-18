@@ -2,9 +2,9 @@ package Pieces;
 
 public class Bishop extends Piece{
 
-	Public Bishop(String color){
+	Public Bishop(String color, String name){
 		
-		super(color); // Super points toward the abstract Piece class constructor with following parameter : String color;
+		super(color,name); // Super points toward the abstract Piece class constructor with following parameter : String color; String name;
 		
 	}
 
