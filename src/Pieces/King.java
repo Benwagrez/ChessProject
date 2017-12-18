@@ -15,26 +15,30 @@ public class King extends Piece{
 	
 	 public boolean pathValid(int fX, int fY) {
 		 
-		 if(chess.spotValues[fY][fX].isOccupied()==false) && (pathDraw()==true)
-		 return true;
-		 else
-		 return false;
+		 if(chess.spotValues[fY][fX].isOccupied()==false && (pathDraw(iX,iY,fX,fY)==true)) {
+			 return true;
+		 }
+		 else {
+			 return false;
+		 }
 	 }
-
+	 
 	 /*
 	  *Checking if the path is valid, using two boolean methods isOccupied and pathDraw
 	  */
-	  
+	 
 	  public boolean pathDraw(int iX, int iY,int fX, int fY){
-
-			if(chess.spotValues[fY][fX].isOccupied()==true){return false;}
-			if((Math.abs(fX-iX))>1)||(Math.abs(fY-iY)>1)){return false;}//Checking if change in x and y are over 1 - if so - impossible
-
+		  if(chess.spotValues[fY][fX].isOccupied()==true){
+			  return false;
+		  }
+		  if((Math.abs(fX-iX))>1||(Math.abs(fY-iY)>1)){
+			  return false;
+		  }//Checking if change in x and y are over 1 - if so - impossible
 		  return true;
 	  }
-
+	  
 	  /*
 	   *Checking every square in path to see if occupied (Is King - limited checks)
 	   */
-	
+	  
 }

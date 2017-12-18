@@ -2,7 +2,7 @@ package Pieces;
 
 public class Bishop extends Piece{
 
-	Public Bishop(String color, String name){
+	public Bishop(String color, String name){
 		
 		super(color,name); // Super points toward the abstract Piece class constructor with following parameter : String color; String name;
 		
@@ -14,10 +14,12 @@ public class Bishop extends Piece{
 	
 	 public boolean pathValid(int fX, int fY) {
 		 
-		 if((chess.spotValues[fY][fX].isOccupied()==false) && (pathDraw()==true))
-		 return true;
-		 else
-		 return false;
+		 if((chess.spotValues[fY][fX].isOccupied()==false) && (pathDraw(iX,iY,fX,fY)==true)) {
+			 return true;
+		 }
+		 else {
+			 return false;
+		 }
 	 }
 
 	 /*
@@ -25,7 +27,7 @@ public class Bishop extends Piece{
 	  */
 	  
 	  public boolean pathDraw(int iX, int iY,int fX, int fY){
-		  double slope = ((double)(Math.abs(fY-iY)/Math.abs(fX-iX));
+		  double slope = ((double)(Math.abs(fY-iY)/Math.abs(fX-iX)));
 		  int vY = iY, vX = iX;
 
 		  if(slope!=1){return false;}//Checking if path taken is possible (Bishop - diagonal slope of 1)

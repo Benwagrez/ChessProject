@@ -38,7 +38,7 @@ public abstract class Piece{
    *a semicolon
    */
   
-  public abstract int[] pathDraw(int iX, int iY,int fX, int fY);
+  public abstract boolean pathDraw(int iX, int iY,int fX, int fY);
   
   /*
    *Draws the new path of the object and stores

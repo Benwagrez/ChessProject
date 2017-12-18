@@ -26,12 +26,18 @@ public class Board {
 	 */
 	
 	public void boardSetUp() {
-		Bishop bishopW = new Bishop("white");Bishop bishopB = new Bishop("black");
-		Pawn pawnW = new Pawn("white");Pawn pawnB = new Pawn("black");
-		Rook rookW = new Rook("white");Rook rookB = new Rook("black");
-		Knight knightW = new Knight("white");Knight knightB = new Knight("black");
-		Queen queenW = new Queen("white");Queen queenB = new Queen("black");
-		King kingW = new King("white");King kingB = new King("black");
+		Bishop bishopW = new Bishop("white","wBishop");
+		Bishop bishopB = new Bishop("black","bishopB");
+		Pawn pawnW = new Pawn("white","pawnW");
+		Pawn pawnB = new Pawn("black","pawnB");
+		Rook rookW = new Rook("white","rookB");
+		Rook rookB = new Rook("black","rookB");
+		Knight knightW = new Knight("white","knightW");
+		Knight knightB = new Knight("black","knightB");
+		Queen queenW = new Queen("white","queenW");
+		Queen queenB = new Queen("black","queenB");
+		King kingW = new King("white","kingW");
+		King kingB = new King("black","kingB");
 		//Instantiation of all pieces, both white and black
 		
 		for(int x = 0; x < 8 ; x++) {

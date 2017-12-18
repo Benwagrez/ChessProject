@@ -6,7 +6,11 @@ import java.util.*;
 import javax.swing.*;
  
 public class ChessGame extends JFrame implements MouseListener, MouseMotionListener {
-  JLayeredPane layeredPane;
+/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7843233250766284934L;
+JLayeredPane layeredPane;
   JPanel chessBoard;
   JLabel chessPiece;
   int xAdjustment;
@@ -36,8 +40,7 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
  
   int row = (i / 8) % 2;
   if (row == 0)
-  if(spotValues[row][i].piece!=null)
-  {
+  if(spotValues[row][i].piece!=null){
     switch(piece.name){
       case "Bishop":
       JLabel piece = new JLabel( new ImageIcon("Bishop.jpg") );
