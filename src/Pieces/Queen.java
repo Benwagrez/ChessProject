@@ -25,11 +25,15 @@ public class Queen extends Piece{
 	  */
 	  
 	  public boolean pathDraw(int iX, int iY,int fX, int fY){
-		  double slope = ((double)(Math.abs(fY-iY)/Math.abs(fX-iX)));
 		  int vY = iY, vX = iX;
-
-		  if(slope!=1 || slope!=0 || slope!=null){return false;}//Checking if path taken is possible (Bishop - diagonal slope of 1)
-
+		  if(fX==iX) {
+			  
+		  }else {
+			  double slope = ((double)(Math.abs(fY-iY)/Math.abs(fX-iX)));
+			  if(slope!=1 || slope!=0){
+				  return false;
+			  }//Checking if path taken is possible (Bishop - diagonal slope of 1)
+		  }
 		  for(int i = 0; i<((int)(Math.abs(fX-iX)));i++){//Checking path of Bishop
 
 			if((fY-iY)>0)//Adjusting variable y coordinate

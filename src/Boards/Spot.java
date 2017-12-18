@@ -14,13 +14,7 @@ public class Spot {
     }
 
     public void occupySpot(Piece piece){
-        //if piece already here, set it dead
-<<<<<<< HEAD
-        if(this.piece == null && !(this.piece.color.equals(piece.color))) {
-=======
-        if(this.piece == null || !(this.piece.color.equals(piece.color)) {
->>>>>>> branch 'master' of https://github.com/Benwagrez/ChessProject.git
-            //place piece here
+        if(this.piece == null || !(this.piece.color.equals(piece.color))) {
             this.piece = piece;
         }
         
