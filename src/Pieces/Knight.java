@@ -11,7 +11,7 @@ public class Knight extends Piece{
 	 *A constructor for Knight that takes a String input to set the color of the piece.
 	 */
 	
-	 public boolean pathValid(int fX, int fY) {
+	 public boolean pathValid(int iX, int iY, int fX, int fY) {
 		 if(chess.spotValues[fY][fX].isOccupied(color)==false && (pathDraw(iX,iY,fX,fY)==true)) {
 			 return true;
 		 }

@@ -27,7 +27,7 @@ public abstract class Piece{
    *values other pieces have on board.
    */
   
-  public abstract boolean pathValid(int fX, int fY);
+  public abstract boolean pathValid(int iX, int iY, int fX, int fY);
   
   /*
    *An abstract method that will return a boolean
