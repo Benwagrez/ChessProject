@@ -1,11 +1,11 @@
 package Pieces;
 
 public class Rook extends Piece{
-
+	String color;
 	public Rook(String color, String name){
 		
 		super(color,name); // Super points toward the abstract Piece class constructor with following parameter : String color; String name;
-
+		color=this.color;
 	}
 	
 	/*
@@ -14,7 +14,7 @@ public class Rook extends Piece{
 	
 	 public boolean pathValid(int fX, int fY) {
 		 
-		 if(chess.spotValues[fY][fX].isOccupied()==false) && (pathDraw()==true)
+		 if(chess.spotValues[fY][fX].isOccupied(color)==false && (pathDraw(iX,iY,fX,fY)==true))
 		 return true;
 		 else
 		 return false;

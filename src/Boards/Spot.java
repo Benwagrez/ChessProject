@@ -22,9 +22,11 @@ public class Spot {
         
     }
 
-    public boolean isOccupied() {
+    public boolean isOccupied(String tcolor) {
         if(piece != null) {
+        	if(piece.color!=tcolor) {
             return true;
+        	}
         }
         return false;
     }

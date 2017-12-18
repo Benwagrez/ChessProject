@@ -1,11 +1,11 @@
 package Pieces;
 
 public class Queen extends Piece{
-
+	String color;
 	public Queen(String color, String name){
 		
 		super(color,name); // Super points toward the abstract Piece class constructor with following parameter : String color; String name;
-
+		color=this.color;
 	}
 	
 	/*
@@ -14,9 +14,9 @@ public class Queen extends Piece{
 	
 	 public boolean pathValid(int fX, int fY) {
 		 
-		 if(chess.spotValues[fY][fX].isOccupied()==false) && (pathDraw()==true)
-		 return true;
-		 else
+		 if(chess.spotValues[fY][fX].isOccupied(color)==false && (pathDraw(iX,iY,fX,fY)==true)) {
+			 return true;
+		 }
 		 return false;
 	 }
 
@@ -25,7 +25,28 @@ public class Queen extends Piece{
 	  */
 	  
 	  public boolean pathDraw(int iX, int iY,int fX, int fY){
-		  
+		  double slope = ((double)(Math.abs(fY-iY)/Math.abs(fX-iX)));
+		  int vY = iY, vX = iX;
+
+		  if(slope!=1 || slope!=0 || slope!=null){return false;}//Checking if path taken is possible (Bishop - diagonal slope of 1)
+
+		  for(int i = 0; i<((int)(Math.abs(fX-iX)));i++){//Checking path of Bishop
+
+			if((fY-iY)>0)//Adjusting variable y coordinate
+				vY--;
+			else
+				vY++;
+			if((fX-iX)>0)//Adjusting variable x coordinate
+				vX++;
+			else
+				vX--;
+
+			if(chess.spotValues[vY][vX].isOccupied("")==true){
+				return false;
+			}
+
+		  }
+
 		  return true;
 	  }
 

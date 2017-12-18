@@ -1,11 +1,11 @@
 package Pieces;
 
 public class King extends Piece{
-
+	String color;
 	public King(String color, String name){
 		
 		super(color,name); // Super points toward the abstract Piece class constructor with following parameter : String color; String name;
-
+		color=this.color;
 	}
 	
 	/*
@@ -15,12 +15,10 @@ public class King extends Piece{
 	
 	 public boolean pathValid(int fX, int fY) {
 		 
-		 if(chess.spotValues[fY][fX].isOccupied()==false && (pathDraw(iX,iY,fX,fY)==true)) {
+		 if(chess.spotValues[fY][fX].isOccupied(color)==false && (pathDraw(iX,iY,fX,fY)==true)) {
 			 return true;
 		 }
-		 else {
-			 return false;
-		 }
+		 return false;
 	 }
 	 
 	 /*
@@ -28,7 +26,7 @@ public class King extends Piece{
 	  */
 	 
 	  public boolean pathDraw(int iX, int iY,int fX, int fY){
-		  if(chess.spotValues[fY][fX].isOccupied()==true){
+		  if(chess.spotValues[fY][fX].isOccupied(color)==true){
 			  return false;
 		  }
 		  if((Math.abs(fX-iX))>1||(Math.abs(fY-iY)>1)){
