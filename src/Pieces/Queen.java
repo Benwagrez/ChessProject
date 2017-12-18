@@ -1,11 +1,9 @@
 package Pieces;
 
 public class Queen extends Piece{
-	String color;
 	public Queen(String color, String name){
 		
 		super(color,name); // Super points toward the abstract Piece class constructor with following parameter : String color; String name;
-		color=this.color;
 	}
 	
 	/*
@@ -14,7 +12,7 @@ public class Queen extends Piece{
 	
 	 public boolean pathValid(int iX, int iY, int fX, int fY) {
 		 
-		 if(chess.spotValues[fY][fX].isOccupied(color)==false && (pathDraw(iX,iY,fX,fY)==true)) {
+		 if(chess.spotValues[fY][fX].isOccupied()==false && (pathDraw(iX,iY,fX,fY)==true)) {
 			 return true;
 		 }
 		 return false;
@@ -43,7 +41,7 @@ public class Queen extends Piece{
 			else
 				vX--;
 
-			if(chess.spotValues[vY][vX].isOccupied("")==true){
+			if(chess.spotValues[vY][vX].isOccupied()==true){
 				return false;
 			}
 
