@@ -30,61 +30,48 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
   chessBoard.setPreferredSize( boardSize );
   chessBoard.setBounds(0, 0, boardSize.width, boardSize.height);
  
-  for (int i = 0; i < 64; i++) {
-  JPanel square = new JPanel( new BorderLayout() );
-  chessBoard.add( square );
- 
-  int row = (i / 8) % 2;
-  if (row == 0)
-  if(spotValues[row][i].piece!=null)
-  {
-    switch(piece.name){
-      case "Bishop":
-      JLabel piece = new JLabel( new ImageIcon("Bishop.jpg") );
-      break;
-      
-      case "King":
-      JLabel piece = new JLabel( new ImageIcon("King.jpg") );
-      break;
-      
-      case "Queen":
-      JLabel piece = new JLabel( new ImageIcon("Queen.jpg") );
-      break;
+      for (int i = 0; i < 64; i++) {
+      JPanel square = new JPanel( new BorderLayout() );
+      chessBoard.add( square );
 
-      case "Pawn":
-      JLabel piece = new JLabel( new ImageIcon("Pawn.jpg") );
-      break;
+      int row = (i / 8) % 2;
 
-      case "Rook":
-      JLabel piece = new JLabel( new ImageIcon("Rook.jpg") );
-      break;
+      if (row == 0)
+      square.setBackground( i % 2 == 0 ? Color.blue : Color.white );//Adjusting for First square
+      else
+      square.setBackground( i % 2 == 0 ? Color.white : Color.blue );//Setting colored boxes for chess board
 
-      case "Knight":
-      JLabel piece = new JLabel( new ImageIcon("Knight.jpg") );
-      break;
+      if(spotValues[row][i].piece!=null)
+      {
+        switch(piece.name){
+          case "Bishop":
+          JLabel Vpiece = new JLabel( new ImageIcon("Bishop.jpg") );
+          break;
+          
+          case "King":
+          JLabel Vpiece = new JLabel( new ImageIcon("King.jpg") );
+          break;
+          
+          case "Queen":
+          JLabel Vpiece = new JLabel( new ImageIcon("Queen.jpg") );
+          break;
+
+          case "Pawn":
+          JLabel Vpiece = new JLabel( new ImageIcon("Pawn.jpg") );
+          break;
+
+          case "Rook":
+          JLabel Vpiece = new JLabel( new ImageIcon("Rook.jpg") );
+          break;
+
+          case "Knight":
+          JLabel Vpiece = new JLabel( new ImageIcon("Knight.jpg") );
+          break;
+        }
+        JPanel panel = (JPanel)chessBoard.getComponent(i);
+        panel.add(Vpiece);
+      }
     }
-    JPanel panel = (JPanel)chessBoard.getComponent(i);
-    panel.add(piece);
-  }
-  square.setBackground( i % 2 == 0 ? Color.blue : Color.white );
-  else
-  square.setBackground( i % 2 == 0 ? Color.white : Color.blue );
-  }
- 
-  //Add a few pieces to the board
- 
-  // JLabel piece = new JLabel( new ImageIcon("chess.jpg") );
-  // JPanel panel = (JPanel)chessBoard.getComponent(0);
-  // panel.add(piece);
-  // piece = new JLabel(new ImageIcon("chess1.jpg"));
-  // panel = (JPanel)chessBoard.getComponent(15);
-  // panel.add(piece);
-  // piece = new JLabel(new ImageIcon("King.jpg"));
-  // panel = (JPanel)chessBoard.getComponent(16);
-  // panel.add(piece);
-  // piece = new JLabel(new ImageIcon("camel.jpg"));
-  // panel = (JPanel)chessBoard.getComponent(20);
-  // panel.add(piece);
  
   }
  
