@@ -38,11 +38,31 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
   if (row == 0)
   if(spotValues[row][i].piece!=null)
   {
-    switch(piece.){
+    switch(piece.name){
+      case "Bishop":
+      JLabel piece = new JLabel( new ImageIcon("Bishop.jpg") );
+      break;
+      
+      case "King":
+      JLabel piece = new JLabel( new ImageIcon("King.jpg") );
+      break;
+      
+      case "Queen":
+      JLabel piece = new JLabel( new ImageIcon("Queen.jpg") );
+      break;
 
+      case "Pawn":
+      JLabel piece = new JLabel( new ImageIcon("Pawn.jpg") );
+      break;
 
+      case "Rook":
+      JLabel piece = new JLabel( new ImageIcon("Rook.jpg") );
+      break;
+
+      case "Knight":
+      JLabel piece = new JLabel( new ImageIcon("Knight.jpg") );
+      break;
     }
-    JLabel piece = new JLabel( new ImageIcon("chess.jpg") );
     JPanel panel = (JPanel)chessBoard.getComponent(i);
     panel.add(piece);
   }
