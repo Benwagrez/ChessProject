@@ -33,7 +33,7 @@ public class Bishop extends Piece{
 				vY++;
 			if((fX-iX)>0)//Adjusting variable x coordinate
 				vX++;
-			else
+			else//
 				vX--;
 
 			if(chess.spotValues[vY][vX].isOccupied()==true){
