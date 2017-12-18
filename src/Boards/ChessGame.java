@@ -4,9 +4,13 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
 import javax.swing.*;
- 
+
 public class ChessGame extends JFrame implements MouseListener, MouseMotionListener {
-  JLayeredPane layeredPane;
+  /**
+	 * f
+	 */
+	private static final long serialVersionUID = 1L;
+JLayeredPane layeredPane;
   JPanel chessBoard;
   JLabel chessPiece;
   int xAdjustment;
