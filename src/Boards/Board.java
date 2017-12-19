@@ -39,15 +39,15 @@ public class Board {
 			spotValues[6][x].occupySpot(pawnW);//Setting up the white pawns
 		}
 		
-		spotValues[0][0].occupySpot(rookB);spotValues[0][8].occupySpot(rookB);
-		spotValues[0][1].occupySpot(knightB);spotValues[0][7].occupySpot(knightB);
-		spotValues[0][2].occupySpot(bishopB);spotValues[0][6].occupySpot(bishopB);
+		spotValues[0][0].occupySpot(rookB);spotValues[0][7].occupySpot(rookB);
+		spotValues[0][1].occupySpot(knightB);spotValues[0][6].occupySpot(knightB);
+		spotValues[0][2].occupySpot(bishopB);spotValues[0][5].occupySpot(bishopB);
 		spotValues[0][3].occupySpot(queenB);spotValues[0][4].occupySpot(kingB);
 		//Setting up the black side of board
 		
-		spotValues[7][0].occupySpot(rookW);spotValues[7][8].occupySpot(rookW);
-		spotValues[7][1].occupySpot(knightW);spotValues[7][7].occupySpot(knightW);
-		spotValues[7][2].occupySpot(bishopW);spotValues[7][6].occupySpot(bishopW);
+		spotValues[7][0].occupySpot(rookW);spotValues[7][7].occupySpot(rookW);
+		spotValues[7][1].occupySpot(knightW);spotValues[7][6].occupySpot(knightW);
+		spotValues[7][2].occupySpot(bishopW);spotValues[7][5].occupySpot(bishopW);
 		spotValues[7][3].occupySpot(queenW);spotValues[7][4].occupySpot(kingW);
 		//Setting up the white side of board
 	}

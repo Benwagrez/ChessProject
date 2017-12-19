@@ -34,26 +34,27 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
 	  chessBoard.setPreferredSize( boardSize );
 	  chessBoard.setBounds(0, 0, boardSize.width, boardSize.height);
 	  JLabel Vpiece = new JLabel();
+	  
       for (int i = 0; i < 64; i++) {
       JPanel square = new JPanel( new BorderLayout() );
       chessBoard.add( square );
 
-      int row = (i / 8) % 2;
+      int row = (i / 8);
 
-      if (row == 0)
+      if (row%2 == 0)
       square.setBackground( i % 2 == 0 ? Color.blue : Color.white );//Adjusting for First square
       else
       square.setBackground( i % 2 == 0 ? Color.white : Color.blue );//Setting colored boxes for chess board
 
-      if(newGame.spotValues[row][i].piece!=null)
+      if(newGame.spotValues[row][i-(row*8)].piece!=null)
       {
-        switch(newGame.spotValues[row][i].piece.name){
+        switch(newGame.spotValues[row][i-(row*8)].piece.name){
           case "Bishop":
           Vpiece = new JLabel( new ImageIcon("Bishop.jpg") );
           break;
           
           case "King":
-          Vpiece = new JLabel( new ImageIcon("King.jpg") );
+          Vpiece = new JLabel( new ImageIcon(this.getClass().getResource("/King.jpg")) );
           break;
           
           case "Queen":
