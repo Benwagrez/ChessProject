@@ -2,7 +2,6 @@ package Boards;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.util.*;
 import javax.swing.*;
 
 public class ChessGame extends JFrame implements MouseListener, MouseMotionListener {
@@ -98,51 +97,61 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
  
   }
  
-  public void mousePressed(MouseEvent e){
-	  chessPiece = null;
-	  Component c =  chessBoard.findComponentAt(e.getX(), e.getY());
-	 
-	  
-	  if (c instanceof JPanel) 
-	  return;
-	 
-	  Point parentLocation = c.getParent().getLocation();
-	  xAdjustment = parentLocation.x - e.getX();
-	  yAdjustment = parentLocation.y - e.getY();
-	  chessPiece = (JLabel)c;
-	  chessPiece.setLocation(e.getX() + xAdjustment, e.getY() + yAdjustment);
-	  chessPiece.setSize(chessPiece.getWidth(), chessPiece.getHeight());
-	  layeredPane.add(chessPiece, JLayeredPane.DRAG_LAYER);
-	  }
+	  public void mousePressed(MouseEvent e){
+		  chessPiece = null;
+		  Component c =  chessBoard.findComponentAt(e.getX(), e.getY());
+		 
+		  
+		  if (c instanceof JPanel) 
+		  return; //makes sure no errors are given when pressed on a blank square
+		 
+		  Point parentLocation = c.getParent().getLocation(); //parentLocation is mouse pointer
+		  xAdjustment = parentLocation.x - e.getX();
+		  yAdjustment = parentLocation.y - e.getY();
+		  chessPiece = (JLabel)c;
+		  chessPiece.setLocation(e.getX() + xAdjustment, e.getY() + yAdjustment);
+		  chessPiece.setSize(chessPiece.getWidth(), chessPiece.getHeight());
+		  layeredPane.add(chessPiece, JLayeredPane.DRAG_LAYER);
+		  }
 	 
 	  //Move the chess piece around
-	  
 	  public void mouseDragged(MouseEvent me) {
-	  if (chessPiece == null) return;
-	 chessPiece.setLocation(me.getX() + xAdjustment, me.getY() + yAdjustment);
-	 }
-	 
-	  //Drop the chess piece back onto the chess board
-	 
+		  if (chessPiece == null) { //checks if square is blank or not
+			  return;
+		  }
+		  chessPiece.setLocation(me.getX() + xAdjustment, me.getY() + yAdjustment);
+	  }
+		 
+		  //Drop the chess piece back onto the chess board
 	  public void mouseReleased(MouseEvent e) {
-	  if(chessPiece == null) return;
-	 
-	  chessPiece.setVisible(false);
-	  Component c =  chessBoard.findComponentAt(e.getX(), e.getY());
-	 
-	  if (c instanceof JLabel){
-	  Container parent = c.getParent();
-	  parent.remove(0);
-	  parent.add( chessPiece );
+		  if(chessPiece == null) { //checks if square is blank or not
+			  return;
+		  }
+		  chessPiece.setVisible(false);
+		  /*
+		   * 
+		   * 
+		   * 
+		   */
+		  Component c =  chessBoard.findComponentAt(e.getX(), e.getY());
+		  if (c instanceof JLabel){
+			  Container parent = c.getParent();
+			  parent.remove(0);
+			  parent.add( chessPiece );
+		  }
+		  else {
+			  Container parent = (Container)c;
+			  parent.add( chessPiece );
+		  }
+		  chessPiece.setVisible(true);
 	  }
-	  else {
-	  Container parent = (Container)c;
-	  parent.add( chessPiece );
-	  }
-	 
-	  chessPiece.setVisible(true);
-	  }
-	 
+	  		/*
+	  		 * 
+	  		 * 
+	  		 * 
+	  		 */
+	  
+	  
 	  public void mouseClicked(MouseEvent e) {
 	  
 	  }

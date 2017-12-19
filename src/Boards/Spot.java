@@ -26,11 +26,4 @@ public class Spot {
         }
         return false;
     }
-
-    public Piece releaseSpot() {
-        Piece releasedPiece = this.piece;
-        this.piece = null;
-        return releasedPiece;
-    }
-
 }
