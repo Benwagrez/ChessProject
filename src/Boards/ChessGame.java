@@ -13,7 +13,7 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
   int yAdjustment;
   int iX = 0;
   int iY = 0;
-  JComponent[][] test = new JComponent[8][8];
+  JComponent[][] spotPanel = new JComponent[8][8];
   Board newGame = new Board();//Instantiate Board object w/ spots
   public ChessGame(){
 	  
@@ -39,7 +39,7 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
       JPanel square = new JPanel( new BorderLayout() );
       chessBoard.add( square );
       int row = (i / 8);
-      test[row][i-(row*8)] = square;
+      spotPanel[row][i-(row*8)] = square;
       if (row%2 == 0)
       square.setBackground( i % 2 == 0 ? Color.darkGray : Color.white );//Adjusting for First square
       else
@@ -100,14 +100,14 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
 	  public void mousePressed(MouseEvent e){
 		  chessPiece = null;
 		  Component c =  chessBoard.findComponentAt(e.getX(), e.getY());
-		  for(int x =0;x<8;x++) {
-				 for(int y =0; y<8;y++) {
-					 if(test[x][y]==c) {
-						 iX = x;
-						 iY = y;
-					 }
-				 }
-			 }
+//		  for(int x =0;x<8;x++) {
+//				 for(int y =0; y<8;y++) {
+//					 if(spotPanel[x][y]==c) {
+//						 iX = x;
+//						 iY = y;
+//					 }
+//				 }
+//			 }
 		  if (c instanceof JPanel) 
 		  return; //makes sure no errors are given when pressed on a blank square
 		 
@@ -139,18 +139,18 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
 		   * 
 		   * 
 		   */
-		  System.out.print(e.getX()+"  "+e.getY());
 		  Component c =  chessBoard.findComponentAt(e.getX(), e.getY()); //checks to see if there's a new piece at the new location
-		  boolean canTake = false;
-		  for(int x =0;x<8;x++) {
-				 for(int y =0; y<8;y++) {
-					 if(test[x][y]==c) {
-						 canTake = newGame.spotValues[iX][iY].piece.pathValid(iX,iY,x,y);
-						 
-					 }
-				 }
-			 }
-		  if(canTake){
+		  boolean pathValid = true;
+		  
+		  //for(int x =0;x<8;x++) {
+//				 for(int y =0; y<8;y++) {
+//					 if(spotPanel[x][y]==c) {
+//						 pathValid = newGame.spotValues[iX][iY].piece.pathValid(iX,iY,x,y);
+//						 
+//					 }
+//				 }
+			 //}
+		  if(pathValid){
 			  chessPiece.setVisible(false);
 		  if (c instanceof JLabel){
 			  Container parent = c.getParent();
