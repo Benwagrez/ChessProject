@@ -31,6 +31,6 @@ public class Knight extends Piece{
 	  }
 
 	  /*
-	   *Checking every square in path to see if occupied (Is Knight - only one checks needed)
+	   *Checking every square in path to see if occupied (If Knight - only one checks needed)
 	   */
 }

@@ -23,8 +23,29 @@ public class Rook extends Piece{
 	  */
 	  
 	  public boolean pathDraw(int iX, int iY,int fX, int fY){
-		 
-		 return true;
+		  int vY = iY, vX = iX;
+		  if(fX!=iX) {
+			  if(fY!=iY){
+				  return false;
+			  }
+		  }
+		  for(int i = 0; i<((int)(Math.abs(fX-iX)));i++){
+
+			if((fY-iY)>0)//Adjusting variable y coordinate
+				vY--;
+			else
+				vY++;
+			if((fX-iX)>0)//Adjusting variable x coordinate
+				vX++;
+			else
+				vX--;
+
+			if(chess.spotValues[vY][vX].isOccupied()==true){
+				return false;
+			}
+
+		  }
+		  return true;
 	  }
 
 	  /*

@@ -33,7 +33,7 @@ public class King extends Piece{
 	  }
 
 	  /*
-	   *Checking every square in path to see if occupied (Is King - limited checks)
+	   *Checking every square in path to see if occupied (If King - limited checks)
 	   */
 	
 }
