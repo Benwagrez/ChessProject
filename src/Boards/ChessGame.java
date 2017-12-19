@@ -7,7 +7,7 @@ import javax.swing.*;
 
 public class ChessGame extends JFrame implements MouseListener, MouseMotionListener {
   /**
-	 * fu
+	 * fuck me
 	 */
 	private static final long serialVersionUID = 1L;
 JLayeredPane layeredPane;
