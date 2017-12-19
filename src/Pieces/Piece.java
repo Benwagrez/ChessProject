@@ -45,13 +45,5 @@ public abstract class Piece{
    *and it's new coordinate values based on it's
    *initial x and y coordinates and it's final 
    *coordinates
-   */
-  
-  //public abstract Type getType();
-  
-  /*
-   *Possibly needed - TBD
-   *Identifies the type of piece the object is
-   */
-  
+   */  
 }
