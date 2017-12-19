@@ -23,7 +23,9 @@ public class Pawn extends Piece{
 	  */
 	  
 	  public boolean pathDraw(int iX, int iY,int fX, int fY){
-		  
+		  if(iY==1) {
+			  //pawn stuff
+		  }
 		  return true;
 	  }
 
