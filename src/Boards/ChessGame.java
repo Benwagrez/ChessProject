@@ -11,13 +11,12 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
   JLabel chessPiece;
   int xAdjustment;
   int yAdjustment;
- 
+  JComponent[][] test = new JComponent[8][8];
+  Board newGame = new Board();//Instantiate Board object w/ spots
   public ChessGame(){
 	  
-	  Board newGame = new Board();//Instantiate Board object w/ spots
 	  newGame.boardSetUp();
 	  Dimension boardSize = new Dimension(600, 600);//Instantiate Visual representation of Board.
-	 
 	  //  Use a Layered Pane for this this application
 	  layeredPane = new JLayeredPane();
 	  getContentPane().add(layeredPane);
@@ -37,9 +36,8 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
       for (int i = 0; i < 64; i++) {
       JPanel square = new JPanel( new BorderLayout() );
       chessBoard.add( square );
-
       int row = (i / 8);
-
+      test[row][i-(row*8)] = square;
       if (row%2 == 0)
       square.setBackground( i % 2 == 0 ? Color.darkGray : Color.white );//Adjusting for First square
       else
@@ -100,7 +98,6 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
 	  public void mousePressed(MouseEvent e){
 		  chessPiece = null;
 		  Component c =  chessBoard.findComponentAt(e.getX(), e.getY());
-		 
 		  
 		  if (c instanceof JPanel) 
 		  return; //makes sure no errors are given when pressed on a blank square
@@ -135,6 +132,13 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
 		   */
 		  System.out.print(e.getX()+"  "+e.getY());
 		  Component c =  chessBoard.findComponentAt(e.getX(), e.getY()); //checks to see if there's a new piece at the new location
+		  for(int x =0;x<8;x++) {
+				 for(int y =0; y<8;y++) {
+					 if(test[x][y]==c) {
+						 boolean canTake = newGame.spotValues[y][x].piece.pathValid(x,y);
+					 }
+				 }
+			 }
 		  if (c instanceof JLabel){
 			  Container parent = c.getParent();
 			  parent.remove(0);
