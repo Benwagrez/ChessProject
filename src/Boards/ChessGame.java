@@ -133,7 +133,8 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
 		   * 
 		   * 
 		   */
-		  Component c =  chessBoard.findComponentAt(e.getX(), e.getY());
+		  System.out.print(e.getX()+"  "+e.getY());
+		  Component c =  chessBoard.findComponentAt(e.getX(), e.getY()); //checks to see if there's a new piece at the new location
 		  if (c instanceof JLabel){
 			  Container parent = c.getParent();
 			  parent.remove(0);
