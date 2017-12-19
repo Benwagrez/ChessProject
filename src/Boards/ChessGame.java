@@ -42,35 +42,35 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
       int row = (i / 8);
 
       if (row%2 == 0)
-      square.setBackground( i % 2 == 0 ? Color.blue : Color.white );//Adjusting for First square
+      square.setBackground( i % 2 == 0 ? Color.darkGray : Color.white );//Adjusting for First square
       else
-      square.setBackground( i % 2 == 0 ? Color.white : Color.blue );//Setting colored boxes for chess board
+      square.setBackground( i % 2 == 0 ? Color.white : Color.darkGray );//Setting colored boxes for chess board
 
       if(newGame.spotValues[row][i-(row*8)].piece!=null)
       {
         switch(newGame.spotValues[row][i-(row*8)].piece.name){
           case "Bishop":
-          Vpiece = new JLabel( new ImageIcon("Bishop.jpg") );
+          Vpiece = new JLabel( new ImageIcon("resource/Bishop.png") );
           break;
           
           case "King":
-          Vpiece = new JLabel( new ImageIcon("resource/King.jpg" ));
+          Vpiece = new JLabel( new ImageIcon("resource/King.png" ));
           break;
           
           case "Queen":
-          Vpiece = new JLabel( new ImageIcon("Queen.jpg") );
+          Vpiece = new JLabel( new ImageIcon("resource/Queen.png") );
           break;
 
           case "Pawn":
-          Vpiece = new JLabel( new ImageIcon("Pawn.jpg") );
+          Vpiece = new JLabel( new ImageIcon("resource/Pawn.png") );
           break;
 
           case "Rook":
-          Vpiece = new JLabel( new ImageIcon("Rook.jpg") );
+          Vpiece = new JLabel( new ImageIcon("resource/Rook.png") );
           break;
 
           case "Knight":
-          Vpiece = new JLabel( new ImageIcon("Knight.jpg") );
+          Vpiece = new JLabel( new ImageIcon("resource/Knight.png") );
           break;
         }
         JPanel panel = (JPanel)chessBoard.getComponent(i);
