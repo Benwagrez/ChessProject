@@ -50,27 +50,45 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
       {
         switch(newGame.spotValues[row][i-(row*8)].piece.name){
           case "Bishop":
-          Vpiece = new JLabel( new ImageIcon("resource/Bishop.png") );
+        	  if(newGame.spotValues[row][i-(row*8)].piece.color.equals("White"))
+        		  Vpiece = new JLabel( new ImageIcon("resource/BishopW.svg") );
+        	  else
+        		  Vpiece = new JLabel( new ImageIcon("resource/BishopB.svg") );
           break;
           
           case "King":
-          Vpiece = new JLabel( new ImageIcon("resource/King.png" ));
+        	  if(newGame.spotValues[row][i-(row*8)].piece.color.equals("White"))
+        		  Vpiece = new JLabel( new ImageIcon("resource/KingW.svg" ));
+        	  else
+        		  Vpiece = new JLabel( new ImageIcon("resource/KingB.svg" ));
           break;
           
           case "Queen":
-          Vpiece = new JLabel( new ImageIcon("resource/Queen.png") );
+        	  if(newGame.spotValues[row][i-(row*8)].piece.color.equals("White"))
+        		  Vpiece = new JLabel( new ImageIcon("resource/QueenW.svg") );
+        	  else
+        		  Vpiece = new JLabel( new ImageIcon("resource/QueenB.svg") );
           break;
 
           case "Pawn":
-          Vpiece = new JLabel( new ImageIcon("resource/Pawn.png") );
+        	  if(newGame.spotValues[row][i-(row*8)].piece.color.equals("White"))
+        		  Vpiece = new JLabel( new ImageIcon("resource/PawnW.svg") );
+        	  else
+        		  Vpiece = new JLabel( new ImageIcon("resource/PawnB.svg") );
           break;
 
           case "Rook":
-          Vpiece = new JLabel( new ImageIcon("resource/Rook.png") );
+        	  if(newGame.spotValues[row][i-(row*8)].piece.color.equals("White"))
+        		  Vpiece = new JLabel( new ImageIcon("resource/RookW.svg") );
+        	  else
+        		  Vpiece = new JLabel( new ImageIcon("resource/RookB.svg") );
           break;
 
           case "Knight":
-          Vpiece = new JLabel( new ImageIcon("resource/Knight.png") );
+        	  if(newGame.spotValues[row][i-(row*8)].piece.color.equals("White"))
+        		  Vpiece = new JLabel( new ImageIcon("resource/KnightW.svg") );
+        	  else
+        		  Vpiece = new JLabel( new ImageIcon("resource/KnightB.svg") );
           break;
         }
         JPanel panel = (JPanel)chessBoard.getComponent(i);
