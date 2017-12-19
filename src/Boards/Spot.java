@@ -17,9 +17,8 @@ public class Spot {
         if(this.piece == null || !(this.piece.color.equals(piece.color))) {
             this.piece = piece;
         }
-        
     }
-
+    
     public boolean isOccupied() {
         if(piece != null) {
         	return true;

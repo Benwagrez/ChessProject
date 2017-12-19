@@ -14,34 +14,44 @@ public class Pawn extends Piece{
 		 
 		 if(chess.spotValues[fY][fX].isOccupied()==false && (pathDraw(iX,iY,fX,fY)==true)) {
 			 return true;
+		 } else if(chess.spotValues[fY][fX].isOccupied()==true && pathDraw(iX,iY,fX,fY)==true){
+
+			        if(iX + 1 == fX || iX - 1 == fX ){
+			            //one spot to the right or left
+			            if(color == "White"){
+			                if(iY + 1 == fY){
+			                    return true;
+			                }
+			            }else{
+			                if(iY - 1 == fY ){
+			                    return true;
+			                }
+			            }
+			        }
 		 }
 		 return false;
-	 }
+}
 
 	 /*
 	  *Checking if the path is valid, using two boolean methods isOccupied and pathDraw
 	  */
 	  
 	  public boolean pathDraw(int iX, int iY,int fX, int fY){
-		  if(color=="White") {
-			  if(iY==1 && (fY==2 || fY==3) && iX==fX) {
-				  return true;
-			  } else if(iX==fX && fY-iY==1) {
-				  return true;
+			  if(color=="White") {
+				  if(iY==1 && (fY==2 || fY==3) && iX==fX) {
+					  return true;
+				  } else if(iX==fX && fY-iY==1) {
+					  return true;
+				  }
 			  }
-		  }
-		  if(color=="Black") {
-			  if(iY==7 && (fY==6 || fY==5) && iX==fX) {
-				  return true;
-			  } else if(iX==fX && iY-fY==1) {
-				  return true;
-			  }
+			  if(color=="Black") {
+				  if(iY==7 && (fY==6 || fY==5) && iX==fX) {
+					  return true;
+				  } else if(iX==fX && iY-fY==1) {
+					  return true;
+				  }
 		  }
 		  return false;
 	  }
-
-	  /*
-	   *Checking every square in path to see if occupied (Is Knight - No check needed)
-	   */
 	
 }
