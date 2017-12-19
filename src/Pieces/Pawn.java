@@ -32,10 +32,6 @@ public class Pawn extends Piece{
 		 return false;
 }
 
-	 /*
-	  *Checking if the path is valid, using two boolean methods isOccupied and pathDraw
-	  */
-	  
 	  public boolean pathDraw(int iX, int iY,int fX, int fY){
 			  if(color=="White") {
 				  if(iY==1 && (fY==2 || fY==3) && iX==fX) {
