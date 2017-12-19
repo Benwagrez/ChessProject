@@ -23,10 +23,21 @@ public class Pawn extends Piece{
 	  */
 	  
 	  public boolean pathDraw(int iX, int iY,int fX, int fY){
-		  if(iY==1) {
-			  //pawn stuff
+		  if(color=="White") {
+			  if(iY==1 && (fY==2 || fY==3) && iX==fX) {
+				  return true;
+			  } else if(iX==fX && fY-iY==1) {
+				  return true;
+			  }
 		  }
-		  return true;
+		  if(color=="Black") {
+			  if(iY==7 && (fY==6 || fY==5) && iX==fX) {
+				  return true;
+			  } else if(iX==fX && iY-fY==1) {
+				  return true;
+			  }
+		  }
+		  return false;
 	  }
 
 	  /*
