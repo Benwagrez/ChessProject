@@ -54,7 +54,7 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
           break;
           
           case "King":
-          Vpiece = new JLabel( new ImageIcon(this.getClass().getResource("/King.jpg")) );
+          Vpiece = new JLabel( new ImageIcon("resource/King.jpg" );
           break;
           
           case "Queen":
