@@ -1,6 +1,7 @@
 package Pieces;
 
 public class Queen extends Piece{
+	public boolean enpassantable=false;
 	public Queen(String color, String name){
 		
 		super(color,name); // Super points toward the abstract Piece class constructor with following parameter : String color; String name;

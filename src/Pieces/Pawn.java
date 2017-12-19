@@ -1,6 +1,7 @@
 package Pieces;
 
 public class Pawn extends Piece{
+	public boolean enpassantable=false;
 	public Pawn(String color, String name){
 		
 		super(color,name); // Super points toward the abstract Piece class constructor with following parameter : String color; String name;
@@ -34,14 +35,16 @@ public class Pawn extends Piece{
 
 	  public boolean pathDraw(int iX, int iY,int fX, int fY){
 			  if(color=="White") {
-				  if(iY==1 && (fY==2 || fY==3) && iX==fX) {
+				  if(iY==1 && fY-iY==2 && iX==fX) {
+					  enpassantable=true;
 					  return true;
 				  } else if(iX==fX && fY-iY==1) {
 					  return true;
 				  }
 			  }
 			  if(color=="Black") {
-				  if(iY==7 && (fY==6 || fY==5) && iX==fX) {
+				  if(iY==7 && iY-fY==2 && iX==fX) {
+					  enpassantable=true;
 					  return true;
 				  } else if(iX==fX && iY-fY==1) {
 					  return true;

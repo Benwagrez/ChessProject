@@ -9,6 +9,7 @@ public abstract class Piece{
   public Board chess=new Board();
   public final String color;
   public final String name;
+  public boolean enpassantable=false;
   /*
    *Currently X and Y coordinates of the object, non
    *abstract because these will be a consistent variable
