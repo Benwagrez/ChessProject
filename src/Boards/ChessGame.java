@@ -17,23 +17,26 @@ JLayeredPane layeredPane;
   int yAdjustment;
  
   public ChessGame(){
-  Dimension boardSize = new Dimension(600, 600);
- 
-  //  Use a Layered Pane for this this application
- layeredPane = new JLayeredPane();
-  getContentPane().add(layeredPane);
-  layeredPane.setPreferredSize(boardSize);
-  layeredPane.addMouseListener(this);
-  layeredPane.addMouseMotionListener(this);
- 
-  //Add a chess board to the Layered Pane 
- 
-  chessBoard = new JPanel();
-  layeredPane.add(chessBoard, JLayeredPane.DEFAULT_LAYER);
-  chessBoard.setLayout( new GridLayout(8, 8) );
-  chessBoard.setPreferredSize( boardSize );
-  chessBoard.setBounds(0, 0, boardSize.width, boardSize.height);
- 
+	  
+	  Board newGame = new Board();//Instantiate Board object w/ spots
+	  newGame.boardSetUp();
+	  Dimension boardSize = new Dimension(600, 600);//Instantiate Visual representation of Board.
+	 
+	  //  Use a Layered Pane for this this application
+	  layeredPane = new JLayeredPane();
+	  getContentPane().add(layeredPane);
+	  layeredPane.setPreferredSize(boardSize);
+	  layeredPane.addMouseListener(this);
+	  layeredPane.addMouseMotionListener(this);
+	 
+	  //Add a chess board to the Layered Pane 
+	 
+	  chessBoard = new JPanel();
+	  layeredPane.add(chessBoard, JLayeredPane.DEFAULT_LAYER);
+	  chessBoard.setLayout( new GridLayout(8, 8) );
+	  chessBoard.setPreferredSize( boardSize );
+	  chessBoard.setBounds(0, 0, boardSize.width, boardSize.height);
+	  JLabel Vpiece;
       for (int i = 0; i < 64; i++) {
       JPanel square = new JPanel( new BorderLayout() );
       chessBoard.add( square );
@@ -47,29 +50,29 @@ JLayeredPane layeredPane;
 
       if(spotValues[row][i].piece!=null)
       {
-        switch(piece.name){
+        switch(spotValues[row][i].piece.name){
           case "Bishop":
-          JLabel Vpiece = new JLabel( new ImageIcon("Bishop.jpg") );
+          Vpiece = new JLabel( new ImageIcon("Bishop.jpg") );
           break;
           
           case "King":
-          JLabel Vpiece = new JLabel( new ImageIcon("King.jpg") );
+          Vpiece = new JLabel( new ImageIcon("King.jpg") );
           break;
           
           case "Queen":
-          JLabel Vpiece = new JLabel( new ImageIcon("Queen.jpg") );
+          Vpiece = new JLabel( new ImageIcon("Queen.jpg") );
           break;
 
           case "Pawn":
-          JLabel Vpiece = new JLabel( new ImageIcon("Pawn.jpg") );
+          Vpiece = new JLabel( new ImageIcon("Pawn.jpg") );
           break;
 
           case "Rook":
-          JLabel Vpiece = new JLabel( new ImageIcon("Rook.jpg") );
+          Vpiece = new JLabel( new ImageIcon("Rook.jpg") );
           break;
 
           case "Knight":
-          JLabel Vpiece = new JLabel( new ImageIcon("Knight.jpg") );
+          Vpiece = new JLabel( new ImageIcon("Knight.jpg") );
           break;
         }
         JPanel panel = (JPanel)chessBoard.getComponent(i);
