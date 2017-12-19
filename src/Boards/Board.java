@@ -36,7 +36,7 @@ public class Board {
 		
 		for(int x = 0; x < 8 ; x++) {
 			spotValues[1][x].occupySpot(pawnB);//Setting up the black pawns
-			spotValues[7][x].occupySpot(pawnW);//Setting up the white pawns
+			spotValues[6][x].occupySpot(pawnW);//Setting up the white pawns
 		}
 		
 		spotValues[0][0].occupySpot(rookB);spotValues[0][8].occupySpot(rookB);
@@ -45,10 +45,10 @@ public class Board {
 		spotValues[0][3].occupySpot(queenB);spotValues[0][4].occupySpot(kingB);
 		//Setting up the black side of board
 		
-		spotValues[8][0].occupySpot(rookW);spotValues[8][8].occupySpot(rookW);
-		spotValues[8][1].occupySpot(knightW);spotValues[8][7].occupySpot(knightW);
-		spotValues[8][2].occupySpot(bishopW);spotValues[8][6].occupySpot(bishopW);
-		spotValues[8][3].occupySpot(queenW);spotValues[8][4].occupySpot(kingW);
+		spotValues[7][0].occupySpot(rookW);spotValues[7][8].occupySpot(rookW);
+		spotValues[7][1].occupySpot(knightW);spotValues[7][7].occupySpot(knightW);
+		spotValues[7][2].occupySpot(bishopW);spotValues[7][6].occupySpot(bishopW);
+		spotValues[7][3].occupySpot(queenW);spotValues[7][4].occupySpot(kingW);
 		//Setting up the white side of board
 	}
 	
