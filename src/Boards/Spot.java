@@ -27,7 +27,7 @@ public class Spot {
     }
     //Check to see if new spot is occupied or not.
     public void enPassant(Piece piece){
-    	if(this.piece == null || !(this.piece.color.equals(piece.color)) && (this.piece.enpassantable) && (spotValues[y+1][x].piece.name=="Pawn")) {
+    	if(this.piece == null || !(this.piece.color.equals(piece.color)) && (this.piece.enpassantable) && (piece.name=="Pawn")) {
             this.piece = piece;
         }
     }
