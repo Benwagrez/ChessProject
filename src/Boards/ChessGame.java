@@ -5,18 +5,17 @@ import java.awt.event.*;
 import javax.swing.*;
 
 public class ChessGame extends JFrame implements MouseListener, MouseMotionListener {
-	private static final long serialVersionUID = 1L;//Serial ID for unique chess games
-	JLayeredPane layeredPane;
-  JPanel chessBoard;
-  JLabel chessPiece;
-  int xAdjustment;
-  int yAdjustment;
-  int iX = 0;
-  int iY = 0;
-  JComponent[][] spotPanel = new JComponent[8][8];
-  Board newGame = new Board();//Instantiate Board object w/ spots
-  public ChessGame(){
+	  private static final long serialVersionUID = 1L;//Serial ID for unique chess games
+	  private JLayeredPane layeredPane;
+	  private JPanel chessBoard;
+	  private JLabel chessPiece = null;
+	  private Point delta = null;
+	  private JPanel[][] JPanelGridLayout = new JPanel[8][8];
+	  private int iX = -1;
+	  private int iY = -1;
+	  private Board newGame = new Board();//Instantiate Board object w/ spots
 	  
+	  public ChessGame(){
 	  newGame.boardSetUp();
 	  Dimension boardSize = new Dimension(600, 600);//Instantiate Visual representation of Board.
 	  //  Use a Layered Pane for this this application
@@ -34,90 +33,110 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
 	  chessBoard.setPreferredSize( boardSize );
 	  chessBoard.setBounds(0, 0, boardSize.width, boardSize.height);
 	  JLabel Vpiece = new JLabel();
-	  
-      for (int i = 0; i < 64; i++) {
-      JPanel square = new JPanel( new BorderLayout() );
-      chessBoard.add( square );
-      int row = (i / 8);
-      spotPanel[row][i-(row*8)] = square;
-      if (row%2 == 0)
-      square.setBackground( i % 2 == 0 ? Color.darkGray : Color.white );//Adjusting for First square
-      else
-      square.setBackground( i % 2 == 0 ? Color.white : Color.darkGray );//Setting colored boxes for chess board
-
-      if(newGame.spotValues[row][i-(row*8)].piece!=null)
-      {
-        switch(newGame.spotValues[row][i-(row*8)].piece.name){
-          case "Bishop":
-        	  if(newGame.spotValues[row][i-(row*8)].piece.color.equals("White"))
-        		  Vpiece = new JLabel( new ImageIcon("resource/BishopW.png") );
-        	  else
-        		  Vpiece = new JLabel( new ImageIcon("resource/BishopB.png") );
-          break;
-          
-          case "King":
-        	  if(newGame.spotValues[row][i-(row*8)].piece.color.equals("White"))
-        		  Vpiece = new JLabel( new ImageIcon("resource/KingW.png" ));
-        	  else
-        		  Vpiece = new JLabel( new ImageIcon("resource/KingB.png" ));
-          break;
-          
-          case "Queen":
-        	  if(newGame.spotValues[row][i-(row*8)].piece.color.equals("White"))
-        		  Vpiece = new JLabel( new ImageIcon("resource/QueenW.png") );
-        	  else
-        		  Vpiece = new JLabel( new ImageIcon("resource/QueenB.png") );
-          break;
-
-          case "Pawn":
-        	  if(newGame.spotValues[row][i-(row*8)].piece.color.equals("White"))
-        		  Vpiece = new JLabel( new ImageIcon("resource/PawnW.png") );
-        	  else
-        		  Vpiece = new JLabel( new ImageIcon("resource/PawnB.png") );
-          break;
-
-          case "Rook":
-        	  if(newGame.spotValues[row][i-(row*8)].piece.color.equals("White"))
-        		  Vpiece = new JLabel( new ImageIcon("resource/RookW.png") );
-        	  else
-        		  Vpiece = new JLabel( new ImageIcon("resource/RookB.png") );
-          break;
-
-          case "Knight":
-        	  if(newGame.spotValues[row][i-(row*8)].piece.color.equals("White"))
-        		  Vpiece = new JLabel( new ImageIcon("resource/KnightW.png") );
-        	  else
-        		  Vpiece = new JLabel( new ImageIcon("resource/KnightB.png") );
-          break;
-        }
-        JPanel panel = (JPanel)chessBoard.getComponent(i);
-        panel.add(Vpiece);
+	  boolean flag=false;
+      for (int j = 0; j < 8; j++) {
+			if(j%2==0)
+			flag=false;
+			else if(j%2==1)
+			flag=true;
+			for(int i=0;i<8;i++){
+			          JPanel square = new JPanel( new BorderLayout() );
+			          chessBoard.add( square );
+			          JPanelGridLayout[j][i] = square;
+			if(flag==true)
+			          square.setBackground( i % 2 == 0 ? Color.darkGray : Color.white );
+			          else
+			              square.setBackground( i % 2 == 0 ? Color.white : Color.darkGray );
+			          
+		      if(newGame.spotValues[j][i].piece!=null)
+		      {
+		        switch(newGame.spotValues[j][i].piece.name){
+		          case "Bishop":
+		        	  if(newGame.spotValues[j][i].piece.color.equals("White"))
+		        		  Vpiece = new JLabel( new ImageIcon("resource/BishopW.png") );
+		        	  else
+		        		  Vpiece = new JLabel( new ImageIcon("resource/BishopB.png") );
+		          break;
+		          
+		          case "King":
+		        	  if(newGame.spotValues[j][i].piece.color.equals("White"))
+		        		  Vpiece = new JLabel( new ImageIcon("resource/KingW.png" ));
+		        	  else
+		        		  Vpiece = new JLabel( new ImageIcon("resource/KingB.png" ));
+		          break;
+		          
+		          case "Queen":
+		        	  if(newGame.spotValues[j][i].piece.color.equals("White"))
+		        		  Vpiece = new JLabel( new ImageIcon("resource/QueenW.png") );
+		        	  else
+		        		  Vpiece = new JLabel( new ImageIcon("resource/QueenB.png") );
+		          break;
+		
+		          case "Pawn":
+		        	  if(newGame.spotValues[j][i].piece.color.equals("White"))
+		        		  Vpiece = new JLabel( new ImageIcon("resource/PawnW.png") );
+		        	  else
+		        		  Vpiece = new JLabel( new ImageIcon("resource/PawnB.png") );
+		          break;
+		
+		          case "Rook":
+		        	  if(newGame.spotValues[j][i].piece.color.equals("White"))
+		        		  Vpiece = new JLabel( new ImageIcon("resource/RookW.png") );
+		        	  else
+		        		  Vpiece = new JLabel( new ImageIcon("resource/RookB.png") );
+		          break;
+		
+		          case "Knight":
+		        	  if(newGame.spotValues[j][i].piece.color.equals("White"))
+		        		  Vpiece = new JLabel( new ImageIcon("resource/KnightW.png") );
+		        	  else
+		        		  Vpiece = new JLabel( new ImageIcon("resource/KnightB.png") );
+		          break;
+		        }
+		        square.add(Vpiece);
+		      }
+	      }
       }
     }
  
-  }
+  
  
 	  public void mousePressed(MouseEvent e){
-		  chessPiece = null;
-		  Component c =  chessBoard.findComponentAt(e.getX(), e.getY());
-//		  for(int x =0;x<8;x++) {
-//				 for(int y =0; y<8;y++) {
-//					 if(spotPanel[x][y]==c) {
-//						 iX = x;
-//						 iY = y;
-//					 }
-//				 }
-//			 }
-		  if (c instanceof JPanel) 
-		  return; //makes sure no errors are given when pressed on a blank square
-		 
-		  Point parentLocation = c.getParent().getLocation(); //parentLocation is mouse pointer
-		  xAdjustment = parentLocation.x - e.getX();
-		  yAdjustment = parentLocation.y - e.getY();
-		  chessPiece = (JLabel)c;
-		  chessPiece.setLocation(e.getX() + xAdjustment, e.getY() + yAdjustment);
-		  chessPiece.setSize(chessPiece.getWidth(), chessPiece.getHeight());
-		  layeredPane.add(chessPiece, JLayeredPane.DRAG_LAYER);
+		  Point p = e.getPoint();
+	      Component c = chessBoard.getComponentAt(p);
+	      // find out which square was clicked
+	      for (int rank = 0; rank < newGame.spotValues.length; rank++) {
+	         for (int file = 0; file < newGame.spotValues[rank].length; file++) {
+	            if (JPanelGridLayout[rank][file] == c) {
+	 
+	               // the jPanelSquares are derived from JPanel but have a 
+	               // few of their own methods.  This checks to see if it holds a piece
+	               if (newGame.spotValues[rank][file].piece != null) {
+	                  chessPiece = (JLabel)((JPanel)c).getComponent(0);
+	                  iY = rank;
+	                  iX = file;
+	 
+	                  // remove piece from square and add to layered pane's drag layer
+	                  JPanelGridLayout[rank][file].remove(chessPiece);
+	                  layeredPane.add(chessPiece, JLayeredPane.DRAG_LAYER);
+	 
+	                  // center piece over mouse
+	                  int x = p.x - chessPiece.getWidth()/2;
+	                  int y = p.y - chessPiece.getHeight()/2;
+	                  chessPiece.setLocation(x, y);
+	                   
+	                  delta = new Point(p.x - x, p.y - y);
+	                  chessBoard.revalidate();
+	                  layeredPane.repaint();
+	                  return;
+	               }
+	            }
+	         }
+	      }
+	       
+	      // no piece found
+	      iY = -1;
+	      iX = -1;
 		  }
 	 
 	  //Move the chess piece around
@@ -125,44 +144,41 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
 		  if (chessPiece == null) { //checks if square is blank or not
 			  return;
 		  }
-		  chessPiece.setLocation(me.getX() + xAdjustment, me.getY() + yAdjustment);
-	  }
+		  Point p = me.getPoint();
+	         int x = p.x - delta.x;
+	         int y = p.y - delta.y;
+	         chessPiece.setLocation(x, y);
+	         layeredPane.revalidate();
+	         layeredPane.repaint();	
+	         }
 		 
 		  //Drop the chess piece back onto the chess board
 	  public void mouseReleased(MouseEvent e) {
-		  if(chessPiece == null) { //checks if square is blank or not
-			  return;
-		  }
-		  
-		  /*
-		   * 
-		   * 
-		   * 
-		   */
-		  Component c =  chessBoard.findComponentAt(e.getX(), e.getY()); //checks to see if there's a new piece at the new location
-		  boolean pathValid = true;
-		  
-		  //for(int x =0;x<8;x++) {
-//				 for(int y =0; y<8;y++) {
-//					 if(spotPanel[x][y]==c) {
-//						 pathValid = newGame.spotValues[iX][iY].piece.pathValid(iX,iY,x,y);
-//						 
-//					 }
-//				 }
-			 //}
-		  if(pathValid){
-			  chessPiece.setVisible(false);
-		  if (c instanceof JLabel){
-			  Container parent = c.getParent();
-			  parent.remove(0);
-			  parent.add( chessPiece );
-		  }
-		  else {
-			  Container parent = (Container)c;
-			  parent.add( chessPiece );
-		  }
-		  
-		  chessPiece.setVisible(true);
+		  if (chessPiece != null) {
+		         // find the square that we've released over
+		         Component sqr = chessBoard.getComponentAt(e.getPoint());
+		 
+		         // no matter what happens, the layered pane loses the piece
+		         layeredPane.remove(chessPiece);  
+		 
+		         // if released off of board grid or move is not valid
+		         if (sqr == null || false) {
+		            // return piece to original square
+		            JPanelGridLayout[iY][iX].add(chessPiece);
+		         } else {
+		            // otherwise add to new square
+		            ((JPanel)sqr).add(chessPiece);
+		         }
+		 
+		         // re-initialize things
+		         chessPiece = null;
+		         delta = null;
+		          
+		         iY = -1;
+		         iX = -1;
+		          
+		         chessBoard.revalidate();
+		         layeredPane.repaint();
 		  }
 	  }
 	  		/*
