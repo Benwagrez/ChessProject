@@ -162,12 +162,13 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
 		         layeredPane.remove(chessPiece);  
 		 
 		         // if released off of board grid or move is not valid
-		         if (sqr == null || false) {
+		         boolean canMove=newGame.spotValues[iY][iX].piece.pathValid(iX,iY,iX,iY);
+		         if (sqr == null || canMove) {
 		            // return piece to original square
-		            JPanelGridLayout[iY][iX].add(chessPiece);
+		        	 JPanelGridLayout[iY][iX].add(chessPiece);
 		         } else {
 		            // otherwise add to new square
-		            ((JPanel)sqr).add(chessPiece);
+		            	((JPanel)sqr).add(chessPiece);
 		         }
 		 
 		         // re-initialize things

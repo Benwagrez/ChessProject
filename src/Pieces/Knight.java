@@ -21,6 +21,9 @@ public class Knight extends Piece{
 	  */
 	  
 	  public boolean pathDraw(int iX, int iY,int fX, int fY){
+		  if(fX-iX==0){
+			  return false;
+		  }
 		 double slope = ((double)(Math.abs(fY-iY)/Math.abs(fX-iX)));
 		 if(slope!=2||slope!=.5){
 			 return false;
