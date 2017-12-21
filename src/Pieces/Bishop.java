@@ -24,6 +24,9 @@ public class Bishop extends Piece{
 	  */
 	  
 	  public boolean pathDraw(int iX, int iY,int fX, int fY){
+		  if(fX-iX==0){
+			  return false;
+		  }
 		  double slope = ((double)(Math.abs(fY-iY)/Math.abs(fX-iX)));
 		  int vY = iY, vX = iX;
 
