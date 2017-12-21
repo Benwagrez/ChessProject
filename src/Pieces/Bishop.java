@@ -17,6 +17,9 @@ public class Bishop extends Piece{
 		 if((chess.spotValues[fY][fX].isOccupied()==false) && (pathDraw(iX,iY,fX,fY)==true)) {
 			 return true;
 		 }
+		 if(chess.spotValues[fY][fX].isOccupied()==true && !chess.spotValues[iY][iX].piece.color.equals(chess.spotValues[fY][fX].piece.color) && pathDraw(iX,iY,fX,fY)==true) {
+			 return true;
+		 }
 			 return false;
 		 }
 	 /*
@@ -36,7 +39,7 @@ public class Bishop extends Piece{
 
 		  if(slope!=1){return false;}//Checking if path taken is possible (Bishop - diagonal slope of 1)
 
-		  for(int i = 0; i<((int)(Math.abs(tempfX-tempiX)));i++){//Checking path of Bishop
+		  for(int i = 1; i<((int)(Math.abs(tempfX-tempiX)));i++){//Checking path of Bishop
 
 			if((tempfY-tempiY)>0)//Adjusting variable y coordinate
 				vY--;

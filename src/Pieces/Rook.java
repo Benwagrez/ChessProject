@@ -20,6 +20,9 @@ public class Rook extends Piece{
 			 canCastle=false;
 			 return true;
 		 }
+		 if(chess.spotValues[fY][fX].isOccupied()==true && !chess.spotValues[iY][iX].piece.color.equals(chess.spotValues[fY][fX].piece.color) && pathDraw(iX,iY,fX,fY)==true) {
+			 return true;
+		 }
 		 else
 		 return false;
 	 }
@@ -41,7 +44,7 @@ public class Rook extends Piece{
 		  }
 		  if(tempfY-tempiY==0)
 		  {
-			  for(int i = 0; i<((int)(Math.abs(tempfX-tempiX)));i++){
+			  for(int i = 1; i<((int)(Math.abs(tempfX-tempiX)));i++){
 
 					if((tempfX-tempiX)>0)//Adjusting variable y coordinate
 						vX++;
@@ -56,7 +59,7 @@ public class Rook extends Piece{
 		  }
 		  else if(tempfX-tempiX==0)
 		  {
-			  for(int i = 0; i<((int)(Math.abs(tempfY-tempiY)));i++){
+			  for(int i = 1; i<((int)(Math.abs(tempfY-tempiY)));i++){
 	
 				if((tempfY-tempiY)>0)//Adjusting variable y coordinate
 					vY--;
