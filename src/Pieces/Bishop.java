@@ -24,21 +24,25 @@ public class Bishop extends Piece{
 	  */
 	  
 	  public boolean pathDraw(int iX, int iY,int fX, int fY){
-		  if(fX-iX==0){
+			 int tempiX = iX;
+			 int tempiY = 8-iY;
+			 int tempfX = fX;
+			 int tempfY = 8-fY;		  
+		  if(tempfX-tempiX==0){
 			  return false;
 		  }
-		  double slope = ((double)(Math.abs(fY-iY)/Math.abs(fX-iX)));
+		  double slope = ((double)(Math.abs(tempfY-tempiY)/Math.abs(tempfX-tempiX)));
 		  int vY = iY, vX = iX;
 
 		  if(slope!=1){return false;}//Checking if path taken is possible (Bishop - diagonal slope of 1)
 
-		  for(int i = 0; i<((int)(Math.abs(fX-iX)));i++){//Checking path of Bishop
+		  for(int i = 0; i<((int)(Math.abs(tempfX-tempiX)));i++){//Checking path of Bishop
 
-			if((fY-iY)>0)//Adjusting variable y coordinate
+			if((tempfY-tempiY)>0)//Adjusting variable y coordinate
 				vY--;
 			else
 				vY++;
-			if((fX-iX)>0)//Adjusting variable x coordinate
+			if((tempfX-tempiX)>0)//Adjusting variable x coordinate
 				vX++;
 			else
 				vX--;
