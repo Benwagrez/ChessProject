@@ -17,7 +17,6 @@ public class Pawn extends Piece{
 		 int tempfX = fX;
 		 int tempfY = 8-fY;
 		 if(chess.spotValues[fY][fX].isOccupied()==false && (pathDraw(tempiX,tempiY,tempfX,tempfY)==true)) {
-			 enpassantable=true;
 			 return true;
 		 } else if(chess.spotValues[fY][fX].isOccupied()==true && pathDraw(tempiX,tempiY,tempfX,tempfY)==true){
 
@@ -42,6 +41,7 @@ public class Pawn extends Piece{
 			  if(color=="White") {
 				  occ=chess.spotValues[5][fX].isOccupied();
 				  if(iY==2 && fY-iY==2 && iX==fX && !occ) {
+					  enpassantable=true;
 					  return true;
 				  } else if(iX==fX && fY-iY==1) {
 					  return true;
@@ -50,6 +50,7 @@ public class Pawn extends Piece{
 			  if(color=="Black") {
 				  occ=chess.spotValues[2][fX].isOccupied();
 				  if(iY==7 && iY-fY==2 && iX==fX && !occ) {
+					  enpassantable=true;
 					  return true;
 				  } else if(iX==fX && iY-fY==1) {
 					  return true;
