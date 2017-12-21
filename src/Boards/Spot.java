@@ -14,9 +14,8 @@ public class Spot {
     }
 
     public void occupySpot(Piece piece){
-        if(this.piece == null) {
             this.piece = piece;
-        }
+        
     }
     //If there's no other piece on the new square, or if the colors of the two pieces are not the same, take the piece.
     public boolean isOccupied() {

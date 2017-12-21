@@ -15,7 +15,10 @@ public class Queen extends Piece{
 	
 	 public boolean pathValid(int iX, int iY, int fX, int fY) {
 		 
-		 if(chess.spotValues[fY][fX].isOccupied()==false && (pathDraw(iX,iY,fX,fY)==true)) {
+		 if((chess.spotValues[fY][fX].isOccupied()==false && (pathDraw(iX,iY,fX,fY)==true))) {
+			 return true;
+		 }
+		 if(chess.spotValues[fY][fX].isOccupied()==true && !chess.spotValues[iY][iX].piece.color.equals(chess.spotValues[fY][fX].piece.color) && pathDraw(iX,iY,fX,fY)==true) {
 			 return true;
 		 }
 		 return false;
@@ -38,7 +41,7 @@ public class Queen extends Piece{
 		  }
 			  if(tempfY-tempiY==0)
 			  {
-				  for(int i = 0; i<((int)(Math.abs(tempfX-tempiX)));i++){
+				  for(int i = 1; i<((int)(Math.abs(tempfX-tempiX)));i++){
 
 						if((tempfX-tempiX)>0)//Adjusting variable y coordinate
 							vX++;
@@ -53,7 +56,7 @@ public class Queen extends Piece{
 			  }
 			  else
 			  {
-				  for(int i = 0; i<((int)(Math.abs(tempfX-tempiX)));i++){
+				  for(int i = 1; i<((int)(Math.abs(tempfX-tempiX)));i++){
 		
 					if((tempfY-tempiY)>0)//Adjusting variable y coordinate
 						vY--;
@@ -73,7 +76,7 @@ public class Queen extends Piece{
 
 	  }
 		  if(tempfX==tempiX) {
-			  for(int i = 0; i<((int)(Math.abs(tempfY-tempiY)));i++){
+			  for(int i = 1; i<((int)(Math.abs(tempfY-tempiY)));i++){
 
 					if((tempfY-tempiY)>0)//Adjusting variable y coordinate
 						vY--;

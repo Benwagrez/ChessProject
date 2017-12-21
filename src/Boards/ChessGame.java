@@ -9,6 +9,7 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
 	  private JLayeredPane layeredPane;
 	  private JPanel chessBoard;
 	  private JLabel chessPiece = null;
+	  private JLabel takenchessPiece = null;
 	  private Point delta = null;
 	  private JPanel[][] JPanelGridLayout = new JPanel[8][8];
 	  private int iX = -1;
@@ -185,6 +186,10 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
 		         } else {
 		            // otherwise add to new square
 		   		  if(newGame.spotValues[iY][iX].piece.color==turn) {
+		   			  if(newGame.spotValues[fY][fX].piece!=null) {
+			   			  	takenchessPiece = (JLabel)((JPanel)c).getComponent(0);
+			   			  	JPanelGridLayout[fY][fX].remove(takenchessPiece);
+		   			  }
 		            	((JPanel)c).add(chessPiece);
 		            	newGame.spotValues[fY][fX].occupySpot(newGame.spotValues[iY][iX].piece);
 		            	newGame.spotValues[iY][iX].piece=null;
