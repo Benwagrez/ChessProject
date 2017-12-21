@@ -17,7 +17,7 @@ public class Spot {
             this.piece = piece;
         
     }
-    //If there's no other piece on the new square, or if the colors of the two pieces are not the same, take the piece.
+    //If there's no other piece on the new square, or if the colors of the two pieces are not the same, take the piece
     public boolean isOccupied() {
         if(piece != null) {
         	return true;
