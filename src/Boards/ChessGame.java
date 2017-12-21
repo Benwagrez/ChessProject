@@ -194,11 +194,9 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
 		            		turn="White";
 		            	}
 		   		  } else {
-		   			  JPanelGridLayout[iY][iX].add(chessPiece);		   			  
-		   		  }
-		            	
-		         }
-		 
+		   			  JPanelGridLayout[iY][iX].add(chessPiece);
+		   			  }
+		   		  }		 
 		         // re-initialize things
 		         chessPiece = null;
 		         delta = null;
