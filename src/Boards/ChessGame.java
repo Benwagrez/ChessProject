@@ -15,6 +15,7 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
 	  private int iY = -1;
 	  private int fX = -1;
 	  private int fY = -1;
+	  private String turn="White";
 	  public Board newGame = new Board();//Instantiate Board object w/ spots
 	  
 	  public ChessGame(){
@@ -183,9 +184,18 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
 		        	 JPanelGridLayout[iY][iX].add(chessPiece);
 		         } else {
 		            // otherwise add to new square
+		   		  if(newGame.spotValues[iY][iX].piece.color==turn) {
 		            	((JPanel)c).add(chessPiece);
 		            	newGame.spotValues[fY][fX].occupySpot(newGame.spotValues[iY][iX].piece);
 		            	newGame.spotValues[iY][iX].piece=null;
+		            	if(turn=="White"){
+		            		turn="Black";
+		            	} else if(turn=="Black") {
+		            		turn="White";
+		            	}
+		   		  } else {
+		   			  JPanelGridLayout[iY][iX].add(chessPiece);		   			  
+		   		  }
 		            	
 		         }
 		 
