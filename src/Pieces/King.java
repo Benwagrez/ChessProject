@@ -4,6 +4,7 @@ import Boards.Board;
 
 public class King extends Piece{
 	public boolean enpassantable=false;
+	public boolean canCastle=true;
 	public King(Board chess, String color, String name){
 		
 		super(chess,color,name); // Super points toward the abstract Piece class constructor with following parameter : Board, chessString color; String name;
@@ -16,6 +17,7 @@ public class King extends Piece{
 	
 	 public boolean pathValid(int iX, int iY, int fX, int fY) {
 		 if(chess.spotValues[fY][fX].isOccupied()==false && (pathDraw(iX,iY,fX,fY)==true)) {
+			 canCastle=false;
 			 return true;
 		 }	 
 		 return false;
