@@ -38,7 +38,7 @@ public class Pawn extends Piece{
 
 	  public boolean pathDraw(int iX, int iY,int fX, int fY){
 			  if(color=="White") {
-				  if(iY==1 && fY-iY==2 && iX==fX) {
+				  if(iY==2 && fY-iY==2 && iX==fX) {
 					  enpassantable=true;
 					  return true;
 				  } else if(iX==fX && fY-iY==1) {
@@ -46,7 +46,7 @@ public class Pawn extends Piece{
 				  }
 			  }
 			  if(color=="Black") {
-				  if(iY==6 && iY-fY==2 && iX==fX) {
+				  if(iY==7 && iY-fY==2 && iX==fX) {
 					  enpassantable=true;
 					  return true;
 				  } else if(iX==fX && iY-fY==1) {
