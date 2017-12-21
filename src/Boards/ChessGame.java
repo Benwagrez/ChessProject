@@ -13,6 +13,8 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
 	  private JPanel[][] JPanelGridLayout = new JPanel[8][8];
 	  private int iX = -1;
 	  private int iY = -1;
+	  private int fX = -1;
+	  private int fY = -1;
 	  private Board newGame = new Board();//Instantiate Board object w/ spots
 	  
 	  public ChessGame(){
@@ -156,19 +158,35 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
 	  public void mouseReleased(MouseEvent e) {
 		  if (chessPiece != null) {
 		         // find the square that we've released over
-		         Component sqr = chessBoard.getComponentAt(e.getPoint());
-		 
+		         Component c = chessBoard.getComponentAt(e.getPoint());
+		         for (int rank = 0; rank < newGame.spotValues.length; rank++) {
+			         for (int file = 0; file < newGame.spotValues[rank].length; file++) {
+			            if (JPanelGridLayout[rank][file] == c) {
+			 
+			               // the jPanelSquares are derived from JPanel but have a 
+			               // few of their own methods.  This checks to see if it holds a piece
+			                  fY = rank;
+			                  fX = file;
+			 
+			                  // remove piece from square and add to layered pane's drag layer
+			               }
+			            }
+			         }
+		         
 		         // no matter what happens, the layered pane loses the piece
 		         layeredPane.remove(chessPiece);  
 		 
 		         // if released off of board grid or move is not valid
-		         boolean canMove=newGame.spotValues[iY][iX].piece.pathValid(iX,iY,iX,iY);
-		         if (sqr == null || canMove) {
+		         boolean canMove=newGame.spotValues[iY][iX].piece.pathValid(iX,iY,fX,fY);
+		         if (c == null || !canMove) {
 		            // return piece to original square
 		        	 JPanelGridLayout[iY][iX].add(chessPiece);
 		         } else {
 		            // otherwise add to new square
-		            	((JPanel)sqr).add(chessPiece);
+		            	((JPanel)c).add(chessPiece);
+		            	newGame.spotValues[fY][fX].occupySpot(newGame.spotValues[iY][iX].piece);
+		            	newGame.spotValues[iY][iX].piece=null;
+		            	
 		         }
 		 
 		         // re-initialize things
@@ -180,6 +198,7 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
 		          
 		         chessBoard.revalidate();
 		         layeredPane.repaint();
+		  
 		  }
 	  }
 	  		/*

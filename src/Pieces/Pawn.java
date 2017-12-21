@@ -12,10 +12,13 @@ public class Pawn extends Piece{
 	 */
 	
 	 public boolean pathValid(int iX, int iY, int fX, int fY) {
-		 
-		 if(chess.spotValues[fY][fX].isOccupied()==false && (pathDraw(iX,iY,fX,fY)==true)) {
+		 int tempiX = iX;
+		 int tempiY = 8-iY;
+		 int tempfX = fX;
+		 int tempfY = 8-fY;
+		 if(chess.spotValues[fY][fX].isOccupied()==false && (pathDraw(tempiX,tempiY,tempfX,tempfY)==true)) {
 			 return true;
-		 } else if(chess.spotValues[fY][fX].isOccupied()==true && pathDraw(iX,iY,fX,fY)==true){
+		 } else if(chess.spotValues[fY][fX].isOccupied()==true && pathDraw(tempiX,tempiY,tempfX,tempfY)==true){
 
 			        if(iX + 1 == fX || iX - 1 == fX ){
 			            //one spot to the right or left
@@ -43,7 +46,7 @@ public class Pawn extends Piece{
 				  }
 			  }
 			  if(color=="Black") {
-				  if(iY==7 && iY-fY==2 && iX==fX) {
+				  if(iY==6 && iY-fY==2 && iX==fX) {
 					  enpassantable=true;
 					  return true;
 				  } else if(iX==fX && iY-fY==1) {
