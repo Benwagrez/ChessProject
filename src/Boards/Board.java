@@ -25,13 +25,13 @@ public class Board {
 	 *A constructor that initialized a new board
 	 */
 	
-	public void boardSetUp() {
-		Bishop bishopW = new Bishop("White", "Bishop");Bishop bishopB = new Bishop("Black", "Bishop");
-		Pawn pawnW = new Pawn("White", "Pawn");Pawn pawnB = new Pawn("Black", "Pawn");
-		Rook rookW = new Rook("White", "Rook");Rook rookB = new Rook("Black", "Rook");
-		Knight knightW = new Knight("White", "Knight");Knight knightB = new Knight("Black", "Knight");
-		Queen queenW = new Queen("White", "Queen");Queen queenB = new Queen("Black", "Queen");
-		King kingW = new King("White", "King");King kingB = new King("Black", "King");
+	public void boardSetUp(Board T) {
+		Bishop bishopW = new Bishop(T, "White", "Bishop");Bishop bishopB = new Bishop(T, "Black", "Bishop");
+		Pawn pawnW = new Pawn(T, "White", "Pawn");Pawn pawnB = new Pawn(T, "Black", "Pawn");
+		Rook rookW = new Rook(T, "White", "Rook");Rook rookB = new Rook(T, "Black", "Rook");
+		Knight knightW = new Knight(T, "White", "Knight");Knight knightB = new Knight(T, "Black", "Knight");
+		Queen queenW = new Queen(T, "White", "Queen");Queen queenB = new Queen(T, "Black", "Queen");
+		King kingW = new King(T, "White", "King");King kingB = new King(T, "Black", "King");
 		//Instantiation of all pieces, both white and black
 		
 		for(int x = 0; x < 8 ; x++) {

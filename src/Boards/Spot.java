@@ -14,7 +14,7 @@ public class Spot {
     }
 
     public void occupySpot(Piece piece){
-        if(this.piece == null || !(this.piece.color.equals(piece.color))) {
+        if(this.piece == null) {
             this.piece = piece;
         }
     }

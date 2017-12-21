@@ -15,10 +15,10 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
 	  private int iY = -1;
 	  private int fX = -1;
 	  private int fY = -1;
-	  private Board newGame = new Board();//Instantiate Board object w/ spots
+	  public Board newGame = new Board();//Instantiate Board object w/ spots
 	  
 	  public ChessGame(){
-	  newGame.boardSetUp();
+	  newGame.boardSetUp(newGame);
 	  Dimension boardSize = new Dimension(600, 600);//Instantiate Visual representation of Board.
 	  //  Use a Layered Pane for this this application
 	  layeredPane = new JLayeredPane();

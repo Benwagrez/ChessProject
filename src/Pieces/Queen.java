@@ -1,10 +1,12 @@
 package Pieces;
 
+import Boards.Board;
+
 public class Queen extends Piece{
 	public boolean enpassantable=false;
-	public Queen(String color, String name){
+	public Queen(Board chess, String color, String name){
 		
-		super(color,name); // Super points toward the abstract Piece class constructor with following parameter : String color; String name;
+		super(chess,color,name); // Super points toward the abstract Piece class constructor with following parameter : Board, chessString color; String name;
 	}
 	
 	/*

@@ -6,7 +6,7 @@ public abstract class Piece{
  *Abstract class that all pieces will inherit/extend
  *This requires them to share the same abstract methods
  */
-  public Board chess=new Board();
+  public Board chess;
   public final String color;
   public final String name;
   public boolean enpassantable=false;
@@ -15,9 +15,10 @@ public abstract class Piece{
    *abstract because these will be a consistent variable
    */
   
-  public Piece(String color, String name){
+  public Piece(Board chess, String color, String name){
       this.color = color;
       this.name = name;
+      this.chess = chess;
   }
   
   /*
