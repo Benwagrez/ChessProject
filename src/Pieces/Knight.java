@@ -14,6 +14,7 @@ public class Knight extends Piece{
 	 */
 	
 	 public boolean pathValid(int iX, int iY, int fX, int fY) {
+		 
 		 if(chess.spotValues[fY][fX].isOccupied()==false && (pathDraw(iX,iY,fX,fY)==true)) {
 			 return true;
 		 }
@@ -24,20 +25,24 @@ public class Knight extends Piece{
 	  */
 	  
 	  public boolean pathDraw(int iX, int iY,int fX, int fY){
-		  if(fX-iX==0){
+		  int tempiX = iX;
+		  int tempiY = 8-iY;
+		  int tempfX = fX;
+		  int tempfY = 8-fY;
+		  if(tempfX-tempiX==0){
 			  return false;
 		  }
-		 double slope = ((double)(Math.abs(fY-iY)/Math.abs(fX-iX)));
-		 if(slope!=2||slope!=.5){
+		 double slope = (((double)Math.abs(tempfY-tempiY)/(double)Math.abs(tempfX-tempiX)));
+		 if(slope!=2&&slope!=0.5){
 			 return false;
 		 }//Checking if path taken is possible (Knight - diagonal slope of 2 or .5)
-		 if((Math.abs(fX-iX))>2||(Math.abs(fY-iY)>2)){
+		 if((Math.abs(tempfX-tempiX))>2||(Math.abs(tempfY-tempiY)>2)){
 			 return false;
 		 }//Checking if change in x and y are over 2 - if so - impossible
 	     return true;
 	  }
 
 	  /*
-	   *Checking every square in path to see if occupied (If Knight - only one checks needed)
+	   *Checking every square in path to see if occupied (If Knight - only one check needed)
 	   */
 }
