@@ -26,7 +26,7 @@ public class Queen extends Piece{
 	  */
 	  
 	  public boolean pathDraw(int iX, int iY,int fX, int fY){
-		  int tempiX = iX;
+		  	 int tempiX = iX;
 			 int tempiY = 8-iY;
 			 int tempfX = fX;
 			 int tempfY = 8-fY;

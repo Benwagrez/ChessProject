@@ -26,27 +26,45 @@ public class Rook extends Piece{
 	  */
 	  
 	  public boolean pathDraw(int iX, int iY,int fX, int fY){
+		  int tempiX = iX;
+		  int tempiY = 8-iY;
+		  int tempfX = fX;
+		  int tempfY = 8-fY;
 		  int vY = iY, vX = iX;
-		  if(fX!=iX) {
-			  if(fY!=iY){
+		  if(tempfX!=tempiX) {
+			  if(tempfY!=tempiY){
 				  return false;
 			  }
 		  }
-		  for(int i = 0; i<((int)(Math.abs(fX-iX)));i++){
+		  if(tempfY-tempiY==0)
+		  {
+			  for(int i = 0; i<((int)(Math.abs(tempfX-tempiX)));i++){
 
-			if((fY-iY)>0)//Adjusting variable y coordinate
-				vY--;
-			else
-				vY++;
-			if((fX-iX)>0)//Adjusting variable x coordinate
-				vX++;
-			else
-				vX--;
+					if((tempfX-tempiX)>0)//Adjusting variable y coordinate
+						vX++;
+					else
+						vX--;
 
-			if(chess.spotValues[vY][vX].isOccupied()==true){
-				return false;
-			}
+					if(chess.spotValues[vY][vX].isOccupied()==true){
+						return false;
+					}
 
+				  }
+		  }
+		  else if(tempfX-tempiX==0)
+		  {
+			  for(int i = 0; i<((int)(Math.abs(tempfY-tempiY)));i++){
+	
+				if((tempfY-tempiY)>0)//Adjusting variable y coordinate
+					vY--;
+				else
+					vY++;
+	
+				if(chess.spotValues[vY][vX].isOccupied()==true){
+					return false;
+				}
+	
+			  }
 		  }
 		  return true;
 	  }
