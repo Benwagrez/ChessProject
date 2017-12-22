@@ -18,7 +18,7 @@ public class Pawn extends Piece{
 		 //Checks if pawn can move there
 		 if(chess.spotValues[fY][fX].isOccupied()==false && pathDraw(tempiX,tempiY,tempfX,tempfY)) {
 			 return true;
-		 } /*Checks if pawn can take the piece*/
+		 } //Checks if pawn can take the piece
 		 else if(chess.spotValues[fY][fX].isOccupied()==true && !chess.spotValues[iY][iX].piece.color.equals(chess.spotValues[fY][fX].piece.color) && pathDraw(tempiX,tempiY,tempfX,tempfY)){
 			 return true;
 		 } //Checks if pawn can take the piece via en passant
