@@ -194,8 +194,9 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
 		   			  }	
 		   			  //Checks if its taking another piece
 		   			  if(newGame.spotValues[fY][fX].piece!=null) {
-			   			  //	takenchessPiece = (JLabel)((JPanel)c).JPanelGridLayout[iY][fX];
-			   			  	JPanelGridLayout[fY][fX].remove(takenchessPiece);
+		   				  JPanel takenpanel=JPanelGridLayout[iY][iX];
+			   			  takenchessPiece = (JLabel)((JPanel)c).getComponent(takenpanel);
+		   				  JPanelGridLayout[fY][fX].remove(takenchessPiece);
 		   			  }
 		   			  //moves the piece
 		            	((JPanel)c).add(chessPiece);
