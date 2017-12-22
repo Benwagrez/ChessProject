@@ -186,6 +186,16 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
 		         } else {
 		            // otherwise add to new square
 		   		  if(newGame.spotValues[iY][iX].piece.color==turn) {
+		   		  if(newGame.spotValues[iY][iX].piece.doingEnPassant){
+		   				  	takenchessPiece=(JLabel)((JPanel)c).getComponent(0);
+		   				  	JPanelGridLayout[iY][fX].remove(takenchessPiece);
+		   				  	newGame.spotValues[iY][fX].piece=null;
+		   			  }	
+		   			  if(newGame.spotValues[iY][iX].piece.doingEnPassant){
+		   				  	takenchessPiece=(JLabel)((JPanel)c).getComponent(0);
+		   				  	JPanelGridLayout[iY][fX].remove(takenchessPiece);
+		   				  	newGame.spotValues[iY][fX].piece=null;
+		   			  }	
 		   			  if(newGame.spotValues[fY][fX].piece!=null) {
 			   			  	takenchessPiece = (JLabel)((JPanel)c).getComponent(0);
 			   			  	JPanelGridLayout[fY][fX].remove(takenchessPiece);
@@ -197,11 +207,6 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
 		            		turn="Black";
 		            	} else if(turn=="Black") {
 		            		turn="White";
-		            	}
-		            	if(newGame.spotValues[iY][iX].piece.doingEnPassant && newGame.spotValues[iY][iX].piece.name=="Pawn"){
-		            		takenchessPiece=(JLabel)((JPanel)c).getComponent(0);
-		            		JPanelGridLayout[iY][fX].remove(takenchessPiece);
-			            	newGame.spotValues[iY][fX].piece=null;
 		            	}
 		   		  } else {
 		   			  JPanelGridLayout[iY][iX].add(chessPiece);
