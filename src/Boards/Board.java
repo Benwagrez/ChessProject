@@ -27,17 +27,27 @@ public class Board {
 	
 	public void boardSetUp(Board T) {
 		Bishop bishopW = new Bishop(T, "White", "Bishop");Bishop bishopB = new Bishop(T, "Black", "Bishop");
-		Pawn pawnW = new Pawn(T, "White", "Pawn");Pawn pawnB = new Pawn(T, "Black", "Pawn");
 		Rook rookW = new Rook(T, "White", "Rook");Rook rookB = new Rook(T, "Black", "Rook");
 		Knight knightW = new Knight(T, "White", "Knight");Knight knightB = new Knight(T, "Black", "Knight");
 		Queen queenW = new Queen(T, "White", "Queen");Queen queenB = new Queen(T, "Black", "Queen");
 		King kingW = new King(T, "White", "King");King kingB = new King(T, "Black", "King");
 		//Instantiation of all pieces, both white and black
-		
-		for(int x = 0; x < 8 ; x++) {
-			spotValues[1][x].occupySpot(pawnB);//Setting up the black pawns
-			spotValues[6][x].occupySpot(pawnW);//Setting up the white pawns
-		}
+		Pawn pawnW1 = new Pawn(T, "White", "Pawn");Pawn pawnB1 = new Pawn(T, "Black", "Pawn");
+		spotValues[1][0].occupySpot(pawnB1);spotValues[6][0].occupySpot(pawnW1);
+		Pawn pawnW2 = new Pawn(T, "White", "Pawn");Pawn pawnB2 = new Pawn(T, "Black", "Pawn");
+		spotValues[1][1].occupySpot(pawnB2);spotValues[6][1].occupySpot(pawnW2);
+		Pawn pawnW3 = new Pawn(T, "White", "Pawn");Pawn pawnB3 = new Pawn(T, "Black", "Pawn");
+		spotValues[1][2].occupySpot(pawnB3);spotValues[6][2].occupySpot(pawnW3);
+		Pawn pawnW4 = new Pawn(T, "White", "Pawn");Pawn pawnB4 = new Pawn(T, "Black", "Pawn");
+		spotValues[1][3].occupySpot(pawnB4);spotValues[6][3].occupySpot(pawnW4);
+		Pawn pawnW5 = new Pawn(T, "White", "Pawn");Pawn pawnB5 = new Pawn(T, "Black", "Pawn");
+		spotValues[1][4].occupySpot(pawnB5);spotValues[6][4].occupySpot(pawnW5);
+		Pawn pawnW6 = new Pawn(T, "White", "Pawn");Pawn pawnB6 = new Pawn(T, "Black", "Pawn");
+		spotValues[1][5].occupySpot(pawnB6);spotValues[6][5].occupySpot(pawnW6);
+		Pawn pawnW7 = new Pawn(T, "White", "Pawn");Pawn pawnB7 = new Pawn(T, "Black", "Pawn");
+		spotValues[1][6].occupySpot(pawnB7);spotValues[6][6].occupySpot(pawnW7);
+		Pawn pawnW8 = new Pawn(T, "White", "Pawn");Pawn pawnB8 = new Pawn(T, "Black", "Pawn");
+		spotValues[1][7].occupySpot(pawnB8);spotValues[6][7].occupySpot(pawnW8);
 		
 		spotValues[0][0].occupySpot(rookB);spotValues[0][7].occupySpot(rookB);
 		spotValues[0][1].occupySpot(knightB);spotValues[0][6].occupySpot(knightB);
