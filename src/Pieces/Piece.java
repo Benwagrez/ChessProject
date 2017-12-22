@@ -12,6 +12,7 @@ public abstract class Piece{
   public boolean enpassantable=false;
   public boolean canCastle=false;
   public boolean doingEnPassant=false;
+  public boolean isCastling = false;
   /*
    *Currently X and Y coordinates of the object, non
    *abstract because these will be a consistent variable
