@@ -195,23 +195,40 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
 					}	
 					if(newGame.spotValues[iY][iX].piece.isKCastling){
 						if(newGame.spotValues[iY][iX].piece.color.equals("White")) {
-							JPanel takenpanel=JPanelGridLayout[iY][fX];
+							JPanel takenpanel=JPanelGridLayout[7][7];
 							takenchessPiece = (JLabel)(takenpanel.getComponent(0));
-							JPanelGridLayout[iY][fX].remove(takenchessPiece);
-							newGame.spotValues[iY][fX].piece=null;
-
-							takenpanel=JPanelGridLayout[0][7];
-							takenchessPiece = (JLabel)(takenpanel.getComponent(0));
-							takenpanel.add(takenchessPiece);
-							newGame.spotValues[0][5].occupySpot(newGame.spotValues[0][7].piece);
-							newGame.spotValues[0][7].piece=null;
-							takenchessPiece = (JLabel)(takenpanel.getComponent(0));
-							JPanelGridLayout[0][7].remove(takenchessPiece);
-							newGame.spotValues[0][7].piece=null;
+							JPanelGridLayout[7][5].add(takenchessPiece);
+							newGame.spotValues[7][5].occupySpot(newGame.spotValues[0][7].piece);
+							takenpanel.remove(takenchessPiece);
+							newGame.spotValues[7][7].piece=null;
 
 						}
 						else if(newGame.spotValues[iY][iX].piece.color.equals("Black")) {
+							JPanel takenpanel=JPanelGridLayout[0][7];
+							takenchessPiece = (JLabel)(takenpanel.getComponent(0));
+							JPanelGridLayout[0][5].add(takenchessPiece);
+							newGame.spotValues[0][5].occupySpot(newGame.spotValues[0][7].piece);
+							takenpanel.remove(takenchessPiece);
+							newGame.spotValues[0][7].piece=null;
+						}
+					}	
+					if(newGame.spotValues[iY][iX].piece.isQCastling){
+						if(newGame.spotValues[iY][iX].piece.color.equals("White")) {
+							JPanel takenpanel=JPanelGridLayout[7][0];
+							takenchessPiece = (JLabel)(takenpanel.getComponent(0));
+							JPanelGridLayout[7][5].add(takenchessPiece);
+							newGame.spotValues[7][5].occupySpot(newGame.spotValues[0][7].piece);
+							takenpanel.remove(takenchessPiece);
+							newGame.spotValues[7][7].piece=null;
 
+						}
+						else if(newGame.spotValues[iY][iX].piece.color.equals("Black")) {
+							JPanel takenpanel=JPanelGridLayout[0][7];
+							takenchessPiece = (JLabel)(takenpanel.getComponent(0));
+							JPanelGridLayout[0][5].add(takenchessPiece);
+							newGame.spotValues[0][5].occupySpot(newGame.spotValues[0][7].piece);
+							takenpanel.remove(takenchessPiece);
+							newGame.spotValues[0][7].piece=null;
 						}
 					}	
 					//Checks if its taking another piece
@@ -246,7 +263,7 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
 					for(int x = 0; x < 8; x++) {
 						for(int y = 0; y < 8; y++) {
 							if(newGame.spotValues[x][y].isOccupied()) {
-								System.out.println(newGame.spotValues[x][y].piece.color+" "+newGame.spotValues[x][y].piece.name+": "+newGame.spotValues[x][y].piece.enpassantable);
+								//System.out.println(newGame.spotValues[x][y].piece.color+" "+newGame.spotValues[x][y].piece.name+": "+newGame.spotValues[x][y].piece.enpassantable);
 							}
 						}
 					}
