@@ -3,9 +3,6 @@ package Pieces;
 import Boards.Board;
 
 public class Bishop extends Piece{
-	public boolean enpassantable=false;
-	public boolean doingEnPassant=false;
-	public boolean canCastle=false;
 	public Bishop(Board chess, String color, String name){
 		
 		super(chess,color,name); // Super points toward the abstract Piece class constructor with following parameter : Board, chessString color; String name;

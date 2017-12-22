@@ -3,12 +3,9 @@ package Pieces;
 import Boards.Board;
 
 public class Rook extends Piece{
-	public boolean enpassantable=false;
-	public boolean canCastle=true;
-	public boolean doingEnPassant=false;
 	public Rook(Board chess, String color, String name){
-		
 		super(chess,color,name); // Super points toward the abstract Piece class constructor with following parameter : Board, chessString color; String name;
+		canCastle=true;
 	}
 	
 	/*
