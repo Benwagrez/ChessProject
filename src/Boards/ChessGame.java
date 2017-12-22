@@ -184,26 +184,21 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
 		            // return piece to original square
 		        	 JPanelGridLayout[iY][iX].add(chessPiece);
 		         } else {
-		            // otherwise add to new square
-		   		  if(newGame.spotValues[iY][iX].piece.color==turn) {
-		   			  //Checks if its an en passant
-		   		  if(newGame.spotValues[iY][iX].piece.doingEnPassant){
-		   				  	takenchessPiece=(JLabel)((JPanel)c).getComponent(0);
-		   				  	JPanelGridLayout[iY][fX].remove(takenchessPiece);
-		   				  	newGame.spotValues[iY][fX].piece=null;
-		   			  }	
-		   			  if(newGame.spotValues[iY][iX].piece.doingEnPassant){
-		   				  	JPanel takenpanel=JPanelGridLayout[iY][fX];
-		   				  	takenchessPiece = (JLabel)(takenpanel.getComponent(0));
-		   				  	JPanelGridLayout[iY][fX].remove(takenchessPiece);
-		   				  	newGame.spotValues[iY][fX].piece=null;
+		        	 // otherwise add to new square
+		        	 if(newGame.spotValues[iY][iX].piece.color==turn) {
+		        		 //Checks if its an en passants
+		   			 if(newGame.spotValues[iY][iX].piece.doingEnPassant){
+		   				 JPanel takenpanel=JPanelGridLayout[iY][fX];
+		   				 takenchessPiece = (JLabel)(takenpanel.getComponent(0));
+		   				 JPanelGridLayout[iY][fX].remove(takenchessPiece);
+		   				 newGame.spotValues[iY][fX].piece=null;
 		   			  }	
 		   			  //Checks if its taking another piece
-		   			  if(newGame.spotValues[fY][fX].piece!=null) {
-		   				  takenchessPiece=(JLabel)((JPanel)c).getComponent(0);
-		   				  JPanelGridLayout[fY][fX].remove(takenchessPiece);
-		   				  newGame.spotValues[fY][fX].piece=null;
-		   			  }
+		   			 if(newGame.spotValues[fY][fX].piece!=null) {
+		   				 takenchessPiece=(JLabel)((JPanel)c).getComponent(0);
+		   				 JPanelGridLayout[fY][fX].remove(takenchessPiece);
+		   				 newGame.spotValues[fY][fX].piece=null;
+		   			 }
 		   			  //moves the piece
 		            	((JPanel)c).add(chessPiece);
 		            	newGame.spotValues[fY][fX].occupySpot(newGame.spotValues[iY][iX].piece);
