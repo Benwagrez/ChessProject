@@ -66,7 +66,6 @@ public class Pawn extends Piece{
 		  if(color=="Black") {
 			  //Checks if taking piece as normally is legal
 			  if((iX-fX==1 || fX-iX==1) && iY-fY==1 && iX!=fX) {
-				  enpassantable=true;
 				  return true;
 			  } //Checks if taking piece as en passant is legal
 			  else if((iX-fX==1 || fX-iX==1) && chess.spotValues[iY][fX].piece.enpassantable) {
