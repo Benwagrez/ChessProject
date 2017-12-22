@@ -187,6 +187,11 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
 		            // otherwise add to new square
 		   		  if(newGame.spotValues[iY][iX].piece.color==turn) {
 		   			  //Checks if its an en passant
+		   		  if(newGame.spotValues[iY][iX].piece.doingEnPassant){
+		   				  	takenchessPiece=(JLabel)((JPanel)c).getComponent(0);
+		   				  	JPanelGridLayout[iY][fX].remove(takenchessPiece);
+		   				  	newGame.spotValues[iY][fX].piece=null;
+		   			  }	
 		   			  if(newGame.spotValues[iY][iX].piece.doingEnPassant){
 		   				  	JPanel takenpanel=JPanelGridLayout[iY][fX];
 		   				  	takenchessPiece = (JLabel)(takenpanel.getComponent(0));

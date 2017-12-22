@@ -24,20 +24,23 @@ public class King extends Piece{
 			 return true;
 		 }
 		 if(color=="White") {
-			  if(canCastle=true && fX==7 && fY== && !chess.spotValues[5][fX].isOccupied()) {
-				  enpassantable=true;
+			  if(canCastle=true && fX==6 && fY==7 && !chess.spotValues[7][6].isOccupied() && !chess.spotValues[7][5].isOccupied()) {
+				  isKCastling=true;//King side castling
 				  return true;
-			  } else if(iX==fX && fY-iY==1) {
+			  } else if(canCastle=true && fX==6 && (fY==1||fY==2) && !chess.spotValues[7][3].isOccupied() && !chess.spotValues[7][2].isOccupied() && !chess.spotValues[7][1].isOccupied()) {
+				  isQCastling=true;//Queen side castling
 				  return true;
 			  }
 		  }
 		  if(color=="Black") {
-			  if(iY==7 && iY-fY==2 && iX==fX && !chess.spotValues[2][fX].isOccupied()) {
-				  enpassantable=true;
+			  if(canCastle=true && fX==6 && fY==7 && !chess.spotValues[7][6].isOccupied() && !chess.spotValues[7][5].isOccupied()) {
+				  isKCastling=true;//King side castling
 				  return true;
-			  } else if(iX==fX && iY-fY==1) {
+			  } else if(canCastle=true && fY==0 && (fX==1||fX==2) && !chess.spotValues[0][3].isOccupied() && !chess.spotValues[0][2].isOccupied() && !chess.spotValues[0][1].isOccupied()) {
+				  isQCastling=true;//Queen side castling
 				  return true;
 			  }
+		  }
 		 return false;
 	 }
 
