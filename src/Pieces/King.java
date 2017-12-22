@@ -5,6 +5,7 @@ import Boards.Board;
 public class King extends Piece{
 	public boolean enpassantable=false;
 	public boolean canCastle=true;
+	public boolean doingEnPassant=false;
 	public King(Board chess, String color, String name){
 		
 		super(chess,color,name); // Super points toward the abstract Piece class constructor with following parameter : Board, chessString color; String name;

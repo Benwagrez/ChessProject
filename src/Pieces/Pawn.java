@@ -25,6 +25,7 @@ public class Pawn extends Piece{
 			 return true;
 		 } //Checks if pawn can take the piece via en passant
 		 else if(chess.spotValues[fY][fX].isOccupied()==false && !chess.spotValues[iY][iX].piece.color.equals(chess.spotValues[iY][fX].piece.color) && pathTake(tempiX,tempiY,tempfX,tempfY)){
+			 doingEnPassant=true;
 			 return true;
 		 }
 		 return false;
@@ -61,7 +62,6 @@ public class Pawn extends Piece{
 				  return true;
 			  } //Checks if taking piece as en passant is legal
 			  else if((iX-fX==1 || fX-iX==1) && chess.spotValues[iY][fX].piece.enpassantable) {
-				  doingEnPassant=true;
 				  return true;
 			  }
 		  }
@@ -72,7 +72,6 @@ public class Pawn extends Piece{
 				  return true;
 			  } //Checks if taking piece as en passant is legal
 			  else if((iX-fX==1 || fX-iX==1) && chess.spotValues[iY][fX].piece.enpassantable) {
-				  doingEnPassant=true;
 				  return true;
 			  }
 	  }
