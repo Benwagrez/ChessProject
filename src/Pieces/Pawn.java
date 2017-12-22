@@ -19,10 +19,10 @@ public class Pawn extends Piece{
 		 if(chess.spotValues[fY][fX].isOccupied()==false && pathDraw(tempiX,tempiY,tempfX,tempfY)) {
 			 return true;
 		 } //Checks if pawn can take the piece
-		 else if(chess.spotValues[fY][fX].isOccupied()==true && !chess.spotValues[iY][iX].piece.color.equals(chess.spotValues[fY][fX].piece.color) && pathDraw(tempiX,tempiY,tempfX,tempfY)){
+		 else if(chess.spotValues[fY][fX].isOccupied()==true && !chess.spotValues[iY][iX].piece.color.equals(chess.spotValues[fY][fX].piece.color) && pathTake(tempiX,tempiY,tempfX,tempfY)){
 			 return true;
 		 } //Checks if pawn can take the piece via en passant
-		 else if(chess.spotValues[iY][fX].isOccupied()==true && chess.spotValues[fY][fX].isOccupied()==false && !chess.spotValues[iY][iX].piece.color.equals(chess.spotValues[iY][fX].piece.color) && pathTake(tempiX,tempiY,tempfX,tempfY)){
+		 else if(chess.spotValues[iY][fX].isOccupied()==true && chess.spotValues[fY][fX].isOccupied()==false && !chess.spotValues[iY][iX].piece.color.equals(chess.spotValues[iY][fX].piece.color) && chess.spotValues[iY][fX].piece.enpassantable && pathTake(tempiX,tempiY,tempfX,tempfY)){
 			 doingEnPassant=true;
 			 return true;
 		 }
@@ -56,7 +56,7 @@ public class Pawn extends Piece{
 	  	  boolean occ;
 		  if(color=="White") {
 			  //Checks if taking piece as normally is legal
-			  if((iX-fX==1 || fX-iX==1) && iX!=fX) {
+			  if((iX-fX==1 || fX-iX==1) && fY-iY==1 && iX!=fX) {
 				  return true;
 			  } //Checks if taking piece as en passant is legal
 			  else if((iX-fX==1 || fX-iX==1) && chess.spotValues[iY][fX].piece.enpassantable) {
