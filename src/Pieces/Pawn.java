@@ -1,7 +1,6 @@
 package Pieces;
 import Boards.*;
 public class Pawn extends Piece{
-	public boolean enpassantable=false;
 	public Pawn(Board chess, String color, String name){
 
 		super(chess,color,name); // Super points toward the abstract Piece class constructor with following parameter : Board, chessString color; String name;
@@ -33,7 +32,7 @@ public class Pawn extends Piece{
 	public boolean pathDraw(int iX, int iY,int fX, int fY){
 		boolean occ;
 		if(color=="White") {
-			occ=chess.spotValues[3][fX].isOccupied();
+			occ=chess.spotValues[5][fX].isOccupied();
 			if(iY==2 && fY==4 && iX==fX && !occ) {
 				enpassantable=true;
 				return true;
@@ -42,7 +41,7 @@ public class Pawn extends Piece{
 			}
 		}
 		if(color=="Black") {
-			occ=chess.spotValues[6][fX].isOccupied();
+			occ=chess.spotValues[2][fX].isOccupied();
 			if(iY==7 && fY==5 && iX==fX && !occ) {
 				enpassantable=true;
 				return true;
