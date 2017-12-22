@@ -209,7 +209,6 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
 		   			  for(int y = 0; y < 8; y++) {
 		   				  if(newGame.spotValues[x][y].isOccupied() && newGame.spotValues[x][y].piece.enpassantable==true) {
 		   					  newGame.spotValues[x][y].piece.enpassantable=false;
-		   					  System.out.println(newGame.spotValues[x][y].piece.enpassantable);
 		   				  }
 		   			  }
 		   		  }
