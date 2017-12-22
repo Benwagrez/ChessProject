@@ -204,21 +204,27 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
 		            	newGame.spotValues[fY][fX].occupySpot(newGame.spotValues[iY][iX].piece);
 		            	newGame.spotValues[iY][iX].piece=null;
 		            	if(turn=="White"){
+		            		for(int x = 0; x < 8; x++) {
+			  		   			  for(int y = 0; y < 8; y++) {
+			  		   				  if(newGame.spotValues[x][y].isOccupied() && newGame.spotValues[x][y].piece.enpassantable==true  && newGame.spotValues[x][y].piece.equals("White")) {
+			  		   					 newGame.spotValues[x][y].piece.enpassantable=false;
+			  		   				  }
+			  		   			  }
+			  		   		  }
 		            		turn="Black";
 		            	} else if(turn=="Black") {
+		            		for(int x = 0; x < 8; x++) {
+		  		   			  for(int y = 0; y < 8; y++) {
+		  		   				  if(newGame.spotValues[x][y].isOccupied() && newGame.spotValues[x][y].piece.enpassantable==true  && newGame.spotValues[x][y].piece.equals("White")) {
+		  		   					 newGame.spotValues[x][y].piece.enpassantable=false;
+		  		   				  }
+		  		   			  }
+		  		   		  }
 		            		turn="White";
 		            	}
 		   		  } else {
 		   			  JPanelGridLayout[iY][iX].add(chessPiece);
 		   			  }
-		   		  for(int x = 0; x < 8; x++) {
-		   			  for(int y = 0; y < 8; y++) {
-		   				  if(newGame.spotValues[x][y].isOccupied() /*&& newGame.spotValues[x][y].piece.enpassantable==true*/) {
-		   					 // newGame.spotValues[x][y].piece.enpassantable=false;
-		   					  System.out.println(newGame.spotValues[x][y].piece.color+" "+newGame.spotValues[x][y].piece.name+": "+newGame.spotValues[x][y].piece.enpassantable);
-		   				  }
-		   			  }
-		   		  }
 		   		  }
 		         // re-initialize things
 		         chessPiece = null;
