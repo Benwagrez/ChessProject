@@ -25,6 +25,21 @@ public class King extends Piece{
 			 canCastle=false;
 			 return true;
 		 }
+		 if(color=="White") {
+			  if(canCastle=true && fX==7 && fY== && !chess.spotValues[5][fX].isOccupied()) {
+				  enpassantable=true;
+				  return true;
+			  } else if(iX==fX && fY-iY==1) {
+				  return true;
+			  }
+		  }
+		  if(color=="Black") {
+			  if(iY==7 && iY-fY==2 && iX==fX && !chess.spotValues[2][fX].isOccupied()) {
+				  enpassantable=true;
+				  return true;
+			  } else if(iX==fX && iY-fY==1) {
+				  return true;
+			  }
 		 return false;
 	 }
 
