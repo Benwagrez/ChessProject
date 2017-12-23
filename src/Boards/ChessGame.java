@@ -258,9 +258,9 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
 					((JPanel)c).add(chessPiece);
 					newGame.spotValues[fY][fX].occupySpot(newGame.spotValues[iY][iX].piece);
 					newGame.spotValues[iY][iX].piece=null;
-					for(int tX=0; tX < 8; tX++) {
-							if(newGame.spotValues[0][tX].piece!=null && newGame.spotValues[7][tX].piece!=null) {
-								if(newGame.spotValues[0][tX].piece.name.equals("Pawn") && newGame.spotValues[0][tX].piece.color.equals("White")) {
+					for(int tX=0; tX < 8; tX++) {//Checks piece promotion
+							if(newGame.spotValues[0][tX].piece!=null && newGame.spotValues[7][tX].piece!=null) {//checking if position is null - avoid errors
+								if(newGame.spotValues[0][tX].piece.name.equals("Pawn") && newGame.spotValues[0][tX].piece.color.equals("White")) {//Checks for white pawn promotion
 									Object[] options = {new ImageIcon("resource/QueenW.png"),
 											new ImageIcon("resource/RookW.png"),
 											new ImageIcon("resource/BishopW.png"),
@@ -301,7 +301,7 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
 									((JPanel)c).remove(chessPiece);
 									((JPanel)c).add(Vpiece);
 								}
-								else if(newGame.spotValues[7][tX].piece.name.equals("Pawn") && newGame.spotValues[7][tX].piece.color.equals("Black")) {
+								else if(newGame.spotValues[7][tX].piece.name.equals("Pawn") && newGame.spotValues[7][tX].piece.color.equals("Black")) {//Check black pawn promotion
 									Object[] options = {new ImageIcon("resource/QueenB.png"), 
 											new ImageIcon("resource/RookB.png"),
 											new ImageIcon("resource/BishopB.png"),
@@ -322,7 +322,6 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
 													Queen queenB = new Queen(newGame, "Black", "Queen");
 													newGame.spotValues[fY][fX].occupySpot(newGame.spotValues[iY][iX].piece=queenB);
 												break;
-
 											case 1:
 													Vpiece = new JLabel( new ImageIcon("resource/RookB.png") );
 													Rook rookB = new Rook(newGame, "Black", "Rook");
@@ -406,7 +405,6 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
 									takenchessPiece = (JLabel)(futurepanel.getComponent(0));
 									JPanelGridLayout[prevfY][prevfX].remove(takenchessPiece);
 									JPanelGridLayout[previY][previX].add(takenchessPiece);
-									layeredPane.add(chessPiece);
 									newGame.spotValues[prevfY][prevfX].piece=null;
 									newGame.spotValues[previY][previX].piece=prevPiece;
 									turn="White";
