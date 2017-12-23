@@ -424,19 +424,19 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
 								for(int tX=0; tX < 8; tX++) {
 									for(int tY=0; tY < 8; tY++) {
 										//If this happens, then its not check mate since King has at least one legal move
-										if(coordX.piece.color=="White") {
-											if(coordX.piece.pathDraw(coordX.x,coordX.y,tX,tY) && !newGame.spotValues[tX][tY].isOccupied() &&(!(coordX.isProtectedByBlack) && coordX.piece.color=="White" && turn=="White")) {
+										if(coordX.piece.color=="White" && turn=="White") {
+											if(coordX.piece.pathDraw(coordX.x,coordX.y,tX,tY) && !newGame.spotValues[tX][tY].isOccupied() && (!(coordX.isProtectedByBlack))) {
 												System.out.println("legal move : "+tX + " " + tY + "  " +coordX.x + " " + coordX.y+" " + coordX.piece.name +" "+coordX.piece.color);
 											}
-											else if(coordX.piece.pathDraw(coordX.x,coordX.y,tX,tY) && ((coordX.isProtectedByBlack || newGame.spotValues[tX][tY].isOccupied()) && coordX.piece.color=="White" && turn=="White")) {
+											else if(coordX.piece.pathDraw(coordX.x,coordX.y,tX,tY) && (coordX.isProtectedByBlack || newGame.spotValues[tX][tY].isOccupied())) {
 												System.out.println("illegal move : "+tX + " " + tY + "  " +coordX.x + " " + coordX.y+" " + coordX.piece.name +" "+coordX.piece.color);
 											}
 										}
-										else if(coordX.piece.color=="Black") {
-											if(coordX.piece.pathDraw(coordX.x,coordX.y,tX,tY) && !newGame.spotValues[tX][tY].isOccupied() && (!(coordX.isProtectedByWhite) && coordX.piece.color=="Black" && turn=="Black")) {
+										else if(coordX.piece.color=="Black" && turn=="Black") {
+											if(coordX.piece.pathDraw(coordX.x,coordX.y,tX,tY) && !newGame.spotValues[tX][tY].isOccupied() && (!(coordX.isProtectedByWhite))) {
 												System.out.println("legal move : "+tX + " " + tY + "  " +coordX.x + " " + coordX.y+" " + coordX.piece.name +" "+coordX.piece.color);
 											}
-											else if(coordX.piece.pathDraw(coordX.x,coordX.y,tX,tY) && ((coordX.isProtectedByWhite) && coordX.piece.color=="Black" && turn=="Black")) {
+											else if(coordX.piece.pathDraw(coordX.x,coordX.y,tX,tY) && (coordX.isProtectedByWhite  || newGame.spotValues[tX][tY].isOccupied())) {
 												System.out.println("illegal move : "+tX + " " + tY + "  " +coordX.x + " " + coordX.y+" " + coordX.piece.name +" "+coordX.piece.color);
 											}
 										}
