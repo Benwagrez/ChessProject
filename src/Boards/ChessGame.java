@@ -259,7 +259,7 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
 					newGame.spotValues[fY][fX].occupySpot(newGame.spotValues[iY][iX].piece);
 					newGame.spotValues[iY][iX].piece=null;
 					for(int tX=0; tX < 8; tX++) {
-							if(newGame.spotValues[0][tX].piece!=null) {
+							if(newGame.spotValues[0][tX].piece!=null && newGame.spotValues[7][tX].piece!=null) {
 								if(newGame.spotValues[0][tX].piece.name.equals("Pawn") && newGame.spotValues[0][tX].piece.color.equals("White")) {
 									Object[] options = {new ImageIcon("resource/QueenW.png"),
 											new ImageIcon("resource/RookW.png"),
@@ -301,7 +301,7 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
 									((JPanel)c).remove(chessPiece);
 									((JPanel)c).add(Vpiece);
 								}
-								else if(newGame.spotValues[7][tX].piece.name.equals("Pawn") && newGame.spotValues[0][tX].piece.color.equals("Black")) {
+								else if(newGame.spotValues[7][tX].piece.name.equals("Pawn") && newGame.spotValues[7][tX].piece.color.equals("Black")) {
 									Object[] options = {new ImageIcon("resource/QueenB.png"), 
 											new ImageIcon("resource/RookB.png"),
 											new ImageIcon("resource/BishopB.png"),
