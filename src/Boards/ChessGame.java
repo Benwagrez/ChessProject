@@ -218,20 +218,20 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
 						if(newGame.spotValues[iY][iX].piece.color.equals("White")) {
 							JPanel takenpanel=JPanelGridLayout[7][0];
 							takenchessPiece = (JLabel)(takenpanel.getComponent(0));
-							JPanelGridLayout[7][5].add(takenchessPiece);
-							newGame.spotValues[7][5].occupySpot(newGame.spotValues[0][7].piece);
+							JPanelGridLayout[7][3].add(takenchessPiece);
+							newGame.spotValues[7][3].occupySpot(newGame.spotValues[7][0].piece);
 							takenpanel.remove(takenchessPiece);
-							newGame.spotValues[7][7].piece=null;
+							newGame.spotValues[7][0].piece=null;
 							newGame.spotValues[iY][iX].piece.isQCastling=false;
 
 						}
 						else if(newGame.spotValues[iY][iX].piece.color.equals("Black")) {
-							JPanel takenpanel=JPanelGridLayout[0][7];
+							JPanel takenpanel=JPanelGridLayout[0][0];
 							takenchessPiece = (JLabel)(takenpanel.getComponent(0));
-							JPanelGridLayout[0][5].add(takenchessPiece);
-							newGame.spotValues[0][5].occupySpot(newGame.spotValues[0][7].piece);
+							JPanelGridLayout[0][3].add(takenchessPiece);
+							newGame.spotValues[0][3].occupySpot(newGame.spotValues[0][0].piece);
 							takenpanel.remove(takenchessPiece);
-							newGame.spotValues[0][7].piece=null;
+							newGame.spotValues[0][0].piece=null;
 							newGame.spotValues[iY][iX].piece.isQCastling=false;
 						}
 					}	
