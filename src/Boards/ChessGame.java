@@ -18,6 +18,8 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
 	private int iY = -1;
 	private int fX = -1;
 	private int fY = -1;
+	private int previX=0, previY=0, prevfX=0, prevfY=0;
+	private Piece prevPiece=null;
 	private String turn="White";
 	private JFrame frame = new JFrame();
 	public Board newGame = new Board();//Instantiate Board object w/ spots
@@ -188,6 +190,11 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
 				JPanelGridLayout[iY][iX].add(chessPiece);
 			} else {
 				// otherwise add to new square
+				previX=iX;
+				previY=iY;
+				prevfX=fX;
+				prevfY=fY;
+				prevPiece=newGame.spotValues[iY][iX].piece;
 				if(newGame.spotValues[iY][iX].piece.color==turn) {
 					//Checks if its an en passants
 					if(newGame.spotValues[iY][iX].piece.doingEnPassant){
@@ -196,6 +203,7 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
 						JPanelGridLayout[iY][fX].remove(takenchessPiece);
 						newGame.spotValues[iY][fX].piece=null;
 					}	
+					//Checks if the White King is King-Side Castling
 					if(newGame.spotValues[iY][iX].piece.isKCastling){
 						if(newGame.spotValues[iY][iX].piece.color.equals("White")) {
 							JPanel takenpanel=JPanelGridLayout[7][7];
@@ -205,8 +213,8 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
 							takenpanel.remove(takenchessPiece);
 							newGame.spotValues[7][7].piece=null;
 							newGame.spotValues[iY][iX].piece.isKCastling=false;
-
 						}
+						//Checks if the Black King is King-Side Castling
 						else if(newGame.spotValues[iY][iX].piece.color.equals("Black")) {
 							JPanel takenpanel=JPanelGridLayout[0][7];
 							takenchessPiece = (JLabel)(takenpanel.getComponent(0));
@@ -216,7 +224,8 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
 							newGame.spotValues[0][7].piece=null;
 							newGame.spotValues[iY][iX].piece.isKCastling=false;
 						}
-					}	
+					}
+					//Checks if the White King is Queen-Side Castling
 					if(newGame.spotValues[iY][iX].piece.isQCastling){
 						if(newGame.spotValues[iY][iX].piece.color.equals("White")) {
 							JPanel takenpanel=JPanelGridLayout[7][0];
@@ -226,8 +235,8 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
 							takenpanel.remove(takenchessPiece);
 							newGame.spotValues[7][0].piece=null;
 							newGame.spotValues[iY][iX].piece.isQCastling=false;
-
 						}
+						//Checks if the Black King is Queen-Side Castling
 						else if(newGame.spotValues[iY][iX].piece.color.equals("Black")) {
 							JPanel takenpanel=JPanelGridLayout[0][0];
 							takenchessPiece = (JLabel)(takenpanel.getComponent(0));
@@ -355,29 +364,60 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
 					}
 				} else {
 					JPanelGridLayout[iY][iX].add(chessPiece);
+					previY=iY;
+					previX=iX;
+					prevfX=fX;
+					prevfY=fY;
 				}
-
+				//Resets protected spots
 				for(int tX=0; tX < 8; tX++) {
 					for(int tY=0; tY < 8; tY++) {
 						newGame.spotValues[tY][tX].isProtectedByBlack=false;
 						newGame.spotValues[tY][tX].isProtectedByWhite=false;
 					}
 				}
+				//Sets spots to protectedbyblack and/or protectedbywhite
 				for(Spot[] coordY : newGame.spotValues) {
 					for(Spot coordX : coordY) {
 						if(coordX.piece!=null) {
 							for(int tX=0; tX < 8; tX++) {
 								for(int tY=0; tY < 8; tY++) {
-									if(coordX.piece.pathDraw(coordX.y,coordX.x,tX,tY) && newGame.spotValues[tY][tX].piece==null) {
+									if(coordX.piece.pathDraw(coordX.y,coordX.x,tX,tY)) {
 										if(coordX.piece.color=="White") {
 											newGame.spotValues[tY][tX].isProtectedByWhite=true;
-
-											System.out.println(coordX.piece.color + ": "+tY+" " + tX);
 										} else if(coordX.piece.color=="Black"){
 											newGame.spotValues[tY][tX].isProtectedByBlack=true;
-											System.out.println(coordX.piece.color + ": "+tY+" " + tX);
 										}
 									}
+								}
+							}
+						}
+					}
+				}
+				//Checks if King is in check after the move
+				for(Spot[] coordY : newGame.spotValues) {
+					for(Spot coordX : coordY) {
+						if(coordX.piece!=null) {
+							if(coordX.piece.name=="King") {
+								//If it is, then undo previous move.
+								System.out.println(previX+" "+previY+" "+prevfX+" "+prevfY);
+								if(coordX.isProtectedByBlack && coordX.piece.color=="White" && turn!="White") {
+									JPanel futurepanel=JPanelGridLayout[prevfY][prevfX];
+									takenchessPiece = (JLabel)(futurepanel.getComponent(0));
+									JPanelGridLayout[prevfY][prevfX].remove(takenchessPiece);
+									JPanelGridLayout[previY][previX].add(takenchessPiece);
+									layeredPane.add(chessPiece);
+									newGame.spotValues[prevfY][prevfX].piece=null;
+									newGame.spotValues[previY][previX].piece=prevPiece;
+									turn="White";
+								} else if(coordX.isProtectedByWhite && coordX.piece.color=="Black" && turn!="Black") {
+									JPanel futurepanel=JPanelGridLayout[prevfY][prevfX];
+									takenchessPiece = (JLabel)(futurepanel.getComponent(0));
+									JPanelGridLayout[prevfY][prevfX].remove(takenchessPiece);
+									JPanelGridLayout[previY][previX].add(takenchessPiece);
+									newGame.spotValues[prevfY][prevfX].piece=null;
+									newGame.spotValues[previY][previX].piece=prevPiece;
+									turn="Black";
 								}
 							}
 						}
