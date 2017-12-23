@@ -59,8 +59,10 @@ public class Pawn extends Piece{
 			if((iX-fX==1 || fX-iX==1) && fY-iY==1 && iX!=fX) {
 				return true;
 			} //Checks if taking piece as en passant is legal
-			else if((iX-fX==1 || fX-iX==1) && chess.spotValues[iY][fX].piece.enpassantable) {
+			else if((iX-fX==1 || fX-iX==1) && chess.spotValues[iY][fX].piece!=null) {
+				if(chess.spotValues[iY][fX].piece.enpassantable) {
 				return true;
+				}
 			}
 		}
 		if(color=="Black") {

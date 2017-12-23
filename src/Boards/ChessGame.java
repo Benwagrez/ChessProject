@@ -210,7 +210,7 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
 							JPanel takenpanel=JPanelGridLayout[7][7];
 							takenchessPiece = (JLabel)(takenpanel.getComponent(0));
 							JPanelGridLayout[7][5].add(takenchessPiece);
-							newGame.spotValues[7][5].occupySpot(newGame.spotValues[0][7].piece);
+							newGame.spotValues[7][5].occupySpot(newGame.spotValues[7][7].piece);
 							takenpanel.remove(takenchessPiece);
 							newGame.spotValues[7][7].piece=null;
 							newGame.spotValues[iY][iX].piece.isKCastling=false;
@@ -385,8 +385,11 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
 									if(coordX.piece.pathDraw(coordX.y,coordX.x,tX,tY)) {
 										if(coordX.piece.color=="White") {
 											newGame.spotValues[tY][tX].isProtectedByWhite=true;
+											System.out.println("White " + tY + " " + tX);
+
 										} else if(coordX.piece.color=="Black"){
 											newGame.spotValues[tY][tX].isProtectedByBlack=true;
+											System.out.println("Black " + tY + " " + tX);
 										}
 									}
 								}
