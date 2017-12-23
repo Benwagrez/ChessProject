@@ -4,6 +4,8 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
+import Pieces.Queen;
+
 public class ChessGame extends JFrame implements MouseListener, MouseMotionListener {
 	private static final long serialVersionUID = 1L;//Serial ID for unique chess games-
 	private JLayeredPane layeredPane;
@@ -245,7 +247,19 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
 					((JPanel)c).add(chessPiece);
 					newGame.spotValues[fY][fX].occupySpot(newGame.spotValues[iY][iX].piece);
 					newGame.spotValues[iY][iX].piece=null;
-					if(turn=="White"){
+					for(int tX=0; tX < 8; tX++) {
+							if(newGame.spotValues[0][tX].piece!=null) {
+								if(newGame.spotValues[0][tX].piece.name.equals("Pawn") && newGame.spotValues[0][tX].piece.color.equals("White")) {
+									JLabel Vpiece = new JLabel( new ImageIcon("resource/QueenW.png") );
+									((JPanel)c).remove(chessPiece);
+									((JPanel)c).add(Vpiece);
+									Queen queenW = new Queen(newGame, "White", "Queen");
+									newGame.spotValues[fY][fX].occupySpot(newGame.spotValues[iY][iX].piece=queenW);
+								}
+							}
+							
+						}
+					if(turn=="White"){//Turn management and enpassant resetting
 						for(int x = 0; x < 8; x++) {
 							for(int y = 0; y < 8; y++) {
 								if(newGame.spotValues[x][y].isOccupied() && newGame.spotValues[x][y].piece.enpassantable==true  && newGame.spotValues[x][y].piece.color.equals("Black")) {
