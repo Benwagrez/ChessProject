@@ -33,7 +33,7 @@ public class King extends Piece{
 			}
 		}
 		if(color=="Black") {
-			if(canCastle==true && fX==6 && fY==0 && !chess.spotValues[0][6].isProtectedByBlack && !chess.spotValues[0][6].isOccupied() && !chess.spotValues[0][5].isOccupied()) {
+			if(canCastle==true && fX==6 && fY==0 && !chess.spotValues[0][6].isOccupied() && !chess.spotValues[0][5].isOccupied()) {
 				isKCastling=true;//King side castling
 				return true;
 			} else if(canCastle==true && fY==0 && (fX==1||fX==2) && !chess.spotValues[0][3].isOccupied() && !chess.spotValues[0][2].isOccupied() && !chess.spotValues[0][1].isOccupied()) {
