@@ -15,6 +15,11 @@ public class King extends Piece{
 
 
 	public boolean pathValid(int iX, int iY, int fX, int fY) {
+		if(chess.spotValues[fY][fX].isProtectedByBlack && this.color=="White") {
+			return false;
+		} else if(chess.spotValues[fY][fX].isProtectedByWhite && this.color=="Black") {
+			return false;
+		}
 		if(chess.spotValues[fY][fX].isOccupied()==false && pathDraw(iX,iY,fX,fY)) {
 			canCastle=false;
 			return true;
@@ -33,7 +38,7 @@ public class King extends Piece{
 			}
 		}
 		if(color=="Black") {
-			if(canCastle=true && fX==6 && fY==0 && !chess.spotValues[0][6].isOccupied() && !chess.spotValues[0][5].isOccupied()) {
+			if(canCastle=true && fX==6 && fY==0 && !chess.spotValues[0][6].isProtectedByBlack && !chess.spotValues[0][6].isOccupied() && !chess.spotValues[0][5].isOccupied()) {
 				isKCastling=true;//King side castling
 				return true;
 			} else if(canCastle=true && fY==0 && (fX==1||fX==2) && !chess.spotValues[0][3].isOccupied() && !chess.spotValues[0][2].isOccupied() && !chess.spotValues[0][1].isOccupied()) {
