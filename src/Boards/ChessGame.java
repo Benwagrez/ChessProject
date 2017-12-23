@@ -4,7 +4,7 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-import Pieces.Queen;
+import Pieces.*;
 
 public class ChessGame extends JFrame implements MouseListener, MouseMotionListener {
 	private static final long serialVersionUID = 1L;//Serial ID for unique chess games-
@@ -19,6 +19,7 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
 	private int fX = -1;
 	private int fY = -1;
 	private int previX=0, previY=0, prevfX=0, prevfY=0;
+	private Piece prevPiece=null;
 	private String turn="White";
 	public Board newGame = new Board();//Instantiate Board object w/ spots
 
@@ -188,6 +189,11 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
 				JPanelGridLayout[iY][iX].add(chessPiece);
 			} else {
 				// otherwise add to new square
+				previX=iX;
+				previY=iY;
+				prevfX=fX;
+				prevfY=fY;
+				prevPiece=newGame.spotValues[iY][iX].piece;
 				if(newGame.spotValues[iY][iX].piece.color==turn) {
 					//Checks if its an en passants
 					if(newGame.spotValues[iY][iX].piece.doingEnPassant){
@@ -195,10 +201,6 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
 						takenchessPiece = (JLabel)(takenpanel.getComponent(0));
 						JPanelGridLayout[iY][fX].remove(takenchessPiece);
 						newGame.spotValues[iY][fX].piece=null;
-						previX=iX;
-						previY=iY;
-						prevfX=fX;
-						prevfY=fY;
 					}	
 					//Checks if the White King is King-Side Castling
 					if(newGame.spotValues[iY][iX].piece.isKCastling){
@@ -210,7 +212,6 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
 							takenpanel.remove(takenchessPiece);
 							newGame.spotValues[7][7].piece=null;
 							newGame.spotValues[iY][iX].piece.isKCastling=false;
-
 						}
 						//Checks if the Black King is King-Side Castling
 						else if(newGame.spotValues[iY][iX].piece.color.equals("Black")) {
@@ -233,7 +234,6 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
 							takenpanel.remove(takenchessPiece);
 							newGame.spotValues[7][0].piece=null;
 							newGame.spotValues[iY][iX].piece.isQCastling=false;
-
 						}
 						//Checks if the Black King is Queen-Side Castling
 						else if(newGame.spotValues[iY][iX].piece.color.equals("Black")) {
@@ -251,10 +251,6 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
 						takenchessPiece=(JLabel)((JPanel)c).getComponent(0);
 						JPanelGridLayout[fY][fX].remove(takenchessPiece);
 						newGame.spotValues[fY][fX].piece=null;
-						previX=iX;
-						previY=iY;
-						prevfX=fX;
-						prevfY=fY;
 					}
 					//moves the piece
 					((JPanel)c).add(chessPiece);
@@ -329,18 +325,24 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
 						if(coordX.piece!=null) {
 							if(coordX.piece.name=="King") {
 								//If it is, then undo previous move.
+								System.out.println(previX+" "+previY+" "+prevfX+" "+prevfY);
 								if(coordX.isProtectedByBlack && coordX.piece.color=="White" && turn!="White") {
 									JPanel futurepanel=JPanelGridLayout[prevfY][prevfX];
 									takenchessPiece = (JLabel)(futurepanel.getComponent(0));
 									JPanelGridLayout[prevfY][prevfX].remove(takenchessPiece);
 									JPanelGridLayout[previY][previX].add(takenchessPiece);
+									layeredPane.add(chessPiece);
 									newGame.spotValues[prevfY][prevfX].piece=null;
+									newGame.spotValues[previY][previX].piece=prevPiece;
+									turn="White";
 								} else if(coordX.isProtectedByWhite && coordX.piece.color=="Black" && turn!="Black") {
 									JPanel futurepanel=JPanelGridLayout[prevfY][prevfX];
 									takenchessPiece = (JLabel)(futurepanel.getComponent(0));
 									JPanelGridLayout[prevfY][prevfX].remove(takenchessPiece);
 									JPanelGridLayout[previY][previX].add(takenchessPiece);
 									newGame.spotValues[prevfY][prevfX].piece=null;
+									newGame.spotValues[previY][previX].piece=prevPiece;
+									turn="Black";
 								}
 							}
 						}
