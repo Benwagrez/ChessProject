@@ -222,6 +222,7 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
 							newGame.spotValues[7][5].occupySpot(newGame.spotValues[0][7].piece);
 							takenpanel.remove(takenchessPiece);
 							newGame.spotValues[7][7].piece=null;
+							newGame.spotValues[iY][iX].piece.isQCastling=false;
 
 						}
 						else if(newGame.spotValues[iY][iX].piece.color.equals("Black")) {
@@ -231,6 +232,7 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
 							newGame.spotValues[0][5].occupySpot(newGame.spotValues[0][7].piece);
 							takenpanel.remove(takenchessPiece);
 							newGame.spotValues[0][7].piece=null;
+							newGame.spotValues[iY][iX].piece.isQCastling=false;
 						}
 					}	
 					//Checks if its taking another piece

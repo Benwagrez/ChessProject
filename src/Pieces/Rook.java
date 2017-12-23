@@ -16,9 +16,10 @@ public class Rook extends Piece{
 
 		if(chess.spotValues[fY][fX].isOccupied()==false && pathDraw(iX,iY,fX,fY)){
 			canCastle=false;
-			return true;
+			return true;			
 		}
 		if(chess.spotValues[fY][fX].isOccupied()==true && !chess.spotValues[iY][iX].piece.color.equals(chess.spotValues[fY][fX].piece.color) && pathDraw(iX,iY,fX,fY)) {
+			canCastle=false;
 			return true;
 		}
 		else
