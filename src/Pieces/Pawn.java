@@ -48,62 +48,7 @@ public class Pawn extends Piece{
 			} else if(iX==fX && iY-fY==1) {
 				return true;
 			}
-		}
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+		}		
 		return false;
 	}
 	//Checks if taking is legal
