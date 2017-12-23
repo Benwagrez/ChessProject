@@ -307,7 +307,7 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
 				}
 				//Sets spots to protectedbyblack and/or protectedbywhite
 				for(Spot[] coordY : newGame.spotValues) {
-					for(Spot coordX : coordY) {
+					for(Spot coordX : coordY) {a
 						if(coordX.piece!=null) {
 							for(int tX=0; tX < 8; tX++) {
 								for(int tY=0; tY < 8; tY++) {
