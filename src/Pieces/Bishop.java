@@ -33,7 +33,7 @@ public class Bishop extends Piece{
 		if(tempfX-tempiX==0){
 			return false;
 		}
-		double slope = ((double)(Math.abs(tempfY-tempiY)/Math.abs(tempfX-tempiX)));
+		double slope = ((double)(Math.abs((double)tempfY-(double)tempiY)/Math.abs((double)tempfX-(double)tempiX)));
 		int vY = iY, vX = iX;
 
 		if(slope!=1){return false;}//Checking if path taken is possible (Bishop - diagonal slope of 1)
