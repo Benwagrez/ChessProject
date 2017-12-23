@@ -4,6 +4,8 @@ import Pieces.*;
 public class Spot {
 	public int x, y;
 	public Piece piece;
+	public boolean isProtectedByBlack=false;
+	public boolean isProtectedByWhite=false;
 	/*
 	 *Instance fields with x and y coordinates and the piece.
 	 */
