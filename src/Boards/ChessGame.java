@@ -282,8 +282,11 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
 									if(coordX.piece.pathDraw(coordX.y,coordX.x,tX,tY) && newGame.spotValues[tY][tX].piece==null) {
 										if(coordX.piece.color=="White") {
 											newGame.spotValues[tY][tX].isProtectedByWhite=true;
+
+											System.out.println(coordX.piece.color + ": "+tY+" " + tX);
 										} else if(coordX.piece.color=="Black"){
 											newGame.spotValues[tY][tX].isProtectedByBlack=true;
+											System.out.println(coordX.piece.color + ": "+tY+" " + tX);
 										}
 									}
 								}
