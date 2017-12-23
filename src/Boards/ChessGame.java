@@ -18,6 +18,7 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
 	private int iY = -1;
 	private int fX = -1;
 	private int fY = -1;
+	private boolean checkmate=false;
 	private int previX=0, previY=0, prevfX=0, prevfY=0;
 	private Piece prevPiece=null;
 	private String turn="White";
@@ -325,7 +326,6 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
 						if(coordX.piece!=null) {
 							if(coordX.piece.name=="King") {
 								//If it is, then undo previous move.
-								System.out.println(previX+" "+previY+" "+prevfX+" "+prevfY);
 								if(coordX.isProtectedByBlack && coordX.piece.color=="White" && turn!="White") {
 									JPanel futurepanel=JPanelGridLayout[prevfY][prevfX];
 									takenchessPiece = (JLabel)(futurepanel.getComponent(0));
@@ -344,6 +344,15 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
 									newGame.spotValues[previY][previX].piece=prevPiece;
 									turn="Black";
 								}
+								//Checks if king can move anywhere at all
+//								for(int tX=0; tX < 8; tX++) {
+//									for(int tY=0; tY < 8; tY++) {
+//										//If this happens, then its not checkmate sinec King has at least one legal move
+//										if(coordX.piece.pathDraw(coordX.y,coordX.x,tX,tY) || !(coordX.isProtectedByBlack && coordX.piece.color=="White" && turn=="White") || !(coordX.isProtectedByWhite && coordX.piece.color=="Black" && turn=="Black")) {
+//											break;
+//										}
+//									}
+//								}
 							}
 						}
 					}
