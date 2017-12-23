@@ -15,11 +15,6 @@ public class King extends Piece{
 
 
 	public boolean pathValid(int iX, int iY, int fX, int fY) {
-		if(chess.spotValues[fY][fX].isProtectedByBlack && this.color=="White") {
-			return false;
-		} else if(chess.spotValues[fY][fX].isProtectedByWhite && this.color=="Black") {
-			return false;
-		}
 		if(chess.spotValues[fY][fX].isOccupied()==false && pathDraw(iX,iY,fX,fY)) {
 			canCastle=false;
 			return true;
@@ -55,6 +50,11 @@ public class King extends Piece{
 
 	public boolean pathDraw(int iX, int iY,int fX, int fY){
 		if((Math.abs(fX-iX))>1||(Math.abs(fY-iY)>1)){
+			if(chess.spotValues[fY][fX].isProtectedByBlack && color=="White") {
+				return false;
+			} else if(chess.spotValues[fY][fX].isProtectedByWhite && color=="Black") {
+				return false;
+			}
 			return false;
 		}//Checking if change in x and y are over 1 - if so - impossible
 		return true;
