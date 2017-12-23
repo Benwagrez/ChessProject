@@ -291,7 +291,7 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
 									((JPanel)c).remove(chessPiece);
 									((JPanel)c).add(Vpiece);
 								}
-								else if(newGame.spotValues[0][tX].piece.name.equals("Pawn") && newGame.spotValues[0][tX].piece.color.equals("Black")) {
+								else if(newGame.spotValues[7][tX].piece.name.equals("Pawn") && newGame.spotValues[0][tX].piece.color.equals("Black")) {
 									Object[] options = {new ImageIcon("resource/QueenB.png"),
 											new ImageIcon("resource/RookB.png"),
 											new ImageIcon("resource/BishopB.png"),
