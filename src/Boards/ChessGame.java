@@ -412,44 +412,47 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
 					for(Spot coordX : coordY) {
 						if(coordX.piece!=null) {
 							if(coordX.piece.name=="King") {
-								//If it is, then undo previous move.
-								if(coordX.isProtectedByBlack && coordX.piece.color=="White" && turn!="White") {
-									JPanel futurepanel=JPanelGridLayout[prevfY][prevfX];
-									takenchessPiece = (JLabel)(futurepanel.getComponent(0));
-									JPanelGridLayout[prevfY][prevfX].remove(takenchessPiece);
-									JPanelGridLayout[previY][previX].add(takenchessPiece);
-									newGame.spotValues[prevfY][prevfX].piece=null;
-									newGame.spotValues[previY][previX].piece=prevPiece;
-									turn="White";
-								} else if(coordX.isProtectedByWhite && coordX.piece.color=="Black" && turn!="Black") {
-									JPanel futurepanel=JPanelGridLayout[prevfY][prevfX];
-									takenchessPiece = (JLabel)(futurepanel.getComponent(0));
-									JPanelGridLayout[prevfY][prevfX].remove(takenchessPiece);
-									JPanelGridLayout[previY][previX].add(takenchessPiece);
-									newGame.spotValues[prevfY][prevfX].piece=null;
-									newGame.spotValues[previY][previX].piece=prevPiece;
-									turn="Black";
-								}
 								//Checks if king can move anywhere at all
+								if(coordX.piece!=null) {
 								for(int tX=0; tX < 8; tX++) {
 									for(int tY=0; tY < 8; tY++) {
 										//If this happens, then its not check mate since King has at least one legal move
-										if(coordX.piece.color=="White" && turn=="White") {
-											if(coordX.piece.pathDraw(coordX.x,coordX.y,tX,tY) && !newGame.spotValues[tX][tY].isOccupied() && (!(coordX.isProtectedByBlack))) {
-												System.out.println("legal move : "+tX + " " + tY + "  " +coordX.x + " " + coordX.y+" " + coordX.piece.name +" "+coordX.piece.color);
+											if(coordX.piece.color.equals("White") && turn.equals("White")) {
+												if(coordX.piece.pathDraw(coordX.x,coordX.y,tX,tY) && !newGame.spotValues[tX][tY].isOccupied() && (!(coordX.isProtectedByBlack))) {
+													System.out.println("legal move : "+tX + " " + tY + "  " +coordX.x + " " + coordX.y+" " + coordX.piece.name +" "+coordX.piece.color);
+												}
+												else if(coordX.piece.pathDraw(coordX.x,coordX.y,tX,tY) && (coordX.isProtectedByBlack || newGame.spotValues[tX][tY].isOccupied())) {
+													System.out.println("illegal move : "+tX + " " + tY + "  " +coordX.x + " " + coordX.y+" " + coordX.piece.name +" "+coordX.piece.color);
+												}
 											}
-											else if(coordX.piece.pathDraw(coordX.x,coordX.y,tX,tY) && (coordX.isProtectedByBlack || newGame.spotValues[tX][tY].isOccupied())) {
-												System.out.println("illegal move : "+tX + " " + tY + "  " +coordX.x + " " + coordX.y+" " + coordX.piece.name +" "+coordX.piece.color);
+											else if(coordX.piece.color.equals("Black") && turn.equals("Black")) {
+												if(coordX.piece.pathDraw(coordX.x,coordX.y,tX,tY) && !newGame.spotValues[tX][tY].isOccupied() && (!(coordX.isProtectedByWhite))) {
+													System.out.println("legal move : "+tX + " " + tY + "  " +coordX.x + " " + coordX.y+" " + coordX.piece.name +" "+coordX.piece.color);
+												}
+												else if(coordX.piece.pathDraw(coordX.x,coordX.y,tX,tY) && (coordX.isProtectedByWhite  || newGame.spotValues[tX][tY].isOccupied())) {
+													System.out.println("illegal move : "+tX + " " + tY + "  " +coordX.x + " " + coordX.y+" " + coordX.piece.name +" "+coordX.piece.color);
+												}
 											}
 										}
-										else if(coordX.piece.color=="Black" && turn=="Black") {
-											if(coordX.piece.pathDraw(coordX.x,coordX.y,tX,tY) && !newGame.spotValues[tX][tY].isOccupied() && (!(coordX.isProtectedByWhite))) {
-												System.out.println("legal move : "+tX + " " + tY + "  " +coordX.x + " " + coordX.y+" " + coordX.piece.name +" "+coordX.piece.color);
-											}
-											else if(coordX.piece.pathDraw(coordX.x,coordX.y,tX,tY) && (coordX.isProtectedByWhite  || newGame.spotValues[tX][tY].isOccupied())) {
-												System.out.println("illegal move : "+tX + " " + tY + "  " +coordX.x + " " + coordX.y+" " + coordX.piece.name +" "+coordX.piece.color);
-											}
-										}
+								}
+								
+									//If it is, then undo previous move.
+									if(coordX.isProtectedByBlack && coordX.piece.color=="White" && turn!="White") {
+										JPanel futurepanel=JPanelGridLayout[prevfY][prevfX];
+										takenchessPiece = (JLabel)(futurepanel.getComponent(0));
+										JPanelGridLayout[prevfY][prevfX].remove(takenchessPiece);
+										JPanelGridLayout[previY][previX].add(takenchessPiece);
+										newGame.spotValues[prevfY][prevfX].piece=null;
+										newGame.spotValues[previY][previX].piece=prevPiece;
+										turn="White";
+									} else if(coordX.isProtectedByWhite && coordX.piece.color=="Black" && turn!="Black") {
+										JPanel futurepanel=JPanelGridLayout[prevfY][prevfX];
+										takenchessPiece = (JLabel)(futurepanel.getComponent(0));
+										JPanelGridLayout[prevfY][prevfX].remove(takenchessPiece);
+										JPanelGridLayout[previY][previX].add(takenchessPiece);
+										newGame.spotValues[prevfY][prevfX].piece=null;
+										newGame.spotValues[previY][previX].piece=prevPiece;
+										turn="Black";
 									}
 								}
 							}
