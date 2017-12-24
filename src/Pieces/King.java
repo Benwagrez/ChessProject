@@ -27,7 +27,7 @@ public class King extends Piece{
 			if(canCastle==true && fX==6 && fY==7 && !chess.spotValues[7][6].isOccupied() && !chess.spotValues[7][5].isOccupied() && !chess.spotValues[7][6].isProtectedByBlack && !chess.spotValues[7][5].isProtectedByBlack) {
 				isKCastling=true;//King side castling
 				return true;
-			} else if(canCastle==true && fY==7 && (fX==1||fX==2) && !chess.spotValues[7][3].isOccupied() && !chess.spotValues[7][2].isOccupied() && !chess.spotValues[7][1].isOccupied() && !chess.spotValues[7][3].isProtectedByBlack && !chess.spotValues[7][2].isProtectedByBlack && !chess.spotValues[7][1].isProtectedByBlack) {
+			} else if(canCastle==true && fY==7 && (fX==1||fX==2) && !chess.spotValues[7][3].isOccupied() && !chess.spotValues[7][2].isOccupied() && !chess.spotValues[7][1].isOccupied() && !chess.spotValues[7][3].isProtectedByBlack && !chess.spotValues[7][2].isProtectedByBlack) {
 				isQCastling=true;//Queen side castling
 				return true;
 			}
@@ -36,7 +36,7 @@ public class King extends Piece{
 			if(canCastle==true && fX==6 && fY==0 && !chess.spotValues[0][6].isOccupied() && !chess.spotValues[0][5].isOccupied() && !chess.spotValues[0][6].isProtectedByWhite && !chess.spotValues[0][5].isProtectedByWhite) {
 				isKCastling=true;//King side castling
 				return true;
-			} else if(canCastle==true && fY==0 && (fX==1||fX==2) && !chess.spotValues[0][3].isOccupied() && !chess.spotValues[0][2].isOccupied() && !chess.spotValues[0][1].isOccupied() && !chess.spotValues[0][3].isProtectedByWhite && !chess.spotValues[0][2].isProtectedByWhite && !chess.spotValues[0][1].isProtectedByWhite) {
+			} else if(canCastle==true && fY==0 && (fX==1||fX==2) && !chess.spotValues[0][3].isOccupied() && !chess.spotValues[0][2].isOccupied() && !chess.spotValues[0][1].isOccupied() && !chess.spotValues[0][3].isProtectedByWhite && !chess.spotValues[0][2].isProtectedByWhite) {
 				isQCastling=true;//Queen side castling
 				return true;
 			}
