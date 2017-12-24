@@ -49,6 +49,9 @@ public class King extends Piece{
 	 */
 
 	public boolean pathDraw(int iX, int iY,int fX, int fY){
+		if(fX==iX && fY==iY) {
+			return false;
+		}
 		if((Math.abs(fX-iX))>1||(Math.abs(fY-iY)>1)){
 			return false;
 		}//Checking if change in x and y are over 1 - if so - impossible

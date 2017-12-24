@@ -392,7 +392,7 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
 						if(coordX.piece!=null) {
 							for(int tX=0; tX < 8; tX++) {
 								for(int tY=0; tY < 8; tY++) {
-									if(coordX.piece.pathDraw(coordX.y,coordX.x,tX,tY)) {
+									if(coordX.piece.pathDraw(coordX.y,coordX.x,tY,tX)) {
 										if(coordX.piece.color=="White") {
 											newGame.spotValues[tY][tX].isProtectedByWhite=true;
 											System.out.println("White " + tY + " " + tX);
@@ -412,6 +412,7 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
 					for(Spot coordX : coordY) {
 						if(coordX.piece!=null) {
 							if(coordX.piece.name=="King") {
+								int possibleMoves = 0;
 								//Checks if king can move anywhere at all
 								if(coordX.piece!=null) {
 								for(int tX=0; tX < 8; tX++) {
@@ -427,6 +428,7 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
 											}
 											else if(coordX.piece.color.equals("Black") && turn.equals("Black")) {
 												if(coordX.piece.pathDraw(coordX.x,coordX.y,tX,tY) && !newGame.spotValues[tX][tY].isOccupied() && (!(coordX.isProtectedByWhite))) {
+													possibleMoves++;
 													System.out.println("legal move : "+tX + " " + tY + "  " +coordX.x + " " + coordX.y+" " + coordX.piece.name +" "+coordX.piece.color);
 												}
 												else if(coordX.piece.pathDraw(coordX.x,coordX.y,tX,tY) && (coordX.isProtectedByWhite  || newGame.spotValues[tX][tY].isOccupied())) {
@@ -434,9 +436,11 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
 												}
 											}
 										}
-								}
-								
-									//If it is, then undo previous move.
+									}
+									if(possibleMoves>0) {
+										//insert a check to see if a piece can block check mate
+									}
+									//If not check mate but not good move, then undo previous move.
 									if(coordX.isProtectedByBlack && coordX.piece.color=="White" && turn!="White") {
 										JPanel futurepanel=JPanelGridLayout[prevfY][prevfX];
 										takenchessPiece = (JLabel)(futurepanel.getComponent(0));
