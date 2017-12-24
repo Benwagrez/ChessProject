@@ -19,6 +19,7 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
 	private int fX = -1;
 	private int fY = -1;
 	private boolean checkmate=false;
+	private boolean QSC = false;
 	private int previX=0, previY=0, prevfX=0, prevfY=0;
 	private Piece prevPiece=null;
 	private String turn="White";
@@ -235,6 +236,7 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
 							newGame.spotValues[7][3].occupySpot(newGame.spotValues[7][0].piece);
 							takenpanel.remove(takenchessPiece);
 							newGame.spotValues[7][0].piece=null;
+							QSC = true;
 							newGame.spotValues[iY][iX].piece.isQCastling=false;
 						}
 						//Checks if the Black King is Queen-Side Castling
@@ -245,6 +247,7 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
 							newGame.spotValues[0][3].occupySpot(newGame.spotValues[0][0].piece);
 							takenpanel.remove(takenchessPiece);
 							newGame.spotValues[0][0].piece=null;
+							QSC = true;
 							newGame.spotValues[iY][iX].piece.isQCastling=false;
 						}
 					}	
@@ -255,9 +258,16 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
 						newGame.spotValues[fY][fX].piece=null;
 					}
 					//moves the piece
-					((JPanel)c).add(chessPiece);
-					newGame.spotValues[fY][fX].occupySpot(newGame.spotValues[iY][iX].piece);
-					newGame.spotValues[iY][iX].piece=null;
+					if(QSC) {
+						JPanelGridLayout[iY][2].add(chessPiece);
+						newGame.spotValues[fY][2].occupySpot(newGame.spotValues[iY][iX].piece);
+						newGame.spotValues[iY][iX].piece=null;
+						QSC = false;
+					}
+					else
+						((JPanel)c).add(chessPiece);
+						newGame.spotValues[fY][fX].occupySpot(newGame.spotValues[iY][iX].piece);
+						newGame.spotValues[iY][iX].piece=null;
 					for(int tX=0; tX < 8; tX++) {//Checks piece promotion
 							if(newGame.spotValues[0][tX].piece!=null && newGame.spotValues[7][tX].piece!=null) {//checking if position is null - avoid errors
 								if(newGame.spotValues[0][tX].piece.name.equals("Pawn") && newGame.spotValues[0][tX].piece.color.equals("White")) {//Checks for white pawn promotion
