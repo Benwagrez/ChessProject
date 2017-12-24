@@ -266,93 +266,93 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
 					}
 					else
 						((JPanel)c).add(chessPiece);
-						newGame.spotValues[fY][fX].occupySpot(newGame.spotValues[iY][iX].piece);
-						newGame.spotValues[iY][iX].piece=null;
+					newGame.spotValues[fY][fX].occupySpot(newGame.spotValues[iY][iX].piece);
+					newGame.spotValues[iY][iX].piece=null;
 					for(int tX=0; tX < 8; tX++) {//Checks piece promotion
-							if(newGame.spotValues[0][tX].piece!=null && newGame.spotValues[7][tX].piece!=null) {//checking if position is null - avoid errors
-								if(newGame.spotValues[0][tX].piece.name.equals("Pawn") && newGame.spotValues[0][tX].piece.color.equals("White")) {//Checks for white pawn promotion
-									Object[] options = {new ImageIcon("resource/QueenW.png"),
-											new ImageIcon("resource/RookW.png"),
-											new ImageIcon("resource/BishopW.png"),
-											new ImageIcon("resource/KnightW.png")};
-											int n = JOptionPane.showOptionDialog(frame,
-											    "Promote "
-											    + "your piece",
-											    "Promotion",
-											    JOptionPane.YES_NO_CANCEL_OPTION,
-											    JOptionPane.QUESTION_MESSAGE,
-											    null,
-											    options,
-											    options[3]);
-											JLabel Vpiece = new JLabel();
-											switch(n){
-											case 0:
-													Vpiece = new JLabel( new ImageIcon("resource/QueenW.png") );
-													Queen queenW = new Queen(newGame, "White", "Queen");
-													newGame.spotValues[fY][fX].occupySpot(newGame.spotValues[iY][iX].piece=queenW);
-												break;
+						if(newGame.spotValues[0][tX].piece!=null && newGame.spotValues[7][tX].piece!=null) {//checking if position is null - avoid errors
+							if(newGame.spotValues[0][tX].piece.name.equals("Pawn") && newGame.spotValues[0][tX].piece.color.equals("White")) {//Checks for white pawn promotion
+								Object[] options = {new ImageIcon("resource/QueenW.png"),
+										new ImageIcon("resource/RookW.png"),
+										new ImageIcon("resource/BishopW.png"),
+										new ImageIcon("resource/KnightW.png")};
+								int n = JOptionPane.showOptionDialog(frame,
+										"Promote "
+												+ "your piece",
+												"Promotion",
+												JOptionPane.YES_NO_CANCEL_OPTION,
+												JOptionPane.QUESTION_MESSAGE,
+												null,
+												options,
+												options[3]);
+								JLabel Vpiece = new JLabel();
+								switch(n){
+								case 0:
+									Vpiece = new JLabel( new ImageIcon("resource/QueenW.png") );
+									Queen queenW = new Queen(newGame, "White", "Queen");
+									newGame.spotValues[fY][fX].occupySpot(newGame.spotValues[iY][iX].piece=queenW);
+									break;
 
-											case 1:
-													Vpiece = new JLabel( new ImageIcon("resource/RookW.png") );
-													Rook rookW = new Rook(newGame, "White", "Rook");
-													newGame.spotValues[fY][fX].occupySpot(newGame.spotValues[iY][iX].piece=rookW);
-												break;
-											case 2:
-													Vpiece = new JLabel( new ImageIcon("resource/BishopW.png") );
-													Bishop bishopW = new Bishop(newGame, "White", "Bishop");
-													newGame.spotValues[fY][fX].occupySpot(newGame.spotValues[iY][iX].piece=bishopW);
-												break;
-											case 3:
-													Vpiece = new JLabel( new ImageIcon("resource/KnightW.png") );
-													Knight knightW = new Knight(newGame, "White", "Rook");
-													newGame.spotValues[fY][fX].occupySpot(newGame.spotValues[iY][iX].piece=knightW);
-												break;
-											}
-									((JPanel)c).remove(chessPiece);
-									((JPanel)c).add(Vpiece);
+								case 1:
+									Vpiece = new JLabel( new ImageIcon("resource/RookW.png") );
+									Rook rookW = new Rook(newGame, "White", "Rook");
+									newGame.spotValues[fY][fX].occupySpot(newGame.spotValues[iY][iX].piece=rookW);
+									break;
+								case 2:
+									Vpiece = new JLabel( new ImageIcon("resource/BishopW.png") );
+									Bishop bishopW = new Bishop(newGame, "White", "Bishop");
+									newGame.spotValues[fY][fX].occupySpot(newGame.spotValues[iY][iX].piece=bishopW);
+									break;
+								case 3:
+									Vpiece = new JLabel( new ImageIcon("resource/KnightW.png") );
+									Knight knightW = new Knight(newGame, "White", "Rook");
+									newGame.spotValues[fY][fX].occupySpot(newGame.spotValues[iY][iX].piece=knightW);
+									break;
 								}
-								else if(newGame.spotValues[7][tX].piece.name.equals("Pawn") && newGame.spotValues[7][tX].piece.color.equals("Black")) {//Check black pawn promotion
-									Object[] options = {new ImageIcon("resource/QueenB.png"), 
-											new ImageIcon("resource/RookB.png"),
-											new ImageIcon("resource/BishopB.png"),
-											new ImageIcon("resource/KnightB.png")};
-											int n = JOptionPane.showOptionDialog(frame,
-											    "Promote "
-											    + "your piece",
-											    "Promotion",
-											    JOptionPane.YES_NO_CANCEL_OPTION,
-											    JOptionPane.QUESTION_MESSAGE,
-											    null,
-											    options,
-											    options[3]);
-											JLabel Vpiece = new JLabel();
-											switch(n){
-											case 0:
-													Vpiece = new JLabel( new ImageIcon("resource/QueenB.png") );
-													Queen queenB = new Queen(newGame, "Black", "Queen");
-													newGame.spotValues[fY][fX].occupySpot(newGame.spotValues[iY][iX].piece=queenB);
-												break;
-											case 1:
-													Vpiece = new JLabel( new ImageIcon("resource/RookB.png") );
-													Rook rookB = new Rook(newGame, "Black", "Rook");
-													newGame.spotValues[fY][fX].occupySpot(newGame.spotValues[iY][iX].piece=rookB);
-												break;
-											case 2:
-													Vpiece = new JLabel( new ImageIcon("resource/BishopB.png") );
-													Bishop bishopB = new Bishop(newGame, "Black", "Bishop");
-													newGame.spotValues[fY][fX].occupySpot(newGame.spotValues[iY][iX].piece=bishopB);
-												break;
-											case 3:
-													Vpiece = new JLabel( new ImageIcon("resource/KnightB.png") );
-													Knight knightB = new Knight(newGame, "Black", "Rook");
-													newGame.spotValues[fY][fX].occupySpot(newGame.spotValues[iY][iX].piece=knightB);
-												break;
-											}
-									((JPanel)c).remove(chessPiece);
-									((JPanel)c).add(Vpiece);
+								((JPanel)c).remove(chessPiece);
+								((JPanel)c).add(Vpiece);
+							}
+							else if(newGame.spotValues[7][tX].piece.name.equals("Pawn") && newGame.spotValues[7][tX].piece.color.equals("Black")) {//Check black pawn promotion
+								Object[] options = {new ImageIcon("resource/QueenB.png"), 
+										new ImageIcon("resource/RookB.png"),
+										new ImageIcon("resource/BishopB.png"),
+										new ImageIcon("resource/KnightB.png")};
+								int n = JOptionPane.showOptionDialog(frame,
+										"Promote "
+												+ "your piece",
+												"Promotion",
+												JOptionPane.YES_NO_CANCEL_OPTION,
+												JOptionPane.QUESTION_MESSAGE,
+												null,
+												options,
+												options[3]);
+								JLabel Vpiece = new JLabel();
+								switch(n){
+								case 0:
+									Vpiece = new JLabel( new ImageIcon("resource/QueenB.png") );
+									Queen queenB = new Queen(newGame, "Black", "Queen");
+									newGame.spotValues[fY][fX].occupySpot(newGame.spotValues[iY][iX].piece=queenB);
+									break;
+								case 1:
+									Vpiece = new JLabel( new ImageIcon("resource/RookB.png") );
+									Rook rookB = new Rook(newGame, "Black", "Rook");
+									newGame.spotValues[fY][fX].occupySpot(newGame.spotValues[iY][iX].piece=rookB);
+									break;
+								case 2:
+									Vpiece = new JLabel( new ImageIcon("resource/BishopB.png") );
+									Bishop bishopB = new Bishop(newGame, "Black", "Bishop");
+									newGame.spotValues[fY][fX].occupySpot(newGame.spotValues[iY][iX].piece=bishopB);
+									break;
+								case 3:
+									Vpiece = new JLabel( new ImageIcon("resource/KnightB.png") );
+									Knight knightB = new Knight(newGame, "Black", "Rook");
+									newGame.spotValues[fY][fX].occupySpot(newGame.spotValues[iY][iX].piece=knightB);
+									break;
 								}
+								((JPanel)c).remove(chessPiece);
+								((JPanel)c).add(Vpiece);
 							}
 						}
+					}
 					if(turn=="White"){//Turn management and enpassant resetting
 						for(int x = 0; x < 8; x++) {
 							for(int y = 0; y < 8; y++) {
@@ -392,16 +392,19 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
 						if(coordX.piece!=null) {
 							for(int tX=0; tX < 8; tX++) {
 								for(int tY=0; tY < 8; tY++) {
-									if(coordX.piece.pathDraw(coordX.y,coordX.x,tY,tX)) {
+									if(coordX.piece.pathDraw(coordX.y,coordX.x,tY,tX) && coordX.piece.name!="Pawn") {
 										if(coordX.piece.color=="White") {
 											newGame.spotValues[tY][tX].isProtectedByWhite=true;
-											System.out.println("White " + tY + " " + tX);
-
 										} else if(coordX.piece.color=="Black"){
 											newGame.spotValues[tY][tX].isProtectedByBlack=true;
-											System.out.println("Black " + tY + " " + tX);
 										}
-									}
+									} /*else if(coordX.piece.pawnCheck(coordX.y,coordX.x,tY,tX) && coordX.piece.name=="Pawn") {
+//										if(coordX.piece.color=="White") {
+//											newGame.spotValues[tY][tX].isProtectedByWhite=true;
+//										} else if(coordX.piece.color=="Black"){
+//											newGame.spotValues[tY][tX].isProtectedByBlack=true;
+//										}
+									}*/
 								}
 							}
 						}
@@ -415,24 +418,25 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
 								int possibleMoves = 0;
 								//Checks if king can move anywhere at all
 								if(coordX.piece!=null) {
-								for(int tX=0; tX < 8; tX++) {
-									for(int tY=0; tY < 8; tY++) {
-										//If this happens, then its not check mate since King has at least one legal move
+									for(int tX=0; tX < 8; tX++) {
+										for(int tY=0; tY < 8; tY++) {
+											//If this happens, then its not check mate since King has at least one legal move
 											if(coordX.piece.color.equals("White") && turn.equals("White")) {
 												if(coordX.piece.pathDraw(coordX.x,coordX.y,tX,tY) && !newGame.spotValues[tX][tY].isOccupied() && (!(coordX.isProtectedByBlack))) {
-													System.out.println("legal move : "+tX + " " + tY + "  " +coordX.x + " " + coordX.y+" " + coordX.piece.name +" "+coordX.piece.color);
+													possibleMoves++;
+													//System.out.println("legal move : "+tX + " " + tY + "  " +coordX.x + " " + coordX.y+" " + coordX.piece.name +" "+coordX.piece.color);
 												}
 												else if(coordX.piece.pathDraw(coordX.x,coordX.y,tX,tY) && (coordX.isProtectedByBlack || newGame.spotValues[tX][tY].isOccupied())) {
-													System.out.println("illegal move : "+tX + " " + tY + "  " +coordX.x + " " + coordX.y+" " + coordX.piece.name +" "+coordX.piece.color);
+													//System.out.println("illegal move : "+tX + " " + tY + "  " +coordX.x + " " + coordX.y+" " + coordX.piece.name +" "+coordX.piece.color);
 												}
 											}
 											else if(coordX.piece.color.equals("Black") && turn.equals("Black")) {
 												if(coordX.piece.pathDraw(coordX.x,coordX.y,tX,tY) && !newGame.spotValues[tX][tY].isOccupied() && (!(coordX.isProtectedByWhite))) {
 													possibleMoves++;
-													System.out.println("legal move : "+tX + " " + tY + "  " +coordX.x + " " + coordX.y+" " + coordX.piece.name +" "+coordX.piece.color);
+													//System.out.println("legal move : "+tX + " " + tY + "  " +coordX.x + " " + coordX.y+" " + coordX.piece.name +" "+coordX.piece.color);
 												}
 												else if(coordX.piece.pathDraw(coordX.x,coordX.y,tX,tY) && (coordX.isProtectedByWhite  || newGame.spotValues[tX][tY].isOccupied())) {
-													System.out.println("illegal move : "+tX + " " + tY + "  " +coordX.x + " " + coordX.y+" " + coordX.piece.name +" "+coordX.piece.color);
+													//System.out.println("illegal move : "+tX + " " + tY + "  " +coordX.x + " " + coordX.y+" " + coordX.piece.name +" "+coordX.piece.color);
 												}
 											}
 										}
@@ -440,7 +444,7 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
 									if(possibleMoves>0) {
 										//insert a check to see if a piece can block check mate
 									}
-									//If not check mate but not good move, then undo previous move.
+									//If not check mate but not legal move, then undo previous move.
 									if(coordX.isProtectedByBlack && coordX.piece.color=="White" && turn!="White") {
 										JPanel futurepanel=JPanelGridLayout[prevfY][prevfX];
 										takenchessPiece = (JLabel)(futurepanel.getComponent(0));

@@ -61,5 +61,7 @@ public class Bishop extends Piece{
 	/*
 	 *Checking every square in path to see if occupied
 	 */
-
+	public boolean pawnCheck(int iX, int iY, int fX, int fY) {
+		return false;
+	}
 }

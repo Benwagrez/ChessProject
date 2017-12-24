@@ -97,4 +97,7 @@ public class Queen extends Piece{
 		 *Checking every square in path to see if occupied (If Knight - No check needed)
 		 */
 	}
+	public boolean pawnCheck(int iX, int iY, int fX, int fY) {
+		return false;
+	}
 }

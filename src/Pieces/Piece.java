@@ -52,4 +52,5 @@ public abstract class Piece{
 	 *initial x and y coordinates and it's final 
 	 *coordinates
 	 */  
+	public abstract boolean pawnCheck(int iX, int iY, int fX, int fY);
 }

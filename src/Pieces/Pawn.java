@@ -53,7 +53,6 @@ public class Pawn extends Piece{
 	}
 	//Checks if taking is legal
 	public boolean pathTake(int iX, int iY,int fX, int fY){
-		boolean occ;
 		if(color=="White") {
 			//Checks if taking piece as normally is legal
 			if((iX-fX==1 || fX-iX==1) && fY-iY==1 && iX!=fX) {
@@ -61,7 +60,7 @@ public class Pawn extends Piece{
 			} //Checks if taking piece as en passant is legal
 			else if((iX-fX==1 || fX-iX==1) && chess.spotValues[iY][fX].piece!=null) {
 				if(chess.spotValues[iY][fX].piece.enpassantable) {
-				return true;
+					return true;
 				}
 			}
 		}
@@ -70,7 +69,24 @@ public class Pawn extends Piece{
 			if((iX-fX==1 || fX-iX==1) && iY-fY==1 && iX!=fX) {
 				return true;
 			} //Checks if taking piece as en passant is legal
-			else if((iX-fX==1 || fX-iX==1) && chess.spotValues[iY][fX].piece.enpassantable) {
+			else if((iX-fX==1 || fX-iX==1) && chess.spotValues[iY][iX].piece!=null) {
+				if(chess.spotValues[iY][fX].piece.enpassantable){
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+	public boolean pawnCheck(int iX, int iY, int fX, int fY) {
+		if(color=="White") {
+			//Checks if taking piece as normally is legal
+			if((iX-fX==1 || fX-iX==1) && fY-iY==1 && iX!=fX) {
+				return true;
+			}
+		}
+		if(color=="Black") {
+			//Checks if taking piece as normally is legal
+			if((iX-fX==1 || fX-iX==1) && iY-fY==1 && iX!=fX) {
 				return true;
 			}
 		}
