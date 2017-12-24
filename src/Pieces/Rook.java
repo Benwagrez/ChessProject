@@ -58,6 +58,9 @@ public class Rook extends Piece{
 				return false;
 			}
 		}
+		if(tempfX==tempiX && tempfY==tempiY) {
+			return false;
+		}
 		if(tempfY-tempiY==0)
 		{
 			for(int i = 1; i<((int)(Math.abs(tempfX-tempiX)));i++){

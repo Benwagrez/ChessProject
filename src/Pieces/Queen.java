@@ -33,6 +33,9 @@ public class Queen extends Piece{
 		int tempfX = fX;
 		int tempfY = 8-fY;
 		int vY = iY, vX = iX;
+		if(tempfX==tempiX && tempfY==tempiY) {
+			return false;
+		}
 		if(tempfX!=tempiX) {
 			double slope = ((double)(Math.abs((double)tempfY-(double)tempiY)/Math.abs((double)tempfX-(double)tempiX)));
 			if(slope!=1 && slope!=0){
