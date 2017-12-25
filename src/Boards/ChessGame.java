@@ -405,13 +405,13 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
 												System.out.println("Black: "+coordX.piece.name +" "+tX +" "+ tY);
 											}
 										}
-									}/*else if(coordX.piece.pawnCheck(coordX.y,coordX.x,tY,tX) && coordX.piece.name=="Pawn") { 
-										if(coordX.piece.color=="White") {
+									}else if(coordX.piece.pawnCheck(coordX.y,coordX.x,tY,tX)) { 
+										if(coordX.piece.color=="White" && fY!=0) {
 											newGame.spotValues[tY][tX].isProtectedByWhite=true;
-										} else if(coordX.piece.color=="Black"){
+										} else if(coordX.piece.color=="Black" && fY!=7){
 											newGame.spotValues[tY][tX].isProtectedByBlack=true;
 										}
-									}*/
+									}
 								}
 							}
 						}
