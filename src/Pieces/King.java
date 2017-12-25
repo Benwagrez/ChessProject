@@ -55,9 +55,9 @@ public class King extends Piece{
 		if((Math.abs(fX-iX))>1||(Math.abs(fY-iY)>1)){
 			return false;
 		}//Checking if change in x and y are over 1 - if so - impossible
-		if(chess.spotValues[fX][fY].isProtectedByBlack && color=="White") {
+		if(chess.spotValues[fY][fX].isProtectedByBlack && color=="White") {
 			return false;
-		} else if(chess.spotValues[fX][fY].isProtectedByWhite && color=="Black") {
+		} else if(chess.spotValues[fY][fX].isProtectedByWhite && color=="Black") {
 			return false;
 		}
 		return true;

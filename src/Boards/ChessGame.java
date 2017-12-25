@@ -404,16 +404,20 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
 										if(coordX.piece.pathValid(coordX.y,coordX.x,tX,tY)) {
 											if(coordX.piece.color=="White") {
 												newGame.spotValues[tY][tX].isProtectedByWhite=true;
+												System.out.println("White protect "+coordX.piece.name+": " + tY+ " "+tX);
 											} else if(coordX.piece.color=="Black"){
 												newGame.spotValues[tY][tX].isProtectedByBlack=true;
+												System.out.println("Black protect "+coordX.piece.name+": " + tY+ " "+tX);
 											}
 										}
 									}else {
 										if(coordX.piece.pawnCheck(coordX.y,coordX.x,tX,tY)) { 
 											if(coordX.piece.color=="White" && fY!=0) {
 												newGame.spotValues[tY][tX].isProtectedByWhite=true;
+												System.out.println("White protect "+coordX.piece.name+": " + tY+ " "+tX);
 											} else if(coordX.piece.color=="Black" && fY!=7){
 												newGame.spotValues[tY][tX].isProtectedByBlack=true;
+												System.out.println("Black protect "+coordX.piece.name+": " + tY+ " "+tX);
 											}
 										}
 									}
@@ -442,6 +446,7 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
 										else if(coordX.piece.color.equals("Black") && turn.equals("Black")) {
 											if(coordX.piece.pathDraw(coordX.x,coordX.y,tX,tY) && !newGame.spotValues[tX][tY].isOccupied() && (!(newGame.spotValues[tX][tY].isProtectedByWhite))) {
 												blackPossibleMoves++;
+												System.out.println("Black king move: "+tX +" "+tY);
 											}
 										}
 									}
