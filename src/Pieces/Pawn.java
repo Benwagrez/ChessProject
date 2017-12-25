@@ -81,13 +81,13 @@ public class Pawn extends Piece{
 	public boolean pawnCheck(int iX, int iY, int fX, int fY) {
 		if(color=="White") {
 			//Checks if taking piece as normally is legal
-			if((iX-fX==1 || fX-iX==1) && fY-iY==1 && iX!=fX) {
+			if((iX-fX==1 || fX-iX==1) && iY-fY==1 && iX!=fX) {
 				return true;
 			}
 		}
 		if(color=="Black") {
 			//Checks if taking piece as normally is legal
-			if((iX-fX==1 || fX-iX==1) && iY-fY==1 && iX!=fX) {
+			if((iX-fX==1 || fX-iX==1) && fY-iY==1 && iX!=fX) {
 				return true;
 			}
 		}
