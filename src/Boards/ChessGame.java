@@ -400,10 +400,8 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
 										if(coordX.piece.pathValid(coordX.y,coordX.x,tX,tY)) {
 											if(coordX.piece.color=="White") {
 												newGame.spotValues[tY][tX].isProtectedByWhite=true;
-												System.out.println("White: "+coordX.piece.name +" "+tX +" "+ tY);
 											} else if(coordX.piece.color=="Black"){
 												newGame.spotValues[tY][tX].isProtectedByBlack=true;
-												System.out.println("Black: "+coordX.piece.name +" "+tX +" "+ tY);
 											}
 										}
 									}else {
@@ -434,19 +432,15 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
 											if(coordX.piece.color.equals("White") && turn.equals("White")) {
 												if(coordX.piece.pathDraw(coordX.x,coordX.y,tX,tY) && !newGame.spotValues[tX][tY].isOccupied() && (!(coordX.isProtectedByBlack))) {
 													possibleMoves++;
-													System.out.println("legal move : "+tX + " " + tY + "  " +coordX.x + " " + coordX.y+" " + coordX.piece.name +" "+coordX.piece.color);
 												}
-												else if(coordX.piece.pathDraw(coordX.x,coordX.y,tX,tY) && (coordX.isProtectedByBlack || newGame.spotValues[tX][tY].isOccupied())) {
-													System.out.println("illegal move : "+tX + " " + tY + "  " +coordX.x + " " + coordX.y+" " + coordX.piece.name +" "+coordX.piece.color);
+												else if(coordX.piece.pathDraw(coordX.x,coordX.y,tX,tY) && (coordX.isProtectedByBlack || newGame.spotValues[tX][tY].isOccupied())) {;
 												}
 											}
 											else if(coordX.piece.color.equals("Black") && turn.equals("Black")) {
 												if(coordX.piece.pathDraw(coordX.x,coordX.y,tX,tY) && !newGame.spotValues[tX][tY].isOccupied() && (!(coordX.isProtectedByWhite))) {
 													possibleMoves++;
-													System.out.println("legal move : "+tX + " " + tY + "  " +coordX.x + " " + coordX.y+" " + coordX.piece.name +" "+coordX.piece.color);
 												}
 												else if(coordX.piece.pathDraw(coordX.x,coordX.y,tX,tY) && (coordX.isProtectedByWhite  || newGame.spotValues[tX][tY].isOccupied())) {
-													System.out.println("illegal move : "+tX + " " + tY + "  " +coordX.x + " " + coordX.y+" " + coordX.piece.name +" "+coordX.piece.color);
 												}
 											}
 										}
