@@ -430,12 +430,12 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
 									for(int tY=0; tY < 8; tY++) {
 										//If this happens, then its not check mate since King has at least one legal move
 										if(coordX.piece.color.equals("White") && turn.equals("White")) {
-											if(coordX.piece.pathDraw(coordX.x,coordX.y,tX,tY) && !newGame.spotValues[tX][tY].isOccupied() && (!(coordX.isProtectedByBlack))) {
+											if(coordX.piece.pathDraw(coordX.x,coordX.y,tX,tY) && !newGame.spotValues[tX][tY].isOccupied() && (!(newGame.spotValues[tX][tY].isProtectedByBlack))) {
 												whitePossibleMoves++;
 											}
 										}
 										else if(coordX.piece.color.equals("Black") && turn.equals("Black")) {
-											if(coordX.piece.pathDraw(coordX.x,coordX.y,tX,tY) && !newGame.spotValues[tX][tY].isOccupied() && (!(coordX.isProtectedByWhite))) {
+											if(coordX.piece.pathDraw(coordX.x,coordX.y,tX,tY) && !newGame.spotValues[tX][tY].isOccupied() && (!(newGame.spotValues[tX][tY].isProtectedByWhite))) {
 												blackPossibleMoves++;
 											}
 										}
