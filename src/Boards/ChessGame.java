@@ -453,24 +453,24 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
 									}
 									//If not check mate but not legal move, then undo previous move.
 									if(coordX.isProtectedByBlack && coordX.piece.color=="White" && turn!="White") {
-										JPanel futurepanel=JPanelGridLayout[prevfY][prevfX];
+										JPanel futurepanel=JPanelGridLayout[fY][fX];
 										oldchessPiece = (JLabel)(futurepanel.getComponent(0));
-										JPanelGridLayout[prevfY][prevfX].remove(oldchessPiece);
-										JPanelGridLayout[previY][previX].add(oldchessPiece);
-										newGame.spotValues[prevfY][prevfX].piece=null;
-										newGame.spotValues[previY][previX].piece=prevPiece;
+										JPanelGridLayout[fY][fX].remove(oldchessPiece);
+										JPanelGridLayout[iY][iX].add(oldchessPiece);
+										newGame.spotValues[fY][fX].piece=null;
+										newGame.spotValues[iY][iX].piece=prevPiece;
 										turn="White";
 										if(takenchessPiece!=null) {
 											JPanelGridLayout[fY][fX].add(takenchessPiece);
 											newGame.spotValues[fY][fX].piece=oldPiece;
 										}
 									} else if(coordX.isProtectedByWhite && coordX.piece.color=="Black" && turn!="Black") {
-										JPanel futurepanel=JPanelGridLayout[prevfY][prevfX];
+										JPanel futurepanel=JPanelGridLayout[fY][fX];
 										oldchessPiece = (JLabel)(futurepanel.getComponent(0));
-										JPanelGridLayout[prevfY][prevfX].remove(oldchessPiece);
-										JPanelGridLayout[previY][previX].add(oldchessPiece);
-										newGame.spotValues[prevfY][prevfX].piece=null;
-										newGame.spotValues[previY][previX].piece=prevPiece;
+										JPanelGridLayout[fY][fX].remove(oldchessPiece);
+										JPanelGridLayout[iY][iX].add(oldchessPiece);
+										newGame.spotValues[fY][fX].piece=null;
+										newGame.spotValues[iY][iX].piece=prevPiece;
 										turn="Black";
 										if(takenchessPiece!=null) {
 											JPanelGridLayout[fY][fX].add(takenchessPiece);
