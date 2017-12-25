@@ -292,23 +292,23 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
 								case 0:
 									Vpiece = new JLabel( new ImageIcon("resource/QueenW.png") );
 									Queen queenW = new Queen(newGame, "White", "Queen");
-									newGame.spotValues[fY][fX].occupySpot(newGame.spotValues[iY][iX].piece=queenW);
+									newGame.spotValues[fY][fX].occupySpot(queenW);
 									break;
 
 								case 1:
 									Vpiece = new JLabel( new ImageIcon("resource/RookW.png") );
 									Rook rookW = new Rook(newGame, "White", "Rook");
-									newGame.spotValues[fY][fX].occupySpot(newGame.spotValues[iY][iX].piece=rookW);
+									newGame.spotValues[fY][fX].occupySpot(rookW);
 									break;
 								case 2:
 									Vpiece = new JLabel( new ImageIcon("resource/BishopW.png") );
 									Bishop bishopW = new Bishop(newGame, "White", "Bishop");
-									newGame.spotValues[fY][fX].occupySpot(newGame.spotValues[iY][iX].piece=bishopW);
+									newGame.spotValues[fY][fX].occupySpot(bishopW);
 									break;
 								case 3:
 									Vpiece = new JLabel( new ImageIcon("resource/KnightW.png") );
 									Knight knightW = new Knight(newGame, "White", "Rook");
-									newGame.spotValues[fY][fX].occupySpot(newGame.spotValues[iY][iX].piece=knightW);
+									newGame.spotValues[fY][fX].occupySpot(knightW);
 									break;
 								}
 								((JPanel)c).remove(chessPiece);
@@ -333,22 +333,22 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
 								case 0:
 									Vpiece = new JLabel( new ImageIcon("resource/QueenB.png") );
 									Queen queenB = new Queen(newGame, "Black", "Queen");
-									newGame.spotValues[fY][fX].occupySpot(newGame.spotValues[iY][iX].piece=queenB);
+									newGame.spotValues[fY][fX].occupySpot(queenB);
 									break;
 								case 1:
 									Vpiece = new JLabel( new ImageIcon("resource/RookB.png") );
 									Rook rookB = new Rook(newGame, "Black", "Rook");
-									newGame.spotValues[fY][fX].occupySpot(newGame.spotValues[iY][iX].piece=rookB);
+									newGame.spotValues[fY][fX].occupySpot(rookB);
 									break;
 								case 2:
 									Vpiece = new JLabel( new ImageIcon("resource/BishopB.png") );
 									Bishop bishopB = new Bishop(newGame, "Black", "Bishop");
-									newGame.spotValues[fY][fX].occupySpot(newGame.spotValues[iY][iX].piece=bishopB);
+									newGame.spotValues[fY][fX].occupySpot(bishopB);
 									break;
 								case 3:
 									Vpiece = new JLabel( new ImageIcon("resource/KnightB.png") );
 									Knight knightB = new Knight(newGame, "Black", "Rook");
-									newGame.spotValues[fY][fX].occupySpot(newGame.spotValues[iY][iX].piece=knightB);
+									newGame.spotValues[fY][fX].occupySpot(knightB);
 									break;
 								}
 								((JPanel)c).remove(chessPiece);
