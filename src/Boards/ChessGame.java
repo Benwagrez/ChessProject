@@ -218,7 +218,7 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
 							takenpanel.remove(takenchessPiece);
 							newGame.spotValues[7][7].piece=null;
 							newGame.spotValues[iY][iX].piece.isKCastling=false;
-						}//
+						}
 						//Checks if the Black King is King-Side Castling
 						else if(newGame.spotValues[iY][iX].piece.color.equals("Black")) {
 							JPanel takenpanel=JPanelGridLayout[0][7];
