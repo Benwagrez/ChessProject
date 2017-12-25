@@ -69,12 +69,13 @@ public class Pawn extends Piece{
 			if((iX-fX==1 || fX-iX==1) && iY-fY==1 && iX!=fX) {
 				return true;
 			} //Checks if taking piece as en passant is legal
-			else if((iX-fX==1 || fX-iX==1) && chess.spotValues[iY][iX].piece!=null) {
-				if(chess.spotValues[iY][fX].piece.enpassantable){
-					return true;
+			else if((iX-fX==1 || fX-iX==1) && chess.spotValues[iY][fX].piece!=null) {
+					if(chess.spotValues[iY][fX].piece.enpassantable){
+						return true;
+					}
 				}
 			}
-		}
+		
 		return false;
 	}
 	public boolean pawnCheck(int iX, int iY, int fX, int fY) {
