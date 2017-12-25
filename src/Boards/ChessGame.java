@@ -314,6 +314,8 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
 								}
 								((JPanel)c).remove(chessPiece);
 								((JPanel)c).add(Vpiece);
+								oldchessPiece = Vpiece;
+								prevPiece = newGame.spotValues[iX][iY].piece;
 							}
 							else if(newGame.spotValues[7][tX].piece.name.equals("Pawn") && newGame.spotValues[7][tX].piece.color.equals("Black")) {//Check black pawn promotion
 								Object[] options = {new ImageIcon("resource/QueenB.png"), 
@@ -354,6 +356,8 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
 								}
 								((JPanel)c).remove(chessPiece);
 								((JPanel)c).add(Vpiece);
+								oldchessPiece = chessPiece;
+								prevPiece = newGame.spotValues[iY][iX].piece;
 							}
 						}
 					}
@@ -450,9 +454,11 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
 								//If not check mate but not legal move, then undo previous move.
 								if(coordX.isProtectedByBlack && coordX.piece.color=="White" && turn!="White") {
 									JPanel futurepanel=JPanelGridLayout[fY][fX];
-									oldchessPiece = (JLabel)(futurepanel.getComponent(0));
+									if(oldchessPiece==null) {
+										oldchessPiece = (JLabel)(futurepanel.getComponent(0));
+									}
 									JPanelGridLayout[fY][fX].remove(oldchessPiece);
-									JPanelGridLayout[iY][iX].add(oldchessPiece);
+									JPanelGridLayout[iY][iX].add(chessPiece);
 									newGame.spotValues[fY][fX].piece=null;
 									newGame.spotValues[iY][iX].piece=prevPiece;
 									turn="White";
@@ -462,9 +468,11 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
 									}
 								} else if(coordX.isProtectedByWhite && coordX.piece.color=="Black" && turn!="Black") {
 									JPanel futurepanel=JPanelGridLayout[fY][fX];
-									oldchessPiece = (JLabel)(futurepanel.getComponent(0));
+									if(oldchessPiece==null) {
+										oldchessPiece = (JLabel)(futurepanel.getComponent(0));
+									}
 									JPanelGridLayout[fY][fX].remove(oldchessPiece);
-									JPanelGridLayout[iY][iX].add(oldchessPiece);
+									JPanelGridLayout[iY][iX].add(chessPiece);
 									newGame.spotValues[fY][fX].piece=null;
 									newGame.spotValues[iY][iX].piece=prevPiece;
 									turn="Black";
@@ -483,6 +491,7 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
 			delta = null;
 			takenchessPiece = null;
 			oldchessPiece = null;
+			prevPiece = null;
 			iY = -1;
 			iX = -1;
 
