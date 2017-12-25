@@ -12,6 +12,7 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
 	private JPanel chessBoard;
 	private JLabel chessPiece = null;
 	private JLabel takenchessPiece = null;
+	private JLabel oldchessPiece = null;
 	private Point delta = null;
 	private JPanel[][] JPanelGridLayout = new JPanel[8][8];
 	private int iX = -1;
@@ -22,6 +23,7 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
 	private boolean QSC = false;
 	private int previX=0, previY=0, prevfX=0, prevfY=0;
 	private Piece prevPiece=null;
+	private Piece oldPiece = null;
 	private String turn="White";
 	private JFrame frame = new JFrame();
 	public Board newGame = new Board();//Instantiate Board object w/ spots
@@ -255,6 +257,7 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
 					if(newGame.spotValues[fY][fX].piece!=null) {
 						takenchessPiece=(JLabel)((JPanel)c).getComponent(0);
 						JPanelGridLayout[fY][fX].remove(takenchessPiece);
+						oldPiece = newGame.spotValues[fY][fX].piece;
 						newGame.spotValues[fY][fX].piece=null;
 					}
 					//moves the piece
@@ -426,19 +429,19 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
 											if(coordX.piece.color.equals("White") && turn.equals("White")) {
 												if(coordX.piece.pathDraw(coordX.x,coordX.y,tX,tY) && !newGame.spotValues[tX][tY].isOccupied() && (!(coordX.isProtectedByBlack))) {
 													possibleMoves++;
-													//System.out.println("legal move : "+tX + " " + tY + "  " +coordX.x + " " + coordX.y+" " + coordX.piece.name +" "+coordX.piece.color);
+													System.out.println("legal move : "+tX + " " + tY + "  " +coordX.x + " " + coordX.y+" " + coordX.piece.name +" "+coordX.piece.color);
 												}
 												else if(coordX.piece.pathDraw(coordX.x,coordX.y,tX,tY) && (coordX.isProtectedByBlack || newGame.spotValues[tX][tY].isOccupied())) {
-													//System.out.println("illegal move : "+tX + " " + tY + "  " +coordX.x + " " + coordX.y+" " + coordX.piece.name +" "+coordX.piece.color);
+													System.out.println("illegal move : "+tX + " " + tY + "  " +coordX.x + " " + coordX.y+" " + coordX.piece.name +" "+coordX.piece.color);
 												}
 											}
 											else if(coordX.piece.color.equals("Black") && turn.equals("Black")) {
 												if(coordX.piece.pathDraw(coordX.x,coordX.y,tX,tY) && !newGame.spotValues[tX][tY].isOccupied() && (!(coordX.isProtectedByWhite))) {
 													possibleMoves++;
-													//System.out.println("legal move : "+tX + " " + tY + "  " +coordX.x + " " + coordX.y+" " + coordX.piece.name +" "+coordX.piece.color);
+													System.out.println("legal move : "+tX + " " + tY + "  " +coordX.x + " " + coordX.y+" " + coordX.piece.name +" "+coordX.piece.color);
 												}
 												else if(coordX.piece.pathDraw(coordX.x,coordX.y,tX,tY) && (coordX.isProtectedByWhite  || newGame.spotValues[tX][tY].isOccupied())) {
-													//System.out.println("illegal move : "+tX + " " + tY + "  " +coordX.x + " " + coordX.y+" " + coordX.piece.name +" "+coordX.piece.color);
+													System.out.println("illegal move : "+tX + " " + tY + "  " +coordX.x + " " + coordX.y+" " + coordX.piece.name +" "+coordX.piece.color);
 												}
 											}
 										}
@@ -449,20 +452,29 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
 									//If not check mate but not legal move, then undo previous move.
 									if(coordX.isProtectedByBlack && coordX.piece.color=="White" && turn!="White") {
 										JPanel futurepanel=JPanelGridLayout[prevfY][prevfX];
-										takenchessPiece = (JLabel)(futurepanel.getComponent(0));
-										JPanelGridLayout[prevfY][prevfX].remove(takenchessPiece);
-										JPanelGridLayout[previY][previX].add(takenchessPiece);
+										oldchessPiece = (JLabel)(futurepanel.getComponent(0));
+										JPanelGridLayout[prevfY][prevfX].remove(oldchessPiece);
+										JPanelGridLayout[previY][previX].add(oldchessPiece);
 										newGame.spotValues[prevfY][prevfX].piece=null;
 										newGame.spotValues[previY][previX].piece=prevPiece;
 										turn="White";
+										if(takenchessPiece!=null) {
+											JPanelGridLayout[fY][fX].add(takenchessPiece);
+											newGame.spotValues[fY][fX].piece=oldPiece;
+										}
 									} else if(coordX.isProtectedByWhite && coordX.piece.color=="Black" && turn!="Black") {
 										JPanel futurepanel=JPanelGridLayout[prevfY][prevfX];
-										takenchessPiece = (JLabel)(futurepanel.getComponent(0));
-										JPanelGridLayout[prevfY][prevfX].remove(takenchessPiece);
-										JPanelGridLayout[previY][previX].add(takenchessPiece);
+										oldchessPiece = (JLabel)(futurepanel.getComponent(0));
+										JPanelGridLayout[prevfY][prevfX].remove(oldchessPiece);
+										JPanelGridLayout[previY][previX].add(oldchessPiece);
 										newGame.spotValues[prevfY][prevfX].piece=null;
 										newGame.spotValues[previY][previX].piece=prevPiece;
 										turn="Black";
+										if(takenchessPiece!=null) {
+											JPanelGridLayout[fY][fX].add(takenchessPiece);
+											newGame.spotValues[fY][fX].piece=oldPiece;
+										}
+
 									}
 								}
 							}
@@ -473,7 +485,8 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
 			// re-initialize things
 			chessPiece = null;
 			delta = null;
-
+			takenchessPiece = null;
+			oldchessPiece = null;
 			iY = -1;
 			iX = -1;
 
