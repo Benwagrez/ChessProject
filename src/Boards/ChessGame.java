@@ -436,6 +436,7 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
 										if(coordX.piece.color.equals("White") && turn.equals("White")) {
 											if(coordX.piece.pathDraw(coordX.x,coordX.y,tX,tY) && !newGame.spotValues[tX][tY].isOccupied() && (!(newGame.spotValues[tX][tY].isProtectedByBlack))) {
 												whitePossibleMoves++;
+												System.out.println("White king move: "+tX +" "+tY);
 											}
 										}
 										else if(coordX.piece.color.equals("Black") && turn.equals("Black")) {
