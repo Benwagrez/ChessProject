@@ -480,7 +480,7 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
 											newGame.spotValues[fY][fX].piece=oldPiece;
 										}
 
-									}
+									} 
 								}
 							}
 						}
