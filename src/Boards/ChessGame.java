@@ -423,59 +423,56 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
 					for(Spot coordX : coordY) {
 						if(coordX.piece!=null) {
 							if(coordX.piece.name=="King") {
-								int possibleMoves = 0;
+								int whitePossibleMoves = 0;
+								int blackPossibleMoves = 0;
 								//Checks if king can move anywhere at all
-								if(coordX.piece!=null) {
-									for(int tX=0; tX < 8; tX++) {
-										for(int tY=0; tY < 8; tY++) {
-											//If this happens, then its not check mate since King has at least one legal move
-											if(coordX.piece.color.equals("White") && turn.equals("White")) {
-												if(coordX.piece.pathDraw(coordX.x,coordX.y,tX,tY) && !newGame.spotValues[tX][tY].isOccupied() && (!(coordX.isProtectedByBlack))) {
-													possibleMoves++;
-												}
-												else if(coordX.piece.pathDraw(coordX.x,coordX.y,tX,tY) && (coordX.isProtectedByBlack || newGame.spotValues[tX][tY].isOccupied())) {;
-												}
+								for(int tX=0; tX < 8; tX++) {
+									for(int tY=0; tY < 8; tY++) {
+										//If this happens, then its not check mate since King has at least one legal move
+										if(coordX.piece.color.equals("White") && turn.equals("White")) {
+											if(coordX.piece.pathDraw(coordX.x,coordX.y,tX,tY) && !newGame.spotValues[tX][tY].isOccupied() && (!(coordX.isProtectedByBlack))) {
+												whitePossibleMoves++;
 											}
-											else if(coordX.piece.color.equals("Black") && turn.equals("Black")) {
-												if(coordX.piece.pathDraw(coordX.x,coordX.y,tX,tY) && !newGame.spotValues[tX][tY].isOccupied() && (!(coordX.isProtectedByWhite))) {
-													possibleMoves++;
-												}
-												else if(coordX.piece.pathDraw(coordX.x,coordX.y,tX,tY) && (coordX.isProtectedByWhite  || newGame.spotValues[tX][tY].isOccupied())) {
-												}
+										}
+										else if(coordX.piece.color.equals("Black") && turn.equals("Black")) {
+											if(coordX.piece.pathDraw(coordX.x,coordX.y,tX,tY) && !newGame.spotValues[tX][tY].isOccupied() && (!(coordX.isProtectedByWhite))) {
+												blackPossibleMoves++;
 											}
 										}
 									}
-									if(possibleMoves>0) {
-										//insert a check to see if a piece can block check mate
-									}
-									//If not check mate but not legal move, then undo previous move.
-									if(coordX.isProtectedByBlack && coordX.piece.color=="White" && turn!="White") {
-										JPanel futurepanel=JPanelGridLayout[fY][fX];
-										oldchessPiece = (JLabel)(futurepanel.getComponent(0));
-										JPanelGridLayout[fY][fX].remove(oldchessPiece);
-										JPanelGridLayout[iY][iX].add(oldchessPiece);
-										newGame.spotValues[fY][fX].piece=null;
-										newGame.spotValues[iY][iX].piece=prevPiece;
-										turn="White";
-										if(takenchessPiece!=null) {
-											JPanelGridLayout[fY][fX].add(takenchessPiece);
-											newGame.spotValues[fY][fX].piece=oldPiece;
-										}
-									} else if(coordX.isProtectedByWhite && coordX.piece.color=="Black" && turn!="Black") {
-										JPanel futurepanel=JPanelGridLayout[fY][fX];
-										oldchessPiece = (JLabel)(futurepanel.getComponent(0));
-										JPanelGridLayout[fY][fX].remove(oldchessPiece);
-										JPanelGridLayout[iY][iX].add(oldchessPiece);
-										newGame.spotValues[fY][fX].piece=null;
-										newGame.spotValues[iY][iX].piece=prevPiece;
-										turn="Black";
-										if(takenchessPiece!=null) {
-											JPanelGridLayout[fY][fX].add(takenchessPiece);
-											newGame.spotValues[fY][fX].piece=oldPiece;
-										}
-
-									} 
 								}
+								//Check to see if a piece can block check mate
+								if(coordX.piece.color=="White" && coordX.isProtectedByBlack && whitePossibleMoves==0) {
+									System.out.println("Black wins by Checkmate!");
+								} else if(coordX.piece.color=="Black" && coordX.isProtectedByWhite && blackPossibleMoves==0) {
+									System.out.println("White wins by Checkmate!");									
+								}
+								//If not check mate but not legal move, then undo previous move.
+								if(coordX.isProtectedByBlack && coordX.piece.color=="White" && turn!="White") {
+									JPanel futurepanel=JPanelGridLayout[fY][fX];
+									oldchessPiece = (JLabel)(futurepanel.getComponent(0));
+									JPanelGridLayout[fY][fX].remove(oldchessPiece);
+									JPanelGridLayout[iY][iX].add(oldchessPiece);
+									newGame.spotValues[fY][fX].piece=null;
+									newGame.spotValues[iY][iX].piece=prevPiece;
+									turn="White";
+									if(takenchessPiece!=null) {
+										JPanelGridLayout[fY][fX].add(takenchessPiece);
+										newGame.spotValues[fY][fX].piece=oldPiece;
+									}
+								} else if(coordX.isProtectedByWhite && coordX.piece.color=="Black" && turn!="Black") {
+									JPanel futurepanel=JPanelGridLayout[fY][fX];
+									oldchessPiece = (JLabel)(futurepanel.getComponent(0));
+									JPanelGridLayout[fY][fX].remove(oldchessPiece);
+									JPanelGridLayout[iY][iX].add(oldchessPiece);
+									newGame.spotValues[fY][fX].piece=null;
+									newGame.spotValues[iY][iX].piece=prevPiece;
+									turn="Black";
+									if(takenchessPiece!=null) {
+										JPanelGridLayout[fY][fX].add(takenchessPiece);
+										newGame.spotValues[fY][fX].piece=oldPiece;
+									}
+								} 
 							}
 						}
 					}
