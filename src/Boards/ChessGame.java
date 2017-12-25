@@ -206,6 +206,7 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
 						takenchessPiece = (JLabel)(takenpanel.getComponent(0));
 						JPanelGridLayout[iY][fX].remove(takenchessPiece);
 						newGame.spotValues[iY][fX].piece=null;
+						newGame.spotValues[iY][iX].piece.doingEnPassant=false;
 					}	
 					//Checks if the White King is King-Side Castling
 					if(newGame.spotValues[iY][iX].piece.isKCastling){
