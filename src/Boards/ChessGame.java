@@ -21,7 +21,7 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
 	private int fY = -1;
 	private boolean checkmate=false;
 	private boolean QSC = false;
-	private int previX=0, previY=0, prevfX=0, prevfY=0;
+	private int previX=0, previY=0, prevfX=0, prevfY=0; //test
 	private Piece prevPiece=null;
 	private Piece oldPiece = null;
 	private String turn="White";
