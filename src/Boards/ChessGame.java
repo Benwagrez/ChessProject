@@ -29,6 +29,9 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
 	public Board newGame = new Board();//Instantiate Board object w/ spots
 
 	public ChessGame(){
+		start();
+	}
+	public void start() {
 		newGame.boardSetUp(newGame);
 		Dimension boardSize = new Dimension(600, 600);//Instantiate Visual representation of Board.
 		//  Use a Layered Pane for this this application
@@ -404,20 +407,16 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
 										if(coordX.piece.pathValid(coordX.y,coordX.x,tX,tY)) {
 											if(coordX.piece.color=="White") {
 												newGame.spotValues[tY][tX].isProtectedByWhite=true;
-												System.out.println("White protect "+coordX.piece.name+": " + tY+ " "+tX);
 											} else if(coordX.piece.color=="Black"){
 												newGame.spotValues[tY][tX].isProtectedByBlack=true;
-												System.out.println("Black protect "+coordX.piece.name+": " + tY+ " "+tX);
 											}
 										}
 									}else {
 										if(coordX.piece.pawnCheck(coordX.y,coordX.x,tX,tY)) { 
 											if(coordX.piece.color=="White" && fY!=0) {
 												newGame.spotValues[tY][tX].isProtectedByWhite=true;
-												System.out.println("White protect "+coordX.piece.name+": " + tY+ " "+tX);
 											} else if(coordX.piece.color=="Black" && fY!=7){
 												newGame.spotValues[tY][tX].isProtectedByBlack=true;
-												System.out.println("Black protect "+coordX.piece.name+": " + tY+ " "+tX);
 											}
 										}
 									}
@@ -440,22 +439,52 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
 										if(coordX.piece.color.equals("White") && turn.equals("White")) {
 											if(coordX.piece.pathDraw(coordX.x,coordX.y,tX,tY) && !newGame.spotValues[tX][tY].isOccupied() && (!(newGame.spotValues[tX][tY].isProtectedByBlack))) {
 												whitePossibleMoves++;
-												System.out.println("White king move: "+tX +" "+tY);
 											}
 										}
 										else if(coordX.piece.color.equals("Black") && turn.equals("Black")) {
 											if(coordX.piece.pathDraw(coordX.x,coordX.y,tX,tY) && !newGame.spotValues[tX][tY].isOccupied() && (!(newGame.spotValues[tX][tY].isProtectedByWhite))) {
 												blackPossibleMoves++;
-												System.out.println("Black king move: "+tX +" "+tY);
 											}
 										}
 									}
 								}
 								//Check to see if a piece can block check mate
 								if(coordX.piece.color=="White" && coordX.isProtectedByBlack && whitePossibleMoves==0) {
-									System.out.println("Black wins by Checkmate!");
+									String[] options=new String[2];
+									options[0]="Play again";
+									options[1]="Quit";
+									int n = JOptionPane.showOptionDialog(frame,
+											"Black wins by Checkmate!",
+													"Game Over",
+													JOptionPane.YES_NO_CANCEL_OPTION,
+													JOptionPane.QUESTION_MESSAGE,
+													null,
+													options,
+													options[1]);
+									if(n==0) {
+										replay();
+										break;
+									} else if(n==1) {
+										System.exit(0);;
+									}
 								} else if(coordX.piece.color=="Black" && coordX.isProtectedByWhite && blackPossibleMoves==0) {
-									System.out.println("White wins by Checkmate!");									
+									String[] options=new String[2];
+									options[0]="Play again";
+									options[1]="Quit";
+									int n = JOptionPane.showOptionDialog(frame,
+											"White wins by Checkmate!",
+													"Game Over",
+													JOptionPane.YES_NO_CANCEL_OPTION,
+													JOptionPane.QUESTION_MESSAGE,
+													null,
+													options,
+													options[1]);
+									if(n==0) {
+										replay();
+										break;
+									} else if(n==1) {
+										System.exit(0);
+									}
 								}
 								//If not check mate but not legal move, then undo previous move.
 								if(coordX.isProtectedByBlack && coordX.piece.color=="White" && turn!="White") {
@@ -493,25 +522,98 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
 				}
 			}
 			// re-initialize things
-			chessPiece = null;
-			delta = null;
-			takenchessPiece = null;
-			oldchessPiece = null;
-			prevPiece = null;
-			iY = -1;
-			iX = -1;
-
-			chessBoard.revalidate();
-			layeredPane.repaint();
+			reinitialize();
 
 		}
 	}
-	/*
-	 * 
-	 * 
-	 * 
-	 */
+	public void reinitialize() {
+		chessPiece = null;
+		delta = null;
+		takenchessPiece = null;
+		oldchessPiece = null;
+		prevPiece = null;
+		iY = -1;
+		iX = -1;
 
+		chessBoard.revalidate();
+		layeredPane.repaint();
+	}
+	public void replay() {
+		for(int x=0; x<8;x++) {
+			for(int y=0; y<8;y++) {
+				if(newGame.spotValues[x][y].piece!=null) {
+					JLabel piece=(JLabel)JPanelGridLayout[x][y].getComponent(0);
+					JPanelGridLayout[x][y].remove(piece);
+					newGame.spotValues[x][y].piece=null;
+					
+				}
+			}
+		}
+		newGame.boardSetUp(newGame);
+		JLabel Vpiece = new JLabel();
+		boolean flag=false;
+		for (int j = 0; j < 8; j++) {
+			if(j%2==0)
+				flag=false;
+			else if(j%2==1)
+				flag=true;
+			for(int i=0;i<8;i++){
+				JPanel square = new JPanel( new BorderLayout() );
+				chessBoard.add( square );
+				JPanelGridLayout[j][i] = square;
+				if(flag==true)
+					square.setBackground( i % 2 == 0 ? Color.darkGray : Color.white );
+				else
+					square.setBackground( i % 2 == 0 ? Color.white : Color.darkGray );
+
+				if(newGame.spotValues[j][i].piece!=null)
+				{
+					switch(newGame.spotValues[j][i].piece.name){
+					case "Bishop":
+						if(newGame.spotValues[j][i].piece.color.equals("White"))
+							Vpiece = new JLabel( new ImageIcon("resource/BishopW.png") );
+						else
+							Vpiece = new JLabel( new ImageIcon("resource/BishopB.png") );
+						break;
+
+					case "King":
+						if(newGame.spotValues[j][i].piece.color.equals("White"))
+							Vpiece = new JLabel( new ImageIcon("resource/KingW.png" ));
+						else
+							Vpiece = new JLabel( new ImageIcon("resource/KingB.png" ));
+						break;
+
+					case "Queen":
+						if(newGame.spotValues[j][i].piece.color.equals("White"))
+							Vpiece = new JLabel( new ImageIcon("resource/QueenW.png") );
+						else
+							Vpiece = new JLabel( new ImageIcon("resource/QueenB.png") );
+						break;
+
+					case "Pawn":
+						if(newGame.spotValues[j][i].piece.color.equals("White"))
+							Vpiece = new JLabel( new ImageIcon("resource/PawnW.png") );
+						else
+							Vpiece = new JLabel( new ImageIcon("resource/PawnB.png") );
+						break;
+
+					case "Rook":
+						if(newGame.spotValues[j][i].piece.color.equals("White"))
+							Vpiece = new JLabel( new ImageIcon("resource/RookW.png") );
+						else
+							Vpiece = new JLabel( new ImageIcon("resource/RookB.png") );
+						break;
+
+					case "Knight":
+						if(newGame.spotValues[j][i].piece.color.equals("White"))
+							Vpiece = new JLabel( new ImageIcon("resource/KnightW.png") );
+						else
+							Vpiece = new JLabel( new ImageIcon("resource/KnightB.png") );
+						break;
+					}
+					square.add(Vpiece);
+				}
+	}
 
 	public void mouseClicked(MouseEvent e) {
 
