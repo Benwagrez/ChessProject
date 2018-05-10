@@ -549,9 +549,9 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
 		//Re-adds pieces to board
 		newGame.boardSetUp(newGame);
 		JLabel Vpiece = new JLabel();
-		boolean flag=false;
 		for (int j = 0; j < 8; j++) {
 			for(int i=0;i<8;i++){
+					if(newGame.spotValues[j][i].piece!=null) {
 					switch(newGame.spotValues[j][i].piece.name){
 						case "Bishop":
 							if(newGame.spotValues[j][i].piece.color.equals("White"))
@@ -597,6 +597,7 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
 					}
 					JPanelGridLayout[j][i].add(Vpiece);
 				}
+			}
 		}
 	}
 	
