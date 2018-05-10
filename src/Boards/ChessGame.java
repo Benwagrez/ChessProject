@@ -28,10 +28,7 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
 	private JFrame frame = new JFrame();
 	public Board newGame = new Board();//Instantiate Board object w/ spots
 
-	public ChessGame(){
-		start();
-	}
-	public void start() {
+	public ChessGame() {
 		newGame.boardSetUp(newGame);
 		Dimension boardSize = new Dimension(600, 600);//Instantiate Visual representation of Board.
 		//  Use a Layered Pane for this this application
@@ -539,81 +536,70 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
 		layeredPane.repaint();
 	}
 	public void replay() {
+		//Removed all current pieces from board
 		for(int x=0; x<8;x++) {
 			for(int y=0; y<8;y++) {
 				if(newGame.spotValues[x][y].piece!=null) {
 					JLabel piece=(JLabel)JPanelGridLayout[x][y].getComponent(0);
 					JPanelGridLayout[x][y].remove(piece);
 					newGame.spotValues[x][y].piece=null;
-					
 				}
 			}
 		}
+		//Re-adds pieces to board
 		newGame.boardSetUp(newGame);
 		JLabel Vpiece = new JLabel();
 		boolean flag=false;
 		for (int j = 0; j < 8; j++) {
-			if(j%2==0)
-				flag=false;
-			else if(j%2==1)
-				flag=true;
 			for(int i=0;i<8;i++){
-				JPanel square = new JPanel( new BorderLayout() );
-				chessBoard.add( square );
-				JPanelGridLayout[j][i] = square;
-				if(flag==true)
-					square.setBackground( i % 2 == 0 ? Color.darkGray : Color.white );
-				else
-					square.setBackground( i % 2 == 0 ? Color.white : Color.darkGray );
-
-				if(newGame.spotValues[j][i].piece!=null)
-				{
 					switch(newGame.spotValues[j][i].piece.name){
-					case "Bishop":
-						if(newGame.spotValues[j][i].piece.color.equals("White"))
-							Vpiece = new JLabel( new ImageIcon("resource/BishopW.png") );
-						else
-							Vpiece = new JLabel( new ImageIcon("resource/BishopB.png") );
-						break;
-
-					case "King":
-						if(newGame.spotValues[j][i].piece.color.equals("White"))
-							Vpiece = new JLabel( new ImageIcon("resource/KingW.png" ));
-						else
-							Vpiece = new JLabel( new ImageIcon("resource/KingB.png" ));
-						break;
-
-					case "Queen":
-						if(newGame.spotValues[j][i].piece.color.equals("White"))
-							Vpiece = new JLabel( new ImageIcon("resource/QueenW.png") );
-						else
-							Vpiece = new JLabel( new ImageIcon("resource/QueenB.png") );
-						break;
-
-					case "Pawn":
-						if(newGame.spotValues[j][i].piece.color.equals("White"))
-							Vpiece = new JLabel( new ImageIcon("resource/PawnW.png") );
-						else
-							Vpiece = new JLabel( new ImageIcon("resource/PawnB.png") );
-						break;
-
-					case "Rook":
-						if(newGame.spotValues[j][i].piece.color.equals("White"))
-							Vpiece = new JLabel( new ImageIcon("resource/RookW.png") );
-						else
-							Vpiece = new JLabel( new ImageIcon("resource/RookB.png") );
-						break;
-
-					case "Knight":
-						if(newGame.spotValues[j][i].piece.color.equals("White"))
-							Vpiece = new JLabel( new ImageIcon("resource/KnightW.png") );
-						else
-							Vpiece = new JLabel( new ImageIcon("resource/KnightB.png") );
-						break;
+						case "Bishop":
+							if(newGame.spotValues[j][i].piece.color.equals("White"))
+								Vpiece = new JLabel( new ImageIcon("resource/BishopW.png") );
+							else
+								Vpiece = new JLabel( new ImageIcon("resource/BishopB.png") );
+							break;
+	
+						case "King":
+							if(newGame.spotValues[j][i].piece.color.equals("White"))
+								Vpiece = new JLabel( new ImageIcon("resource/KingW.png" ));
+							else
+								Vpiece = new JLabel( new ImageIcon("resource/KingB.png" ));
+							break;
+	
+						case "Queen":
+							if(newGame.spotValues[j][i].piece.color.equals("White"))
+								Vpiece = new JLabel( new ImageIcon("resource/QueenW.png") );
+							else
+								Vpiece = new JLabel( new ImageIcon("resource/QueenB.png") );
+							break;
+	
+						case "Pawn":
+							if(newGame.spotValues[j][i].piece.color.equals("White"))
+								Vpiece = new JLabel( new ImageIcon("resource/PawnW.png") );
+							else
+								Vpiece = new JLabel( new ImageIcon("resource/PawnB.png") );
+							break;
+	
+						case "Rook":
+							if(newGame.spotValues[j][i].piece.color.equals("White"))
+								Vpiece = new JLabel( new ImageIcon("resource/RookW.png") );
+							else
+								Vpiece = new JLabel( new ImageIcon("resource/RookB.png") );
+							break;
+	
+						case "Knight":
+							if(newGame.spotValues[j][i].piece.color.equals("White"))
+								Vpiece = new JLabel( new ImageIcon("resource/KnightW.png") );
+							else
+								Vpiece = new JLabel( new ImageIcon("resource/KnightB.png") );
+							break;
 					}
-					square.add(Vpiece);
+					JPanelGridLayout[j][i].add(Vpiece);
 				}
+		}
 	}
+	
 
 	public void mouseClicked(MouseEvent e) {
 
