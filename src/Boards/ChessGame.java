@@ -211,47 +211,47 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
 					//Checks if the White King is King-Side Castling
 					if(newGame.spotValues[iY][iX].piece.isKCastling){
 						if(newGame.spotValues[iY][iX].piece.color.equals("White")) {
-							JPanel takenpanel=JPanelGridLayout[7][7];
-							takenchessPiece = (JLabel)(takenpanel.getComponent(0));
-							JPanelGridLayout[7][5].add(takenchessPiece);
-							newGame.spotValues[7][5].occupySpot(newGame.spotValues[7][7].piece);
-							takenpanel.remove(takenchessPiece);
-							newGame.spotValues[7][7].piece=null;
-							newGame.spotValues[iY][iX].piece.isKCastling=false;
+								JPanel takenpanel=JPanelGridLayout[7][7];
+								takenchessPiece = (JLabel)(takenpanel.getComponent(0));
+								JPanelGridLayout[7][5].add(takenchessPiece);
+								newGame.spotValues[7][5].occupySpot(newGame.spotValues[7][7].piece);
+								takenpanel.remove(takenchessPiece);
+								newGame.spotValues[7][7].piece=null;
+								newGame.spotValues[iY][iX].piece.isKCastling=false;
 						}
 						//Checks if the Black King is King-Side Castling
 						else if(newGame.spotValues[iY][iX].piece.color.equals("Black")) {
-							JPanel takenpanel=JPanelGridLayout[0][7];
-							takenchessPiece = (JLabel)(takenpanel.getComponent(0));
-							JPanelGridLayout[0][5].add(takenchessPiece);
-							newGame.spotValues[0][5].occupySpot(newGame.spotValues[0][7].piece);
-							takenpanel.remove(takenchessPiece);
-							newGame.spotValues[0][7].piece=null;
-							newGame.spotValues[iY][iX].piece.isKCastling=false;
+								JPanel takenpanel=JPanelGridLayout[0][7];
+								takenchessPiece = (JLabel)(takenpanel.getComponent(0));
+								JPanelGridLayout[0][5].add(takenchessPiece);
+								newGame.spotValues[0][5].occupySpot(newGame.spotValues[0][7].piece);
+								takenpanel.remove(takenchessPiece);
+								newGame.spotValues[0][7].piece=null;
+								newGame.spotValues[iY][iX].piece.isKCastling=false;
 						}
 					}
 					//Checks if the White King is Queen-Side Castling
 					if(newGame.spotValues[iY][iX].piece.isQCastling){
 						if(newGame.spotValues[iY][iX].piece.color.equals("White")) {
-							JPanel takenpanel=JPanelGridLayout[7][0];
-							takenchessPiece = (JLabel)(takenpanel.getComponent(0));
-							JPanelGridLayout[7][3].add(takenchessPiece);
-							newGame.spotValues[7][3].occupySpot(newGame.spotValues[7][0].piece);
-							takenpanel.remove(takenchessPiece);
-							newGame.spotValues[7][0].piece=null;
-							QSC = true;
-							newGame.spotValues[iY][iX].piece.isQCastling=false;
+								JPanel takenpanel=JPanelGridLayout[7][0];
+								takenchessPiece = (JLabel)(takenpanel.getComponent(0));
+								JPanelGridLayout[7][3].add(takenchessPiece);
+								newGame.spotValues[7][3].occupySpot(newGame.spotValues[7][0].piece);
+								takenpanel.remove(takenchessPiece);
+								newGame.spotValues[7][0].piece=null;
+								QSC = true;
+								newGame.spotValues[iY][iX].piece.isQCastling=false;
 						}
 						//Checks if the Black King is Queen-Side Castling
 						else if(newGame.spotValues[iY][iX].piece.color.equals("Black")) {
-							JPanel takenpanel=JPanelGridLayout[0][0];
-							takenchessPiece = (JLabel)(takenpanel.getComponent(0));
-							JPanelGridLayout[0][3].add(takenchessPiece);
-							newGame.spotValues[0][3].occupySpot(newGame.spotValues[0][0].piece);
-							takenpanel.remove(takenchessPiece);
-							newGame.spotValues[0][0].piece=null;
-							QSC = true;
-							newGame.spotValues[iY][iX].piece.isQCastling=false;
+								JPanel takenpanel=JPanelGridLayout[0][0];
+								takenchessPiece = (JLabel)(takenpanel.getComponent(0));
+								JPanelGridLayout[0][3].add(takenchessPiece);
+								newGame.spotValues[0][3].occupySpot(newGame.spotValues[0][0].piece);
+								takenpanel.remove(takenchessPiece);
+								newGame.spotValues[0][0].piece=null;
+								QSC = true;
+								newGame.spotValues[iY][iX].piece.isQCastling=false;
 						}
 					}	
 					//Checks if its taking another piece

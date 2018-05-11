@@ -15,40 +15,33 @@ public class King extends Piece{
 
 
 	public boolean pathValid(int iX, int iY, int fX, int fY) {
+		//checks if king is moving
 		if(chess.spotValues[fY][fX].isOccupied()==false && pathDraw(iX,iY,fX,fY)) {
 			
 			if(isTesting) {
 			return true;
 			}
-			System.out.println("cant castle");
 			canCastle=false;
 			return true;
 			
 		}	 
+		//checks if king is taking
 		if(chess.spotValues[fY][fX].isOccupied()==true && !chess.spotValues[iY][iX].piece.color.equals(chess.spotValues[fY][fX].piece.color) && pathDraw(iX,iY,fX,fY)) {
 			
 			if(isTesting) {
 				return true;
 			}
-			System.out.println("cant castle");
 			canCastle=false;
 			return true;
 			
 		}
+		//checks if castling
 		if(color=="White") {
-			if(!isTesting) {
-				System.out.println(canCastle);
-			System.out.println(fX==6);
-			System.out.println(fY==7);
-			System.out.println(!chess.spotValues[7][6].isOccupied());
-			System.out.println(!chess.spotValues[7][5].isOccupied());
-			System.out.println(!chess.spotValues[7][6].isProtectedByBlack);
-			System.out.println(!chess.spotValues[7][5].isProtectedByBlack);}
 			if(canCastle==true && fX==6 && fY==7 && !chess.spotValues[7][6].isOccupied() && !chess.spotValues[7][5].isOccupied() && !chess.spotValues[7][6].isProtectedByBlack && !chess.spotValues[7][5].isProtectedByBlack) {
 				if(isTesting) {
 					return true;
 				}
-				System.out.println("w Is k Casrtling");
+				System.out.println("w Is k Castling");
 				isKCastling=true;//King side castling
 				return true;
 				
@@ -56,7 +49,7 @@ public class King extends Piece{
 				if(isTesting) {
 					return true;
 				}
-				System.out.println("w Is q Casrtling");
+				System.out.println("w Is q Castling");
 				isQCastling=true;//Queen side castling
 				return true;
 				
@@ -67,7 +60,7 @@ public class King extends Piece{
 				if(isTesting) {
 					return true;
 				}
-				System.out.println("Is k Casrtling");
+				System.out.println("b Is k Castling");
 				isKCastling=true;//King side castling
 				
 				return true;
@@ -75,7 +68,7 @@ public class King extends Piece{
 				if(isTesting) {
 					return true;
 				}
-				System.out.println("Is Q Casrtling");
+				System.out.println("b Is Q Castling");
 				isQCastling=true;//Queen side castling
 				return true;
 				
