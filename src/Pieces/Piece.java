@@ -14,6 +14,7 @@ public abstract class Piece{
 	public boolean doingEnPassant=false;
 	public boolean isKCastling = false;
 	public boolean isQCastling = false;
+	public boolean isTesting = false;
 	/*
 	 *Currently X and Y coordinates of the object, non
 	 *abstract because these will be a consistent variable

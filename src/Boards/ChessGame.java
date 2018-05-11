@@ -398,6 +398,7 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
 				for(Spot[] coordY : newGame.spotValues) {
 					for(Spot coordX : coordY) {
 						if(coordX.piece!=null) {
+							coordX.piece.isTesting = true;
 							for(int tX=0; tX < 8; tX++) {
 								for(int tY=0; tY < 8; tY++) {
 									if(coordX.piece.name!="Pawn") {
@@ -419,6 +420,7 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
 									}
 								}
 							}
+							coordX.piece.isTesting = false;
 						}
 					}
 				}
@@ -427,6 +429,7 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
 					for(Spot coordX : coordY) {
 						if(coordX.piece!=null) {
 							if(coordX.piece.name=="King") {
+								coordX.piece.isTesting = true;
 								int whitePossibleMoves = 0;
 								int blackPossibleMoves = 0;
 								//Checks if king can move anywhere at all
@@ -513,6 +516,7 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
 										newGame.spotValues[fY][fX].piece=oldPiece;
 									}
 								} 
+								coordX.piece.isTesting = false;
 							}
 						}
 					}
@@ -599,6 +603,7 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
 				}
 			}
 		}
+		turn="White";
 	}
 	
 
