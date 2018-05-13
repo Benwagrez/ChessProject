@@ -18,7 +18,21 @@ public class Rook extends Piece{
 	public boolean pathValid(int iX, int iY, int fX, int fY) {
 		//check if rook can move
 		if(chess.spotValues[fY][fX].isOccupied()==false && pathDraw(iX,iY,fX,fY)){
-			this.canCastle=false;
+			if(chess.spotValues[iY][iX].piece.color.equals("White")) {
+				if(chess.spotValues[7][4].piece!=null) {
+					if(chess.spotValues[7][4].piece.name.equals("King")) {
+						if(!isTesting)chess.spotValues[7][4].piece.canCastle=false;
+					}
+				}
+
+			}
+			else if(chess.spotValues[iY][iX].piece.color.equals("Black")) {
+				if(chess.spotValues[0][4].piece!=null) {
+					if(chess.spotValues[0][4].piece.name.equals("King")) {
+						if(!isTesting)chess.spotValues[0][4].piece.canCastle=false;
+					}
+				}
+			}
 			return true;			
 		}
 		//check if rook can take

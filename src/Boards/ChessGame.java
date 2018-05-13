@@ -421,14 +421,22 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
 								}
 							}
 							coordX.piece.isTesting = false;
+							
 						}
 					}
+				}
+				for(Spot[] coordYs : newGame.spotValues) {
+					for(Spot coordXs : coordYs) {
+						System.out.print(coordXs.isProtectedByWhite + " " + coordXs.isProtectedByBlack + "|");
+					}
+					System.out.println();
 				}
 				//Checks if King is in check after the move
 				for(Spot[] coordY : newGame.spotValues) {
 					for(Spot coordX : coordY) {
 						if(coordX.piece!=null) {
 							if(coordX.piece.name=="King") {
+								System.out.println("testing king" + coordX.piece.color);
 								coordX.piece.isTesting = true;
 								int whitePossibleMoves = 0;
 								int blackPossibleMoves = 0;
@@ -437,56 +445,44 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
 									for(int tY=0; tY < 8; tY++) {
 										//If this happens, then its not check mate since King has at least one legal move
 										if(coordX.piece.color.equals("White") && turn.equals("White")) {
-											if(coordX.piece.pathDraw(coordX.x,coordX.y,tX,tY) && !newGame.spotValues[tX][tY].isOccupied() && (!(newGame.spotValues[tX][tY].isProtectedByBlack))) {
+											if(((coordX.piece.pathDraw(coordX.y,coordX.x,tY,tX) && !newGame.spotValues[tX][tY].isOccupied()) && (!(newGame.spotValues[tX][tY].isProtectedByBlack)))) {
 												whitePossibleMoves++;
 											}
 										}
 										else if(coordX.piece.color.equals("Black") && turn.equals("Black")) {
-											if(coordX.piece.pathDraw(coordX.x,coordX.y,tX,tY) && !newGame.spotValues[tX][tY].isOccupied() && (!(newGame.spotValues[tX][tY].isProtectedByWhite))) {
-												blackPossibleMoves++;
-											}
+											if(((coordX.piece.pathDraw(coordX.y,coordX.x,tY,tX) && !newGame.spotValues[tX][tY].isOccupied()) && (!(newGame.spotValues[tX][tY].isProtectedByWhite)))) {
+												blackPossibleMoves++;											}
 										}
 									}
 								}
+								System.out.println("king moves " + whitePossibleMoves);
 								//Check to see if a piece can block check mate
-								if(coordX.piece.color=="White" && coordX.isProtectedByBlack && whitePossibleMoves==0) {
-									String[] options=new String[2];
-									options[0]="Play again";
-									options[1]="Quit";
-									int n = JOptionPane.showOptionDialog(frame,
-											"Black wins by Checkmate!",
-													"Game Over",
-													JOptionPane.YES_NO_CANCEL_OPTION,
-													JOptionPane.QUESTION_MESSAGE,
-													null,
-													options,
-													options[1]);
-									if(n==0) {
-										replay();
-										break;
-									} else if(n==1) {
-										System.exit(0);;
-									}
-								} else if(coordX.piece.color=="Black" && coordX.isProtectedByWhite && blackPossibleMoves==0) {
-									String[] options=new String[2];
-									options[0]="Play again";
-									options[1]="Quit";
-									int n = JOptionPane.showOptionDialog(frame,
-											"White wins by Checkmate!",
-													"Game Over",
-													JOptionPane.YES_NO_CANCEL_OPTION,
-													JOptionPane.QUESTION_MESSAGE,
-													null,
-													options,
-													options[1]);
-									if(n==0) {
-										replay();
-										break;
-									} else if(n==1) {
-										System.exit(0);
-									}
-								}
+//								if(coordX.piece.color.equals("White") && turn.equals("White")) {
+//									for(Spot[] coordYs : newGame.spotValues) {
+//										for(Spot coordXs : coordYs) {
+//											if(coordX.piece!=null) {
+//												if(coordX.piece.color=="White") {
+//													
+//												}
+//											}
+//										}
+//									}
+//								}
+//								else if(coordX.piece.color.equals("Black") && turn.equals("Black")) {
+//									for(Spot[] coordYs : newGame.spotValues) {
+//										for(Spot coordXs : coordYs) {
+//											if(coordX.piece!=null) {
+//												if(coordX.piece.color=="Black") {
+//													
+//												}
+//											}
+//										}
+//									}										
+//								}
+								
 								//If not check mate but not legal move, then undo previous move.
+								coordX.piece.isTesting = false;
+
 								if(coordX.isProtectedByBlack && coordX.piece.color=="White" && turn!="White") {
 									JPanel futurepanel=JPanelGridLayout[fY][fX];
 									if(oldchessPiece==null) {
@@ -516,11 +512,50 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
 										newGame.spotValues[fY][fX].piece=oldPiece;
 									}
 								} 
-								coordX.piece.isTesting = false;
+								else if(coordX.piece.color=="White" && coordX.isProtectedByBlack && whitePossibleMoves==0) {
+									String[] options=new String[2];
+									options[0]="Play again";
+									options[1]="Quit";
+									reinitialize();
+									int n = JOptionPane.showOptionDialog(frame,
+											"Black wins by Checkmate!",
+													"Game Over",
+													JOptionPane.YES_NO_CANCEL_OPTION,
+													JOptionPane.QUESTION_MESSAGE,
+													null,
+													options,
+													options[1]);
+									if(n==0) {
+										replay();
+										break;
+									} else if(n==1) {
+										System.exit(0);;
+									}
+								} else if(coordX.piece.color=="Black" && coordX.isProtectedByWhite && blackPossibleMoves==0) {
+									String[] options=new String[2];
+									options[0]="Play again";
+									options[1]="Quit";
+									reinitialize();
+									int n = JOptionPane.showOptionDialog(frame,
+											"White wins by Checkmate!",
+													"Game Over",
+													JOptionPane.YES_NO_CANCEL_OPTION,
+													JOptionPane.QUESTION_MESSAGE,
+													null,
+													options,
+													options[1]);
+									if(n==0) {
+										replay();
+										break;
+									} else if(n==1) {
+										System.exit(0);
+									}
+								}
 							}
 						}
 					}
 				}
+				
 			}
 			// re-initialize things
 			reinitialize();

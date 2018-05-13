@@ -41,7 +41,6 @@ public class King extends Piece{
 				if(isTesting) {
 					return true;
 				}
-				System.out.println("w Is k Castling");
 				isKCastling=true;//King side castling
 				return true;
 				
@@ -49,7 +48,6 @@ public class King extends Piece{
 				if(isTesting) {
 					return true;
 				}
-				System.out.println("w Is q Castling");
 				isQCastling=true;//Queen side castling
 				return true;
 				
@@ -60,7 +58,6 @@ public class King extends Piece{
 				if(isTesting) {
 					return true;
 				}
-				System.out.println("b Is k Castling");
 				isKCastling=true;//King side castling
 				
 				return true;
@@ -68,7 +65,6 @@ public class King extends Piece{
 				if(isTesting) {
 					return true;
 				}
-				System.out.println("b Is Q Castling");
 				isQCastling=true;//Queen side castling
 				return true;
 				
@@ -89,8 +85,10 @@ public class King extends Piece{
 			return false;
 		}//Checking if change in x and y are over 1 - if so - impossible
 		if(chess.spotValues[fY][fX].isProtectedByBlack && color=="White") {
+			System.out.print("3   " +fX + " "+fY);
 			return false;
 		} else if(chess.spotValues[fY][fX].isProtectedByWhite && color=="Black") {
+			System.out.print("4   ");
 			return false;
 		}
 		return true;
