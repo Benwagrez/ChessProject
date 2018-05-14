@@ -445,40 +445,150 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
 									for(int tY=0; tY < 8; tY++) {
 										//If this happens, then its not check mate since King has at least one legal move
 										if(coordX.piece.color.equals("White") && turn.equals("White")) {
-											if(((coordX.piece.pathDraw(coordX.y,coordX.x,tY,tX) && !newGame.spotValues[tX][tY].isOccupied()) && (!(newGame.spotValues[tX][tY].isProtectedByBlack)))) {
+											if(((coordX.piece.pathDraw(coordX.y,coordX.x,tY,tX) && !(newGame.spotValues[tX][tY].isOccupied() && newGame.spotValues[tX][tY].piece.color.equals("White"))) && (!(newGame.spotValues[tX][tY].isProtectedByBlack)))) {
 												whitePossibleMoves++;
 											}
 										}
 										else if(coordX.piece.color.equals("Black") && turn.equals("Black")) {
-											if(((coordX.piece.pathDraw(coordX.y,coordX.x,tY,tX) && !newGame.spotValues[tX][tY].isOccupied()) && (!(newGame.spotValues[tX][tY].isProtectedByWhite)))) {
+											if(((coordX.piece.pathDraw(coordX.y,coordX.x,tY,tX) && !(newGame.spotValues[tX][tY].isOccupied() && newGame.spotValues[tX][tY].piece.color.equals("White"))) && (!(newGame.spotValues[tX][tY].isProtectedByWhite)))) {
 												blackPossibleMoves++;											}
 										}
 									}
 								}
 								System.out.println("king moves " + whitePossibleMoves);
 								//Check to see if a piece can block check mate
-//								if(coordX.piece.color.equals("White") && turn.equals("White")) {
-//									for(Spot[] coordYs : newGame.spotValues) {
-//										for(Spot coordXs : coordYs) {
-//											if(coordX.piece!=null) {
-//												if(coordX.piece.color=="White") {
-//													
-//												}
-//											}
-//										}
-//									}
-//								}
-//								else if(coordX.piece.color.equals("Black") && turn.equals("Black")) {
-//									for(Spot[] coordYs : newGame.spotValues) {
-//										for(Spot coordXs : coordYs) {
-//											if(coordX.piece!=null) {
-//												if(coordX.piece.color=="Black") {
-//													
-//												}
-//											}
-//										}
-//									}										
-//								}
+								if(coordX.piece.color.equals("White") && turn.equals("White")) {
+									for(Spot[] coordYs : newGame.spotValues) {
+										for(Spot coordXs : coordYs) {
+											if(coordXs.piece!=null) {
+												if(coordXs.piece.color=="White") {
+													for(int tX=0; tX < 8; tX++) {
+														for(int tY=0; tY < 8; tY++) {
+															if(coordXs.piece.pathDraw(coordXs.y,coordXs.x,tY,tX) && coordXs.piece.pathValid(coordXs.y, coordXs.x, tY, tX)) {
+																newGame.spotValues[fY][fX].occupySpot(newGame.spotValues[iY][iX].piece);
+																newGame.spotValues[coordXs.y][coordXs.x].piece=null;
+																for(Spot[] coordYz : newGame.spotValues) {
+																	for(Spot coordXz : coordYz) {
+																		if(coordXz.piece!=null) {
+																			coordXz.piece.isTesting = true;
+																			for(int tXz=0; tXz < 8; tXz++) {
+																				for(int tYz=0; tYz < 8; tYz++) {
+																					if(coordXz.piece.name!="Pawn") {
+																						if(coordXz.piece.pathValid(coordXz.y,coordXz.x,tXz,tYz)) {
+																							if(coordXz.piece.color=="White") {
+																								newGame.spotValues[tYz][tXz].isProtectedByWhite=true;
+																							} else if(coordXz.piece.color=="Black"){
+																								newGame.spotValues[tYz][tXz].isProtectedByBlack=true;
+																							}
+																						}
+																					}else {
+																						if(coordXz.piece.pawnCheck(coordXz.y,coordXz.x,tXz,tYz)) { 
+																							if(coordXz.piece.color=="White" && fY!=0) {
+																								newGame.spotValues[tYz][tXz].isProtectedByWhite=true;
+																							} else if(coordXz.piece.color=="Black" && fY!=7){
+																								newGame.spotValues[tYz][tXz].isProtectedByBlack=true;
+																							}
+																						}
+																					}
+																				}
+																			}
+																			coordXz.piece.isTesting = false;
+																			
+																		}
+																	}
+																}
+																if(coordX.isProtectedByBlack && coordX.piece.color=="White" && turn!="White") {
+																	JPanel futurepanel=JPanelGridLayout[fY][fX];
+																	if(oldchessPiece==null) {
+																		oldchessPiece = (JLabel)(futurepanel.getComponent(0));
+																	}
+																	JPanelGridLayout[fY][fX].remove(oldchessPiece);
+																	JPanelGridLayout[iY][iX].add(chessPiece);
+																	newGame.spotValues[fY][fX].piece=null;
+																	newGame.spotValues[iY][iX].piece=prevPiece;
+																	turn="White";
+																	if(takenchessPiece!=null) {
+																		JPanelGridLayout[fY][fX].add(takenchessPiece);
+																		newGame.spotValues[fY][fX].piece=oldPiece;
+																	}
+																}
+																else {
+																	whitePossibleMoves++;
+																}
+															}	
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+								else if(coordX.piece.color.equals("Black") && turn.equals("Black")) {
+									for(Spot[] coordYs : newGame.spotValues) {
+										for(Spot coordXs : coordYs) {
+											if(coordXs.piece!=null) {
+												if(coordXs.piece.color=="Black") {
+													for(int tX=0; tX < 8; tX++) {
+														for(int tY=0; tY < 8; tY++) {
+															if(coordXs.piece.pathDraw(coordXs.y,coordXs.x,tY,tX) && coordXs.piece.pathValid(coordXs.y, coordXs.x, tY, tX)){
+																newGame.spotValues[fY][fX].occupySpot(newGame.spotValues[iY][iX].piece);
+																newGame.spotValues[coordXs.y][coordXs.x].piece=null;
+																for(Spot[] coordYz : newGame.spotValues) {
+																	for(Spot coordXz : coordYz) {
+																		if(coordXz.piece!=null) {
+																			coordXz.piece.isTesting = true;
+																			for(int tXz=0; tXz < 8; tXz++) {
+																				for(int tYz=0; tYz < 8; tYz++) {
+																					if(coordXz.piece.name!="Pawn") {
+																						if(coordXz.piece.pathValid(coordXz.y,coordXz.x,tXz,tYz)) {
+																							if(coordXz.piece.color=="White") {
+																								newGame.spotValues[tYz][tXz].isProtectedByWhite=true;
+																							} else if(coordXz.piece.color=="Black"){
+																								newGame.spotValues[tYz][tXz].isProtectedByBlack=true;
+																							}
+																						}
+																					}else {
+																						if(coordXz.piece.pawnCheck(coordXz.y,coordXz.x,tXz,tYz)) { 
+																							if(coordXz.piece.color=="White" && fY!=0) {
+																								newGame.spotValues[tYz][tXz].isProtectedByWhite=true;
+																							} else if(coordXz.piece.color=="Black" && fY!=7){
+																								newGame.spotValues[tYz][tXz].isProtectedByBlack=true;
+																							}
+																						}
+																					}
+																				}
+																			}
+																			coordXz.piece.isTesting = false;
+																			
+																		}
+																	}
+																}
+																if(coordX.isProtectedByWhite && coordX.piece.color=="Black" && turn!="Black") {
+																	JPanel futurepanel=JPanelGridLayout[fY][fX];
+																	if(oldchessPiece==null) { 
+																		oldchessPiece = (JLabel)(futurepanel.getComponent(0));
+																	}
+																	JPanelGridLayout[fY][fX].remove(oldchessPiece);
+																	JPanelGridLayout[iY][iX].add(chessPiece);
+																	newGame.spotValues[fY][fX].piece=null;
+																	newGame.spotValues[iY][iX].piece=prevPiece;
+																	turn="Black";
+																	if(takenchessPiece!=null) {
+																		JPanelGridLayout[fY][fX].add(takenchessPiece);
+																		newGame.spotValues[fY][fX].piece=oldPiece;
+																	}
+																} 
+																else {
+																	blackPossibleMoves++;
+																}
+															}
+														}
+													}
+												}
+											}
+										}
+									}										
+								}
 								
 								//If not check mate but not legal move, then undo previous move.
 								coordX.piece.isTesting = false;
@@ -550,6 +660,25 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
 									} else if(n==1) {
 										System.exit(0);
 									}
+//								} else if(totalMoves==0 && whitePossibleMoves==0) {
+//									String[] options=new String[2];
+//									options[0]="Play again";
+//									options[1]="Quit";
+//									reinitialize();
+//									int n = JOptionPane.showOptionDialog(frame,
+//											"Stalemate!",
+//													"Game Over",
+//													JOptionPane.YES_NO_CANCEL_OPTION,
+//													JOptionPane.QUESTION_MESSAGE,
+//													null,
+//													options,
+//													options[1]);
+//									if(n==0) {
+//										replay();
+//										break;
+//									} else if(n==1) {
+//										System.exit(0);
+//									}
 								}
 							}
 						}
