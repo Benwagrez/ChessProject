@@ -425,12 +425,6 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
 						}
 					}
 				}
-				for(Spot[] coordYs : newGame.spotValues) {
-					for(Spot coordXs : coordYs) {
-						System.out.print(coordXs.isProtectedByWhite + " " + coordXs.isProtectedByBlack + "|");
-					}
-					System.out.println();
-				}
 				//Checks if King is in check after the move
 				for(Spot[] coordY : newGame.spotValues) {
 					for(Spot coordX : coordY) {
@@ -453,7 +447,6 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
 										}
 									}
 								}
-								System.out.println("king moves " + whitePossibleMoves);
 								
 								//If not check mate but not legal move, then undo previous move.
 								coordX.piece.isTesting = false;
